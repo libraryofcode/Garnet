@@ -9,7 +9,7 @@ exports.run = async (client, message, args, level) => {
     const msg = await message.channel.send("Loading...");
     const friendly = client.config.permLevels.find(l => l.level === level).name;
     let botuser = message.mentions.users.first() ? message.guild.members.get(message.mentions.users.first().id) : message.member
-    let matt = message.mentions.users.first() ? message.guild.members.get(message.mentions.users.first().id).roles.sort((a, b) => b.position - a.position).map(i => i.id) : message.member.roles.sort((a, b) => b.position - a.position).map(i => i.id)
+    let matt = message.mentions.users.first() ? message.guild.members.get(message.mentions.users.first().id).roles.sort((a, b) => b.position - a.position).map(i => i.id).slice(0, -1) : message.member.roles.sort((a, b) => b.position - a.position).map(i => i.id).slice(0, -1)
 let myDick = "";
 for(let i = 0; i < matt.length; i++) {
   myDick += "<@&" + matt[i] + ">";
