@@ -1,5 +1,7 @@
 const Discord = require("discord.js");
 exports.run = async (client, message, args, level) => {
+    if(message.mentions.users.first())
+        level = client.permlevel(message.mentions.users.first().lastMessage);
     const msg = await message.channel.send("Loading...");
     const friendly = client.config.permLevels.find(l => l.level === level).name;
     let botuser = message.mentions.users.first() ? message.guild.members.get(message.mentions.users.first().id) : message.member
