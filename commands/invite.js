@@ -20,7 +20,7 @@ exports.run = async (client, message, args, level) => {
   
   exports.help = {
     name: "invite",
-    category: "Miscelaneous",
+    category: "Bot Information",
     description: "Provides the invite link.",
     usage: "invite"
   };

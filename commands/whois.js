@@ -37,7 +37,7 @@ myDick;
   
   exports.help = {
     name: "whois",
-    category: "Miscelaneous",
+    category: "Misc",
     description: "Provides user information.",
     usage: "whois"
   };
