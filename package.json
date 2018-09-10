@@ -19,6 +19,7 @@
     "discord.js": "^11.4.2",
     "enmap": "^4.0.12",
     "enmap-sqlite": "^2.0.5",
+    "jshint": "^2.9.6",
     "moment": "^2.22.2",
     "moment-duration-format": "^2.2.2"
   }
