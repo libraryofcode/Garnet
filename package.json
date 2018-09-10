@@ -1,0 +1,25 @@
+{
+  "name": "ShadowShard",
+  "version": "2.3.5",
+  "description": "ShadowShard is a developed bot by the FCC.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "author": "Matthew#0008",
+  "contributors": [
+    "NightRaven#2172"
+  ],
+  "dependencies": {
+    "chalk": "^2.4.1",
+    "discord.js": "^11.4.2",
+    "enmap": "^4.0.12",
+    "enmap-sqlite": "^2.0.5",
+    "moment": "^2.22.2",
+    "moment-duration-format": "^2.2.2"
+  }
+}
