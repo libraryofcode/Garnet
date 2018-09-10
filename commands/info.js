@@ -6,7 +6,7 @@ exports.run = async (client, message, args, level) => {
     .addField("Created At", `${client.user.createdAt}`, true)
     .addField("Library", "[Discord.js](https://github.com/discordjs/discord.js)", true)
     .addField("Language", "JavaScript", true)
-    .addField("Contributors", `NightRaven#2172, FlatBird#9461`, true)
+    .addField("Contributors", `NightRaven#2172, CoalSephos#7566, FlatBird#9461`, true)
     .addField("Creator", `Matthew#0008`, true)
     .setFooter("Alpha/Development | ShadowShard")
 
