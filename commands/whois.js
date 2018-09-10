@@ -22,7 +22,6 @@ myDick;
     .setColor(botuser.displayColor)
     .addField("ID", botuser.id, true)
     .addField("Joined Server At", `${botuser.joinedAt}`, true)
-    .addField("Created Account At", `${message.author.createdAt}`, true)
     .addField("Presense", `${botuser.user.presence.status}`, true)
     .addField("Roles", `${myDick}`, true)
     .addField("Acknowledgements", `${friendly}`, true)
