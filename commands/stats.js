@@ -25,12 +25,12 @@ exports.conf = {
   enabled: true,
   guildOnly: false,
   aliases: [],
-  permLevel: "User"
+  permLevel: "Standard User"
 };
 
 exports.help = {
   name: "stats",
-  category: "Miscelaneous",
+  category: "Bot Information",
   description: "Gives some useful bot statistics",
   usage: "stats"
 };
