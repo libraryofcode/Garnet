@@ -1,5 +1,5 @@
 exports.run = async (client, message, args, level) => {// eslint-disable-line no-unused-vars
-  await message.reply("Bot is shutting down.");
+  await message.reply("System is shutting down.");
   client.commands.forEach( async cmd => {
     await client.unloadCommand(cmd);
   });
@@ -9,13 +9,13 @@ exports.run = async (client, message, args, level) => {// eslint-disable-line no
 exports.conf = {
   enabled: true,
   guildOnly: false,
-  aliases: ["rb"],
+  aliases: ["s"],
   permLevel: "Systems Administrator"
 };
 
 exports.help = {
-  name: "reboot",
+  name: "shutdown",
   category: "System",
-  description: "Shuts down the bot. If running under PM2, bot will restart automatically.",
-  usage: "reboot"
+  description: "Shuts down the bot.",
+  usage: "shutdown"
 };
