@@ -21,22 +21,8 @@ if (botuser.user.bot === true) {
   bot = "No";
 }
 
-if(!botuser.user.presence.game.assets.assets) {
-    const embed = new Discord.RichEmbed()
-    .setAuthor(botuser.displayName, `undefined`)
-    .setColor(botuser.displayColor)
-    .addField("Status", `${status[botuser.user.presence.status]}`, true)
-    .addField("Playing", `${botuser.user.presence.game ? `${botuser.user.presence.game.name}` : "not playing anything."}`, true)
-    .addField("Details", `${botuser.user.presence.game.details}`, true)
-    .addField("State", `${botuser.user.presence.game.state}`, true)
-    .addField("ID", botuser.id, false)
-    .addField("Bot", `${bot}`, false)
-    .addField("Guild", `${bot}`, false)
-    .setFooter("ShadowShard | Alpha Development")
-    msg.edit(embed)   
-}
     
-    const embed = new Discord.RichEmbed()
+try {  const embed = new Discord.RichEmbed()
     .setAuthor(botuser.displayName, botuser.user.presence.game.assets.smallImageURL)
     .setThumbnail(botuser.user.presence.game.assets.largeImageURL)
     .setColor(botuser.displayColor)
@@ -49,6 +35,9 @@ if(!botuser.user.presence.game.assets.assets) {
     .addField("Guild", `${bot}`, false)
     .setFooter("ShadowShard | Alpha Development")
     msg.edit(embed)
+} catch (err) {
+    msg.edit('Exception: ' + err)
+    }
 }
 
 

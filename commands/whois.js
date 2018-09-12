@@ -12,7 +12,7 @@ exports.run = async (client, message, args, level) => {
         } catch(e) {
             level = 0;
         }
-    const msg = await message.channel.send("Loading...");
+    try { const msg = await message.channel.send("Loading...");
     const friendly = client.config.permLevels.find(l => l.level === level).name;
     let botuser = message.mentions.users.first() ? message.guild.members.get(message.mentions.users.first().id) : message.member
     let matt = message.mentions.users.first() ? message.guild.members.get(message.mentions.users.first().id).roles.sort((a, b) => b.position - a.position).map(i => i.id).slice(0, -1) : message.member.roles.sort((a, b) => b.position - a.position).map(i => i.id).slice(0, -1)
@@ -44,6 +44,9 @@ myDick;
     .addField("System Level", `${level}`, true)
     .setFooter("ShadowShard | Alpha Development")
     msg.edit(embed)
+} catch (err) {
+    msg.edit('Exception: ' + err)
+    }
   };
   exports.conf = {
     enabled: true,
