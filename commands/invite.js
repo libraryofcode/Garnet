@@ -5,7 +5,7 @@ exports.run = async (client, message, args, level) => {
     .setColor(message.member.displayColor)
     .addField("Invite Link", "https://discordapp.com/api/oauth2/authorize?client_id=460639060851949569&permissions=8&scope=bot", true)
     .setFooter("Alpha/Development | ShadowShard")
-   message.channel.send(embed);
+    message.channel.send(embed);
   };
   
   exports.conf = {

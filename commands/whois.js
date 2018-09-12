@@ -29,7 +29,7 @@ for(let i = 0; i < matt.length; i++) {
     }
 }
 myDick;
-//lgtm [js/useless-expression]
+   //lgtm [js/useless-expression]
     const embed = new Discord.RichEmbed()
       .setAuthor(botuser.displayName, botuser.user.avatarURL)
       .setColor(botuser.displayColor)
