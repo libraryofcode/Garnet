@@ -7,7 +7,7 @@ const status = {
   };
 exports.run = async (client, message, args, level) => {
     const msg = await message.channel.send("Loading...");
-    let botuser = message.mentions.users.first() ? message.guild.members.get(message.mentions.users.first().id) : message.member
+    const botuser = message.mentions.users.first() ? message.guild.members.get(message.mentions.users.first().id) : message.member;
 let bot;
 if (botuser.user.bot === true) {
   bot = "Yes";
@@ -31,11 +31,11 @@ try {  const embed = new Discord.RichEmbed()
     .addField("ID", botuser.id, false)
     .addField("Bot", `${bot}`, false)
     .addField("Guild", `${bot}`, false)
-    .setFooter("ShadowShard | Alpha Development")
-    msg.edit(embed)
+    .setFooter("ShadowShard | Alpha Development");
+    msg.edit(embed);
 } catch (err) {
     msg.edit(`Exception: ` 
-    + err)
+    + err);
     }
 };
 
