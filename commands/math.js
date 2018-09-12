@@ -7,9 +7,9 @@ async function request(i) {
 exports.run = async (client, message, args, level) => {
     const input = args.join(' ');
     const errmsg = {
-        exp: 'Couldn\'t evaluate the given expression',
-        err: 'An Error Occured',
-        fact: 'Couldn\'t get any facts for that number',
+        exp: 'Couldn\'t evaluate the given expression, please try again later.',
+        err: 'Alert: An error occurred during the processing, please try again later.',
+        fact: 'Couldn\'t get any facts for the expression unput that you provided.',
     };
     let res; // Used to get number facts
     let output; // Output from mathjs
