@@ -17,8 +17,8 @@ exports.run = (client, message, args, level) => { // eslint-disable-line no-unus
     .addField("• Discord.js Version", `v${version}`, true)
     .addField("• Node Version", `${process.version}`, true)
     .addField("Creator", `Matthew#0008`, true)
-    .setFooter("Alpha/Development | ShadowShard")
-  message.channel.send(embed)
+    .setFooter("Alpha/Development | ShadowShard");
+  message.channel.send(embed);
 };
 
 exports.conf = {

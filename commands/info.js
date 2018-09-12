@@ -8,11 +8,11 @@ exports.run = async (client, message, args, level) => {
     .addField("Language", "JavaScript", true)
     .addField("Contributors", `NightRaven#2172, CoalSephos#7566, FlatBird#9461`, true)
     .addField("Creator", `Matthew#0008`, true)
-    .setFooter("Alpha/Development | ShadowShard")
+    .setFooter("Alpha/Development | ShadowShard");
 
 
 
-    message.channel.send(embed)
+    message.channel.send(embed);
   };
   
   exports.conf = {

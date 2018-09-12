@@ -1,12 +1,12 @@
 exports.run = async (client, message, msg, args, level) => { 
-    let member = message.mentions.members.first() || message.guild.members.get(args[0]);
-    if(!member)
+    const member = message.mentions.members.first() || message.guild.members.get(args[0]);
+    if (!member)
       return message.reply("please mention a valid member of this server");
-    if(!member.kickable) 
+    if (!member.kickable) 
       return message.reply("Error: Forbidden, user is not kickable.");
     
     let reason = args.slice(1).join(' ');
-    if(!reason) reason = "No reason provided";
+    if (!reason) reason = "No reason provided";
     
     await member.kick(reason)
       .catch(error => message.reply(`Sorry ${message.author} I couldn't kick because of : ${error}`));
