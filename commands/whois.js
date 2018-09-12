@@ -45,15 +45,12 @@ myDick;
       .addField("System Level", `${level}`, true)
       .setFooter("ShadowShard | Alpha Development");
     msg.edit(embed);
-} catch (err) {
-    msg.edit(`Exception: ` 
-    + err);
-    }
+
   };
   exports.conf = {
     enabled: true,
     guildOnly: true,
-    aliases: ["userinfo"],
+    aliases: ["userinfo", "w"],
     permLevel: "Standard User"
   };
   
