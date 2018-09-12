@@ -2,7 +2,7 @@ const Discord = require("discord.js");
 
 exports.run = async (client, message, args) => {
           let Member = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
-          if(!Member) return message.reply("That use could not be found.");
+          if(!Member) return message.reply("That user could not be found.");
           let role = args.join(" ").slice(22);
           if(!role) return message.reply("Please specify a role name.");
           let gRole = message.guild.roles.find(`name`, role);
