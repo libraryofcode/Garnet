@@ -21,12 +21,20 @@ for(let i = 0; i < matt.length; i++) {
   myDick += "<@&" + matt[i] + ">";
   if(matt.length != (i+1))
     myDick += ", ";
+    var bot;
+    if (botuser.user.bot === true) {
+      bot = "Yes";
+    } else {
+      bot = "No";
+    }
 }
 myDick;
     const embed = new Discord.RichEmbed()
     .setAuthor(botuser.displayName, botuser.user.avatarURL)
     .setColor(botuser.displayColor)
     .addField("ID", botuser.id, true)
+    .addField("Bot", `${bot}`, true)
+    .addField("Guild", `${bot}`, true)
     .addField("Joined Server At", `${botuser.joinedAt}`, true)
     .addField("Created Account At", `${botuser.user.createdAt}`, true)
     .addField("Status", `${status[botuser.user.presence.status]}`, true)
