@@ -15,7 +15,7 @@ exports.run = async (client, message, args) => {
     enabled: true,
     guildOnly: false,
     aliases: ["dog"],
-    permLevel: "Systems Alpha/Dev Tester"
+    permLevel: "Standard User"
   };
   
   exports.help = {
