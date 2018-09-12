@@ -2,7 +2,6 @@ const Discord = require("discord.js");
 const superagent = require ("superagent");
 
 exports.run = async (client, message, args) => {
-    
     let {body} = await superagent
     .get ('http://shibe.online/api/shibes?count=1&urls=true&httpsUrls=true');
 
@@ -10,8 +9,7 @@ exports.run = async (client, message, args) => {
     .setColor("#f48c42")
     .setTitle(":dog: Woof!")
     .setImage(body[0]);
-
-    message.channel.send(shibaembed);
+  message.channel.send(shibaembed);
 }   
   exports.conf = {
     enabled: true,

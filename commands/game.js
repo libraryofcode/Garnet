@@ -6,12 +6,6 @@ const status = {
     offline: "Offline/Invisible"
   };
 exports.run = async (client, message, args, level) => {
-    if(message.mentions.users.first())
-        try { 
-            level = client.permlevel(message.mentions.users.first().lastMessage);
-        } catch(e) {
-            level = 0;
-        }
     const msg = await message.channel.send("Loading...");
     let botuser = message.mentions.users.first() ? message.guild.members.get(message.mentions.users.first().id) : message.member
 let bot;
@@ -25,7 +19,7 @@ if (botuser.user.bot === true) {
       return;
   }  */
   // the above code doesn't even work, so it's commented out
-  
+
 try {  const embed = new Discord.RichEmbed()
     .setAuthor(botuser.displayName, botuser.user.presence.game.assets.smallImageURL)
     .setThumbnail(botuser.user.presence.game.assets.largeImageURL)
@@ -43,7 +37,7 @@ try {  const embed = new Discord.RichEmbed()
     msg.edit(`Exception: ` 
     + err)
     }
-}
+};
 
 
   exports.conf = {

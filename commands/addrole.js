@@ -1,5 +1,3 @@
-const Discord = require("discord.js");
-
 exports.run = async (client, message, args) => {
           let Member = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
           if(!Member) return message.reply("That user could not be found.");
