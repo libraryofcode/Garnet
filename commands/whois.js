@@ -1,4 +1,10 @@
 const Discord = require("discord.js");
+const status = {
+    online: "Online",
+    idle: "Idle",
+    dnd: "Do Not Disturb",
+    offline: "Offline/Invisible"
+  };
 exports.run = async (client, message, args, level) => {
     if(message.mentions.users.first())
         try { 
@@ -23,7 +29,7 @@ myDick;
     .addField("ID", botuser.id, true)
     .addField("Joined Server At", `${botuser.joinedAt}`, true)
     .addField("Created Account At", `${botuser.user.createdAt}`, true)
-    .addField("Status", `${botuser.user.presence.status}`, true)
+    .addField("Status", `${status[botuser.user.presence.status]}`, true)
     .addField("Playing", `${botuser.user.presence.game ? `${botuser.user.presence.game.name}` : "not playing anything."}`, true)
     .addField("Roles", `${myDick}`, true)
     .addField("Acknowledgements", `${friendly}`, true)
