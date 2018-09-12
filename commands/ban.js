@@ -21,7 +21,7 @@ exports.run = async (client, message, args) => {
     enabled: true,
     guildOnly: true,
     aliases: [],
-    permLevel: "Bot Moderator"
+    permLevel: "Server Moderator"
   };
   
   exports.help = {
