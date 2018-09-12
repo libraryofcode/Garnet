@@ -21,7 +21,11 @@ if (botuser.user.bot === true) {
   bot = "No";
 }
 
-    
+/*  if(!botuser.user.presence.assets === null || undefined) {
+      return;
+  }  */
+  // the above code doesn't even work, so it's commented out
+  
 try {  const embed = new Discord.RichEmbed()
     .setAuthor(botuser.displayName, botuser.user.presence.game.assets.smallImageURL)
     .setThumbnail(botuser.user.presence.game.assets.largeImageURL)
@@ -36,7 +40,8 @@ try {  const embed = new Discord.RichEmbed()
     .setFooter("ShadowShard | Alpha Development")
     msg.edit(embed)
 } catch (err) {
-    msg.edit('Exception: ' + err)
+    msg.edit(`Exception: ` 
+    + err)
     }
 }
 

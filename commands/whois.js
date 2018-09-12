@@ -45,7 +45,8 @@ myDick;
     .setFooter("ShadowShard | Alpha Development")
     msg.edit(embed)
 } catch (err) {
-    msg.edit('Exception: ' + err)
+    msg.edit(`Exception: ` 
+    + err)
     }
   };
   exports.conf = {
