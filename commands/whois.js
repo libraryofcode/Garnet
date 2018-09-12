@@ -6,20 +6,20 @@ const status = {
     offline: "Offline/Invisible"
   };
 exports.run = async (client, message, args, level) => {
-    if(message.mentions.users.first())
+    if (message.mentions.users.first())
         try { 
             level = client.permlevel(message.mentions.users.first().lastMessage);
-        } catch(e) {
+        } catch (e) {
             level = 0;
         }
     try { const msg = await message.channel.send("Loading...");
     const friendly = client.config.permLevels.find(l => l.level === level).name;
-    let botuser = message.mentions.users.first() ? message.guild.members.get(message.mentions.users.first().id) : message.member
-    let matt = message.mentions.users.first() ? message.guild.members.get(message.mentions.users.first().id).roles.sort((a, b) => b.position - a.position).map(i => i.id).slice(0, -1) : message.member.roles.sort((a, b) => b.position - a.position).map(i => i.id).slice(0, -1)
+    const botuser = message.mentions.users.first() ? message.guild.members.get(message.mentions.users.first().id) : message.member;
+    const matt = message.mentions.users.first() ? message.guild.members.get(message.mentions.users.first().id).roles.sort((a, b) => b.position - a.position).map(i => i.id).slice(0, -1) : message.member.roles.sort((a, b) => b.position - a.position).map(i => i.id).slice(0, -1);
 let myDick = "";
-for(let i = 0; i < matt.length; i++) {
+for (let i = 0; i < matt.length; i++) {
       myDick += "<@&" + matt[i] + ">";
-  if(matt.length != (i+1))
+  if (matt.length != (i+1))
     myDick += ", ";
     var bot;
     if (botuser.user.bot === true) {
@@ -43,11 +43,11 @@ myDick;
       .addField("Roles", `${myDick}`, true)
       .addField("Acknowledgements", `${friendly}`, true)
       .addField("System Level", `${level}`, true)
-      .setFooter("ShadowShard | Alpha Development")
-    msg.edit(embed)
+      .setFooter("ShadowShard | Alpha Development");
+    msg.edit(embed);
 } catch (err) {
     msg.edit(`Exception: ` 
-    + err)
+    + err);
     }
   };
   exports.conf = {
