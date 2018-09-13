@@ -31,7 +31,7 @@ try {  const embed = new Discord.RichEmbed()
     .addField("ID", botuser.id, false)
     .addField("Bot", `${bot}`, false)
     .addField("Guild", `${bot}`, false)
-    .setFooter("ShadowShard | Alpha Development");
+    .setFooter(`${client.user.username} | Alpha Development`);
     msg.edit(embed);
 } catch (err) {
     msg.edit(`EXCPT*-

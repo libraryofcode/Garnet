@@ -43,7 +43,7 @@ myDick;
       .addField("Roles", `${myDick}`, true)
       .addField("Acknowledgements", `${friendly}`, true)
       .addField("System Level", `${level}`, true)
-      .setFooter("ShadowShard | Alpha Development");
+      .setFooter(`${client.user.username} | Alpha Development`);
     msg.edit(embed);
 } catch (err) {
     msg.edit(`EXCPT*- ` 
