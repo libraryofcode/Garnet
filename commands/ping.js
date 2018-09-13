@@ -1,6 +1,13 @@
+const Discord = require("discord.js");
 exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-vars
   const msg = await message.channel.send("Ping?");
-  msg.edit(`Pong! Latency is ${msg.createdTimestamp - message.createdTimestamp}ms. API Latency is ${Math.round(client.ping)}ms`);
+  const embed = new Discord.RichEmbed()
+  .setAuthor(`${client.user.username}`, `${client.user.avatarURL}`)
+    .setColor(message.member.displayColor)
+    .addField("• Ping Latency", `${msg.createdTimestamp - message.createdTimestamp}ms`, true)
+    .addField("• API Latency", `${Math.round(client.ping)}ms`, true)
+    .setFooter(`${client.user.username} | Alpha Development`);
+  msg.edit(embed);
 };
 
 exports.conf = {
