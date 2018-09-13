@@ -3,7 +3,7 @@ exports.run = async (client, message, args, level) => {
     const embed = new Discord.RichEmbed()
     .setAuthor(`${client.user.username}`, `${client.user.avatarURL}`)
     .setColor(message.member.displayColor)
-    .setDescription("This is a clone of the [ShadowShard](https://github.com/FCCouncil/ShadowShard) GitHub repo. Join us today, and help contribute!")
+    .setDescription("This is a clone of the [Moonglow](https://github.com/FCCouncil/Moonglow) GitHub repo. Join us today, and help contribute!")
     .addField("Created At", `${client.user.createdAt}`, true)
     .addField("Library", "[Discord.js](https://github.com/discordjs/discord.js)", true)
     .addField("Language", "JavaScript", true)
