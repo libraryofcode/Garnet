@@ -18,7 +18,7 @@ exports.conf = {
     guildOnly: true,
     aliases: [],
     permLevel: "Server Moderator"
-  };
+};
   
   exports.help = {
     name: "kick",
