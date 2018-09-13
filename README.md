@@ -18,3 +18,7 @@ Join our Discord server here: https://discord.gg/F4ztpQh
 __How can I help or contribute?__
 You can become an Alpha/Dev Tester by joining the Discord server and DMing the Ramirez bot, or make pull requests or feature requests. Anything is appreciated!
 
+
+
+__How can I install the bot myself?__
+Visit https://github.com/FCCouncil/ShadowShard/wiki/How-to-Install-the-Bot
