@@ -1,6 +1,6 @@
 const Discord = require("discord.js");
 exports.run = async (client, message, args, level) => {
-    const embed = new Discord.RichEmbed()
+const embed = new Discord.RichEmbed()
     .setAuthor(`${client.user.username}`, `${client.user.avatarURL}`)
     .setColor(message.member.displayColor)
     .addField("Invite Link", "https://discordapp.com/api/oauth2/authorize?client_id=460639060851949569&permissions=8&scope=bot", true)

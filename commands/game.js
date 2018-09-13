@@ -4,7 +4,7 @@ const status = {
     idle: "Idle",
     dnd: "Do Not Disturb",
     offline: "Offline/Invisible"
-  };
+};
 exports.run = async (client, message, args, level) => {
     const msg = await message.channel.send("Loading...");
     const botuser = message.mentions.users.first() ? message.guild.members.get(message.mentions.users.first().id) : message.member;
