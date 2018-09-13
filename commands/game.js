@@ -34,7 +34,8 @@ try {  const embed = new Discord.RichEmbed()
     .setFooter("ShadowShard | Alpha Development");
     msg.edit(embed);
 } catch (err) {
-    msg.edit(`Exception: ` 
+    msg.edit(`EXCPT*-
+     ` 
     + err);
     }
 };
