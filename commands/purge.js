@@ -25,5 +25,5 @@ exports.help = {
   name: "purge",
   category: "Moderation",
   description: "Deletes the specified amount of messages.",
-  usage: "purge [number of messages]"
+  usage: "purge [...# of messages]"
 };
