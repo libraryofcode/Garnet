@@ -3,7 +3,7 @@ exports.run = async (client, message, args, level) => {
     if(!message.member.hasPermission("MANAGE_MESSAGES")) 
     return message.reply("Sorry, you don't have permissions to use this!");
     
-    message.delete()
+    message.delete();
     const deleteCount = parseInt(args[0], 10);
     
     if(!deleteCount || deleteCount < 1 || deleteCount > 10000)
