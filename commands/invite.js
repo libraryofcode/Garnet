@@ -4,7 +4,7 @@ const embed = new Discord.RichEmbed()
     .setAuthor(`${client.user.username}`, `${client.user.avatarURL}`)
     .setColor(message.member.displayColor)
     .addField("Invite Link", "https://discordapp.com/api/oauth2/authorize?client_id=460639060851949569&permissions=8&scope=bot", true)
-    .setFooter("Alpha/Development | ShadowShard");
+    .setFooter("client.user.username | Beta - Master");
     message.channel.send(embed);
   };
   
