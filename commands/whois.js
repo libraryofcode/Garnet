@@ -53,7 +53,7 @@ myDick;
   exports.conf = {
     enabled: true,
     guildOnly: true,
-    aliases: ["userinfo"],
+    aliases: ["userinfo, ui"],
     permLevel: "Standard User"
   };
   
