@@ -5,15 +5,9 @@ const status = {
     dnd: "Do Not Disturb",
     offline: "Offline/Invisible"
 };
-exports.run = async (client, message, args, level) => {
+exports.run = async (client, message, args) => {
     const msg = await message.channel.send("Loading...");
     const botuser = message.mentions.users.first() ? message.guild.members.get(message.mentions.users.first().id) : message.member;
-let bot;
-if (botuser.user.bot === true) {
-  bot = "Yes";
-} else {
-  bot = "No";
-}
 
 
   const embed = new Discord.RichEmbed()
