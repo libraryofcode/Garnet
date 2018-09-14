@@ -12,7 +12,7 @@ exports.run = async (client, message, args) => {
 
   const embed = new Discord.RichEmbed()
     .setColor(botuser.displayColor)
-    .setFooter(`${client.user.username} | ID ${botuser.id} | Master`);
+    .setFooter(`${client.user.username} | ID ${botuser.id} | Beta - Master`);
     try {
       embed.setAuthor(botuser.displayName, botuser.user.presence.game.assets.smallImageURL);
   }
