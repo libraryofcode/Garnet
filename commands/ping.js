@@ -6,7 +6,7 @@ exports.run = async (client, message, args, level) => { // eslint-disable-line n
     .setColor(message.member.displayColor)
     .addField("• Ping Latency", `${msg.createdTimestamp - message.createdTimestamp}ms`, true)
     .addField("• API Latency", `${Math.round(client.ping)}ms`, true)
-    .setFooter(`${client.user.username} | Alpha Development`);
+    .setFooter(`${client.user.username} | Beta - Master`);
   msg.edit(embed);
 };
 
