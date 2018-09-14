@@ -6,7 +6,7 @@
 # The `docs/*` pattern will match files like
 # `docs/getting-started.md` but not further nested files like
 # `docs/build-app/troubleshooting.md`.
-commands/whois.js @CoalSephos
+/commands/whois.js/ @CoalSephos
 
 # In this example, @octocat owns any file in an apps directory
 # anywhere in your repository.
