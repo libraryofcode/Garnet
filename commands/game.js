@@ -15,29 +15,49 @@ if (botuser.user.bot === true) {
   bot = "No";
 }
 
-/*  if(!botuser.user.presence.assets === null || undefined) {
-      return;
-  }  */
-  // the above code doesn't even work, so it's commented out
 
-try {  const embed = new Discord.RichEmbed()
-    .setAuthor(botuser.displayName, botuser.user.presence.game.assets.smallImageURL)
-    .setThumbnail(botuser.user.presence.game.assets.largeImageURL)
+  const embed = new Discord.RichEmbed()
     .setColor(botuser.displayColor)
-    .addField("Status", `${status[botuser.user.presence.status]}`, true)
-    .addField("Playing", `${botuser.user.presence.game ? `${botuser.user.presence.game.name}` : "not playing anything."}`, true)
-    .addField("Details", `${botuser.user.presence.game.details}`, true)
-    .addField("State", `${botuser.user.presence.game.state}`, true)
-    .addField("ID", botuser.id, false)
-    .addField("Bot", `${bot}`, false)
-    .addField("Guild", `${bot}`, false)
-    .setFooter(`${client.user.username} | Alpha Development`);
-    msg.edit(embed);
-} catch (err) {
-    msg.edit(`EXCPT*-
-     ` 
-    + err);
+    .setFooter(`${client.user.username} | ID ${botuser.id} | Alpha Development`);
+    try{
+      embed.setAuthor(botuser.displayName, botuser.user.presence.game.assets.smallImageURL)
+  }
+  catch(err){
+      embed.setAuthor(botuser.displayName, 'https://cdn.discordapp.com/avatars/460639060851949569/4f545d7d0ee4fb31a411035793c4aef8.png?size=2048')
+}
+    try{
+      embed.setThumbnail(botuser.user.presence.game.assets.largeImageURL)
     }
+  catch(err){
+    embed.setThumbnail('https://cdn.discordapp.com/avatars/460639060851949569/4f545d7d0ee4fb31a411035793c4aef8.png?size=2048')
+  }
+  try{
+    embed.addField("Status", `${status[botuser.user.presence.status]}`, true)
+  }
+    catch(err){
+      embed.addField("Status", `None`, true)
+    }
+  try{
+    embed.addField("Playing", `${botuser.user.presence.game ? `${botuser.user.presence.game.name}` : "not playing anything."}`, true)
+  }
+    catch(err){
+      embed.addField("Playing", `This user is not playing anything.`, true)
+    }
+  try{
+    embed.addField("Details", `${botuser.user.presence.game.details}`, true)
+  }
+    catch(err){
+      embed.addField("Details", `No details`, true)
+    }
+  try{
+    embed.addField("State", `${botuser.user.presence.game.state}`, true)
+  }
+    catch(err){
+      embed.addField("State", `No state`, true)
+    }
+  
+  
+  msg.edit(embed);
 };
 
 
