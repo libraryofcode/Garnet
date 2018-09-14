@@ -37,12 +37,12 @@ exports.run = async (client, message, args) => {
     catch(err) {
       embed.addField("Playing", `This user is not playing anything.`, true);
     }
-  try {
-    embed.addField("Details", `${botuser.user.presence.game.details}`, true);
-  }
-    catch(err) {
+  if (botuser.user.presence.game.state == null) {
       embed.addField("Details", `No details`, true);
-    }
+  }
+    else {
+      embed.addField("State", `No state`, true);
+      }
   try {
     embed.addField("State", `${botuser.user.presence.game.state}`, true);
   }
