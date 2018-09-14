@@ -39,14 +39,14 @@ myDick;
       .addField("Joined Server At", `${botuser.joinedAt}`, true)
       .addField("Created Account At", `${botuser.user.createdAt}`, true)
       .addField("Status", `${status[botuser.user.presence.status]}`, true)
-      .addField("Playing", `${botuser.user.presence.game ? `${botuser.user.presence.game.name}` : "not playing anything."}`, true)
+      .addField("Playing", `${botuser.user.presence.game ? `${botuser.user.presence.game.name}` : "No rich presense found."}`, true)
       .addField("Roles", `${myDick}`, true)
       .addField("Acknowledgements", `${friendly}`, true)
       .addField("System Level", `${level}`, true)
-      .setFooter("ShadowShard | Alpha Development");
+      .setFooter(`${client.user.username} | Alpha Development`);
     msg.edit(embed);
 } catch (err) {
-    msg.edit(`Exception: ` 
+    msg.edit(`EXCPT*- ` 
     + err);
     }
   };
