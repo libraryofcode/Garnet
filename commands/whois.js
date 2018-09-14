@@ -33,9 +33,6 @@ myDick;
     const embed = new Discord.RichEmbed()
       .setAuthor(botuser.displayName, botuser.user.avatarURL)
       .setColor(botuser.displayColor)
-      .addField("ID", botuser.id, true)
-      .addField("Bot", `${bot}`, true)
-      .addField("Guild", `${bot}`, true)
       .addField("Joined Server At", `${botuser.joinedAt}`, true)
       .addField("Created Account At", `${botuser.user.createdAt}`, true)
       .addField("Status", `${status[botuser.user.presence.status]}`, true)
@@ -43,7 +40,10 @@ myDick;
       .addField("Roles", `${myDick}`, true)
       .addField("Acknowledgements", `${friendly}`, true)
       .addField("System Level", `${level}`, true)
-      .setFooter(`${client.user.username} | Alpha Development`);
+      .setFooter(`${client.user.username} | ID ${botuser.id} |  Alpha Development`);
+      if (bot == "Yes") {
+        embed.addField("Bot", `${bot}`, true)
+      }
     msg.edit(embed);
 } catch (err) {
     msg.edit(`EXCPT*- ` 
