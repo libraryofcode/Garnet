@@ -10,7 +10,7 @@ exports.run = (client, message, args, level) => { // eslint-disable-line no-unus
     .addField("• Uptime", `${duration}`, true)
     .addField("• Ping", `${Math.round(client.ping)}ms`, true)
     .addField("• Ping Ratings", `${client.pings}`, true)
-    .setFooter(`${client.user.username} | Alpha Development`);
+    .setFooter(`${client.user.username} | Beta - Master`);
     
 
   message.channel.send(embed);

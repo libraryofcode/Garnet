@@ -40,7 +40,7 @@ myDick;
       .addField("Roles", `${myDick}`, true)
       .addField("Acknowledgements", `${friendly}`, true)
       .addField("System Level", `${level}`, true)
-      .setFooter(`${client.user.username} | ID ${botuser.id} |  Alpha Development`);
+      .setFooter(`${client.user.username} | ID ${botuser.id} |  Beta - Master`);
       if (bot == "Yes") {
         embed.addField("Bot", `${bot}`, true)
       }
