@@ -49,7 +49,12 @@ exports.run = async (client, message, args) => {
     catch(err) {
       embed.addField("State", `No state`, true);
     }
-  
+  try {
+    embed.addField("Started", `${botuser.user.presence.game.timestamps.start}`, true)
+  }
+    catch(err) {
+      embed.addField("Started", `None`, true)
+    }
   
   msg.edit(embed);
 };
