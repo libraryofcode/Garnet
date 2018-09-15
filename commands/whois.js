@@ -45,7 +45,7 @@ exports.run = async (client, message, args, level) => {
     }
     msg.edit(embed);
   } catch (err) {
-    msg.edit(`EXCPT*- ` +
+    msg.edit("EXCPT*- " +
       err);
   }
 };
