@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
-exports.run = async (client, message, args, level) => {
+exports.run = async (client, message) => {
+  if(message.channel.id != "488762614156099585" || "489234703229124608") return;
 const embed = new Discord.RichEmbed()
     .setAuthor(`${client.user.username}`, `${client.user.avatarURL}`)
     .setColor(message.member.displayColor)

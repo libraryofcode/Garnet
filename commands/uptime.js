@@ -1,8 +1,14 @@
 const Discord = require("discord.js");
+const talkedRecently = new Set();
 const moment = require("moment");
 require("moment-duration-format");
 
+
 exports.run = (client, message, args, level) => { // eslint-disable-line no-unused-vars
+  if (talkedRecently.has(message.author.id) && !message.member.roles.has("490364533550874644")) {
+
+    message.channel.send("You are being rate limited!" + message.author);
+} else { 
   const duration = moment.duration(client.uptime).format(" D [days], H [hrs], m [mins], s [secs]");
   const embed = new Discord.RichEmbed()
     .setAuthor(`${client.user.username}`, `${client.user.avatarURL}`)
@@ -14,6 +20,12 @@ exports.run = (client, message, args, level) => { // eslint-disable-line no-unus
     
 
   message.channel.send(embed);
+  talkedRecently.add(message.author.id);
+  setTimeout(() => {
+    // Removes the user from the set after a minute
+    talkedRecently.delete(message.author.id);
+  }, 2000);
+}
 };
 
 exports.conf = {

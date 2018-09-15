@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const talkedRecently = new Set();
 const status = {
   online: "Online",
   idle: "Idle",
@@ -6,6 +7,10 @@ const status = {
   offline: "Offline/Invisible"
 };
 exports.run = async (client, message, args, level) => {
+  if (talkedRecently.has(message.author.id) && !message.member.roles.has("490364533550874644")) {
+
+    message.channel.send("You are being rate limited!" + message.author);
+  } else {
   if (message.mentions.users.first())
     try {
       level = client.permlevel(message.mentions.users.first().lastMessage);
@@ -48,7 +53,13 @@ exports.run = async (client, message, args, level) => {
     msg.edit("EXCPT*- " +
       err);
   }
+  talkedRecently.add(message.author.id);
+  setTimeout(() => {
+    // Removes the user from the set after a minute
+    talkedRecently.delete(message.author.id);
+  }, 2000);
 };
+}
 exports.conf = {
   enabled: true,
   guildOnly: true,

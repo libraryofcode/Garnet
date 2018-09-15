@@ -1,10 +1,15 @@
 const superagent = require('superagent');
 const math = require('mathjs');
+const talkedRecently = new Set();
 
 async function request(i) {
     return await superagent.get(`http://numbersapi.com/${i}?json`);
 }
-exports.run = async (client, message, args, level) => {
+exports.run = async (message, args) => {
+    if (talkedRecently.has(message.author.id) && !message.member.roles.has("490364533550874644")) {
+
+        message.channel.send("You are being rate limited!" + message.author);
+      } else {
     const input = args.join(' ');
     const errmsg = {
         exp: 'Couldn\'t evaluate the given expression, please try again later.',
@@ -70,7 +75,14 @@ exports.run = async (client, message, args, level) => {
     }
 
     return message.channel.send(result);
+
 }
+talkedRecently.add(message.author.id);
+setTimeout(() => {
+  // Removes the user from the set after a minute
+  talkedRecently.delete(message.author.id);
+}, 2000);
+  }
 
 exports.conf = {
     enabled: true,
