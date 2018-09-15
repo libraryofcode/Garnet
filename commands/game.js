@@ -17,7 +17,7 @@ exports.run = async (client, message, args) => {
         embed.setAuthor(botuser.displayName),
         embed.addField("Playing", `This user is not playing anything.`, true);
     } else {
-        let game = botuser.user.presence.game
+        const game = botuser.user.presence.game;
 
         try {
             embed.setAuthor(botuser.displayName, game.assets.smallImageURL);
@@ -47,10 +47,10 @@ exports.run = async (client, message, args) => {
         try {
             embed.addField("Started", `${game.timestamps.start}`, true)
         } catch (err) {
-            embed.addField("Started", `None`, true)
+            embed.addField("Started", `None`, true);
         }
     }
-    msg.edit(embed)
+    msg.edit(embed);
 };
 
 
