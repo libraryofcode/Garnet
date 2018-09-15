@@ -40,6 +40,12 @@ exports.run = async (client, message, args) => {
       embed.addField("Playing", "An error occured while getting the game's name.", true);
     }
     try {
+      embed.addField("Details", `${game.details}`, true)
+    }
+    catch (err) {
+      embed.addField("Details", `No Info`, true)
+    }
+    try {
       embed.addField("State", `${game.state}`, true);
     } catch (err) {
       embed.addField("State", "No state", true);
