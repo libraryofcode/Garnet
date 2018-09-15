@@ -12,8 +12,8 @@ exports.run = async (client, message, args, level) => {
     } catch (e) {
       level = 0;
     }
+  const msg = await message.channel.send("Loading...");
   try {
-    const msg = await message.channel.send("Loading...");
     const friendly = client.config.permLevels.find(l => l.level === level).name;
     const botuser = message.mentions.users.first() ? message.guild.members.get(message.mentions.users.first().id) : message.member;
     const matt = message.mentions.users.first() ? message.guild.members.get(message.mentions.users.first().id).roles.sort((a, b) => b.position - a.position).map(i => i.id).slice(0, -1) : message.member.roles.sort((a, b) => b.position - a.position).map(i => i.id).slice(0, -1);
