@@ -17,40 +17,40 @@ exports.run = async (client, message, args) => {
     embed.setAuthor(botuser.displayName),
       embed.addField("Playing", `This user is not playing anything.`, true);
   } else {
-    let game = botuser.user.presence.game
+    const game = botuser.user.presence.game;
 
     try {
       embed.setAuthor(botuser.displayName, game.assets.smallImageURL);
     } catch (err) {
-      embed.setAuthor(botuser.displayName, 'https://cdn.discordapp.com/avatars/460639060851949569/4f545d7d0ee4fb31a411035793c4aef8.png?size=2048');
+      embed.setAuthor(botuser.displayName, "https://cdn.discordapp.com/avatars/460639060851949569/4f545d7d0ee4fb31a411035793c4aef8.png?size=2048");
     }
     try {
       embed.setThumbnail(game.assets.largeImageURL);
     } catch (err) {
-      embed.setThumbnail('https://cdn.discordapp.com/avatars/460639060851949569/4f545d7d0ee4fb31a411035793c4aef8.png?size=2048');
+      embed.setThumbnail("https://cdn.discordapp.com/avatars/460639060851949569/4f545d7d0ee4fb31a411035793c4aef8.png?size=2048");
     }
     try {
       embed.addField("Status", `${status[botuser.user.presence.status]}`, true);
     } catch (err) {
-      embed.addField("Status", 'An error occured while getting the user\'s status.', true);
+      embed.addField("Status", "An error occured while getting the user's status.", true);
     }
     try {
       embed.addField("Playing", `${game.name}`, true);
     } catch (err) {
-      embed.addField("Playing", 'An error occured while getting the game\'s name.', true);
+      embed.addField("Playing", "An error occured while getting the game's name.", true);
     }
     try {
       embed.addField("State", `${game.state}`, true);
     } catch (err) {
-      embed.addField("State", 'No state', true);
+      embed.addField("State", "No state", true);
     }
     try {
-      embed.addField("Started", `${game.timestamps.start}`, true)
+      embed.addField("Started", `${game.timestamps.start}`, true);
     } catch (err) {
-      embed.addField("Started", `None`, true)
+      embed.addField("Started", `None`, true);
     }
   }
-  msg.edit(embed)
+  msg.edit(embed);
 };
 
 
