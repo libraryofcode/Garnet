@@ -1,14 +1,20 @@
 {
   "name": "moonglow",
-  "version": "2.3.6",
-  "description": "Moonglowd is a developed bot by the FCC.",
+  "version": "3.0.0",
+  "description": "Moonglow is a developed bot by the FCC.",
   "main": "index.js",
+  "repository": {
+    "url" : "https://github.com/FCCouncil/Moonglow"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node index.js",
+    "shard": "node shard.js",
+    "install": "node-gyp rebuild"
   },
   "engines": {
-    "node": ">=8"
+    "node": ">=8",
+    "npm" : "~1.0.20"
   },
   "author": "Matthew#0008",
   "contributors": [
@@ -23,6 +29,7 @@
     "mathjs": "^5.1.2",
     "moment": "^2.22.2",
     "moment-duration-format": "^2.2.2",
+    "raven": "^2.6.4",
     "superagent": "^3.8.3"
   }
 }
