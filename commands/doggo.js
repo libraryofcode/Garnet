@@ -1,18 +1,18 @@
 const Discord = require("discord.js");
 const superagent = require ("superagent");
 
-module.exports.run = async (client, message, arges) => {
+module.exports.run = async (client, message) => {
     
-    let {body} = await superagent
+    const {body} = await superagent
     .get ('https://random.dog/woof.json');
 
-    let dogembed = new Discord.RichEmbed()
+    const dogembed = new Discord.RichEmbed()
     .setColor("#f48c42")
     .setTitle(":dog: Woof!")
     .setImage(body.url);
 
     message.channel.send(dogembed);
-}
+};
   exports.conf = {
     enabled: true,
     guildOnly: false,
