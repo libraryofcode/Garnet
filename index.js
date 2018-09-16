@@ -1,12 +1,14 @@
 if (Number(process.version.slice(1).split(".")[0]) < 8) throw new Error("Node 8.0.0 or higher is required. Update Node on your system.");
 
-const Discord = require("discord.js");
+const Discord = require("discord.js") 
 const { promisify } = require("util");
 const readdir = promisify(require("fs").readdir);
 const Enmap = require("enmap");
 const EnmapLevel = require("enmap-sqlite");
 
-const client = new Discord.Client();
+const client = new Discord.Client({
+  fetchAllMembers: true}) 
+
 
 client.config = require("./config.js");
 // client.config.token contains the bot's token

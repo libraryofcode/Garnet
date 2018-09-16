@@ -36,6 +36,7 @@ exports.run = async (client, message, args, level) => {
 
     const embed = new Discord.RichEmbed()
       .setAuthor(botuser.displayName, botuser.user.avatarURL)
+      .setThumbnail(message.author.avatarURL)
       .setColor(botuser.displayColor)
       .addField("Joined Server At", `${botuser.joinedAt}`, true)
       .addField("Created Account At", `${botuser.user.createdAt}`, true)
