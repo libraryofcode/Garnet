@@ -1,14 +1,25 @@
 const Discord = require("discord.js");
-exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-vars
+const talkedRecently = new Set();
+exports.run = async (client, message) => {
+  if (talkedRecently.has(message.author.id) && !message.member.roles.has("490364533550874644")) {
+
+    message.channel.send("You are being rate limited!" + message.author);
+  } else { // eslint-disable-line no-unused-vars
   const msg = await message.channel.send("Ping?");
   const embed = new Discord.RichEmbed()
-  .setAuthor(`${client.user.username}`, `${client.user.avatarURL}`)
+    .setAuthor(`${client.user.username}`, `${client.user.avatarURL}`)
     .setColor(message.member.displayColor)
     .addField("• Ping Latency", `${msg.createdTimestamp - message.createdTimestamp}ms`, true)
     .addField("• API Latency", `${Math.round(client.ping)}ms`, true)
-    .setFooter(`${client.user.username} | Alpha Development`);
+    .setFooter(`${client.user.username} | Beta - Master`);
   msg.edit(embed);
+  talkedRecently.add(message.author.id);
+  setTimeout(() => {
+    // Removes the user from the set after a minute
+    talkedRecently.delete(message.author.id);
+  }, 2000);
 };
+}
 
 exports.conf = {
   enabled: true,
@@ -20,6 +31,6 @@ exports.conf = {
 exports.help = {
   name: "ping",
   category: "Misc",
-  description: "Pings the bot, responses with API and regular latencies.",
+  description: "Pings the bot, responds with API and regular latencies.",
   usage: "ping"
 };

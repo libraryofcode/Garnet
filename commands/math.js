@@ -72,6 +72,7 @@ exports.run = async (client, message, args, level) => {
     return message.channel.send(result);
 }
 
+
 exports.conf = {
     enabled: true,
     guildOnly: false,
