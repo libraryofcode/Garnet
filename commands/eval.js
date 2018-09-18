@@ -1,5 +1,5 @@
 const os = require('os')
-exports.run = async (client, message, args, level) => { // eslint-disable-line no-unused-vars
+exports.run = async (client, message, args, level) => { 
   const code = args.join(" ");
   try {
     const evaled = eval(code);
