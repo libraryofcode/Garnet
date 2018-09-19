@@ -59,4 +59,7 @@ typings/
 # dotenv environment variables file
 .env
 
+# Confidential Files
+commands/racr.js
+commands/rac.js
 
