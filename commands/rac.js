@@ -3,8 +3,8 @@ const Discord = require('discord.js')
 
 exports.run = async (client, message, args) => {
 
-//https://canary.discordapp.com/api/webhooks/491814470641909765/p-OeOEnFzBGY9nnrLx-149wEHQbpmdGlMVKRQmbUJytcDtCT_Kw_AO24DY5KAcNimmes
-const hook = new Discord.WebhookClient('491814470641909765', 'p-OeOEnFzBGY9nnrLx-149wEHQbpmdGlMVKRQmbUJytcDtCT_Kw_AO24DY5KAcNimmes');
+//https://canary.discordapp.com/api/webhooks/491814470641909765/
+const hook = new Discord.WebhookClient('491814470641909765', 'p-OeOEnFzBGY9nnrLx-149wEHQbpmdGlMVKRQmbUJytcDtCT_Kw_******');
 
 // Send a message using the webhook
 hook.send(`__Activation request for server:__ 
