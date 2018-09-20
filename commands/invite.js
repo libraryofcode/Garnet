@@ -25,7 +25,7 @@ const embed = new Discord.RichEmbed()
     enabled: true,
     guildOnly: false,
     aliases: ["get", "join"],
-    permLevel: "Systems Alpha/Dev Tester"
+    permLevel: "Standard User"
   };
   
   exports.help = {
