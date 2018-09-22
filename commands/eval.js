@@ -14,7 +14,7 @@ exports.conf = {
   enabled: true,
   guildOnly: false,
   aliases: ["e"],
-  permLevel: "Systems Administrator"
+  permLevel: "Systems Developer"
 };
 
 exports.help = {
