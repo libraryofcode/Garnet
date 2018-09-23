@@ -7,7 +7,7 @@ exports.run = (client, msg, args, level) => {
     enabled: true,
     guildOnly: true,
     aliases: ["ci"],
-    permLevel: "Systems Alpha/Dev Tester"
+    permLevel: "Server Moderator"
   };
   
   exports.help = {

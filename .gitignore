@@ -8,6 +8,7 @@ config.json
 config.js
 data/
 test.js
+musicsettings.json
 
 # Runtime data
 pids

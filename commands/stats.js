@@ -23,6 +23,7 @@ exports.run = (client, message, args, level) => { // eslint-disable-line no-unus
     .addField("• Discord.js Version", `v${version}`, true)
     .addField("• Node Version", `${process.version}`, true)
     .addField("Creator", `Matthew#0008`, true)
+    .setTimestamp()
     .setFooter(`${client.user.username} | Beta - Master`);
   message.channel.send(embed);
 };

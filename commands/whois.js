@@ -46,6 +46,7 @@ exports.run = async (client, message, args, level) => {
       .addField("Roles", `${myDick}`, true)
       .addField("Acknowledgements", `${friendly}`, true)
       .addField("System Level", `${level}`, true)
+      .setTimestamp()
       .setFooter(`${client.user.username} | ID ${botuser.id} |  Beta - Master`);
     if (bot == "Yes") {
       embed.addField("Bot", `${bot}`, true)
