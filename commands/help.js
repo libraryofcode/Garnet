@@ -6,6 +6,7 @@ const Command = require("../base/Command.js");
   command is also filtered by level, so if a user does not have access to
   a command, it is not shown to them. If a command name is given with the
   help command, its extended help is shown.
+made an embed by bird ;)
 */
 class Help extends Command {
   constructor (client) {
