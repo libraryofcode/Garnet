@@ -1,67 +1,56 @@
-const Command = require("../base/Command.js");
-
-/*
-  The HELP command is used to display every command's name and description
-  to the user, so that he may see what commands are available. The help
-  command is also filtered by level, so if a user does not have access to
-  a command, it is not shown to them. If a command name is given with the
-  help command, its extended help is shown.
-*/
-class Help extends Command {
-  constructor (client) {
-    super(client, {
-      name: "help",
-      description: "Displays all the available commands for you.",
-      category: "System",
-      usage: "help [command]"
-    });
-  }
-
-  async run (message, args, level) {
-    // If no specific command is called, show all filtered commands.
+exports.run = (client, message, args, level) => {
+// make this an embed -flatbird    
+// If no specific command is called, show all filtered commands.
     if (!args[0]) {
-      // Load guild settings (for prefixes and eventually per-guild tweaks)
-      const settings = message.settings;
-      
       // Filter all commands by which are available for the user's level, using the <Collection>.filter() method.
-      const myCommands = message.guild ? this.client.commands.filter(cmd => this.client.levelCache[cmd.conf.permLevel] <= level) : this.client.commands.filter(cmd => this.client.levelCache[cmd.conf.permLevel] <= level &&  cmd.conf.guildOnly !== true);
-      
+      const myCommands = message.guild ? client.commands.filter(cmd => client.levelCache[cmd.conf.permLevel] <= level) : client.commands.filter(cmd => client.levelCache[cmd.conf.permLevel] <= level &&  cmd.conf.guildOnly !== true);
+  
       // Here we have to get the command names only, and we use that array to get the longest name.
       // This make the help commands "aligned" in the output.
       const commandNames = myCommands.keyArray();
       const longest = commandNames.reduce((long, str) => Math.max(long, str.length), 0);
+  
       let currentCategory = "";
       let output = ``;
       const sorted = myCommands.array().sort((p, c) => p.help.category > c.help.category ? 1 :  p.help.name > c.help.name && p.help.category === c.help.category ? 1 : -1 );
       sorted.forEach( c => {
         const cat = c.help.category.toProperCase();
         if (currentCategory !== cat) {
-          output += `\n**${cat}:**\n`;
+          output += `\n**${cat}:** \n`;
           currentCategory = cat;
         }
-        output += `\`${settings.prefix}${c.help.name}${" ".repeat(longest - c.help.name.length)}\` ** - ** ${c.help.description}\n`;
+        output += `\`${message.settings.prefix}${c.help.name}${" ".repeat(longest - c.help.name.length)}\` ** - ** ${c.help.description}\n`;
       });
       const Discord = require('discord.js')
-      const embed = new Discord.RichEmbed()
-      .setAuthor(this.client.user.username, this.client.user.avatarURL)
-      .setTitle('Commands List: ')
-      .setDescription(output + `\nFor more information on a command say \`${settings.prefix}help [command name]\``)
-      message.channel.send(embed);
+        const embed = new Discord.RichEmbed()
+        .setAuthor(client.user.username, client.user.avatarURL)
+        .setDescription(output)
+        message.channel.send(embed);
     } else {
       // Show individual command's help.
       let command = args[0];
-      if (this.client.commands.has(command)) {
-        const settings = message.settings;
-        command = this.client.commands.get(command);
-        if (level < this.client.levelCache[command.conf.permLevel]) return;
+      if (client.commands.has(command)) {
+        command = client.commands.get(command);
+        if (level < client.levelCache[command.conf.permLevel]) return;
         const Discord = require('discord.js')
         const embed = new Discord.RichEmbed()
-        .setAuthor(this.client.user.username, this.client.user.avatarURL)
-        .setDescription(`**Command:** ${settings.prefix}${command.help.name}\n**Usage:** ${command.help.usage}`)
-        message.channel.send(embed);
+        .setAuthor(client.user.username, client.user.avatarURL)
+        .setDescription(`**Command:** ${command.help.name}\n**Description:** ${command.help.description}\n**Usage:** ${command.help.usage}`)
+        message.channel.send(embed + `\n\n[Use ${message.settings.prefix}help <commandname> for details]\n`);
       }
     }
-  }
-}
-
-module.exports = Help;
+  };
+  
+  exports.conf = {
+    enabled: true,
+    guildOnly: false,
+    aliases: ["h", "halp"],
+    permLevel: "User"
+  };
+  
+  exports.help = {
+    name: "help",
+    category: "System",
+    description: "Displays all the available commands for your permission level.",
+    usage: "help [command]"
+  };
