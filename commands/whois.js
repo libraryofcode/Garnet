@@ -9,7 +9,8 @@ const status = {
 exports.run = async (client, message, args, level) => {
   if (talkedRecently.has(message.author.id) && !message.member.roles.has("490364533550874644")) {
 
-    message.channel.send("You are being rate limited!" + message.author);
+   const botmessage = await message.channel.send("You are being rate limited!" + message.author)
+    botmessage.delete(10000)
   } else {
   if (message.mentions.users.first())
     try {
