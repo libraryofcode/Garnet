@@ -15,7 +15,7 @@ exports.run = (client, message, args) => {
         }
       }).then(message.channel.send(m))
       .catch((err) =>{
-          message.channel.send(`**Error:** undefined`);
+          message.channel.send(err);
       });
 }
 
