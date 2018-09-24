@@ -11,8 +11,8 @@ exports.run = (client, msg, args, level) => {
   };
   
   exports.help = {
-    name: 'checkinvites',
+    name: 'checkgames',
     category: 'Moderation',
     description: 'Returns a list of members with an invite as their game.',
-    usage: 'checkinvites'
+    usage: 'checkgames'
   };
