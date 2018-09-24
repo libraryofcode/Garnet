@@ -9,7 +9,6 @@ config.js
 data/
 test.js
 musicsettings.json
-node_modules
 
 # Runtime data
 pids
