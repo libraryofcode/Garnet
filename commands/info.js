@@ -8,9 +8,11 @@ exports.run = async (client, message, args, level) => {
     .addField("Created At", `${client.user.createdAt}`, true)
     .addField("Library", "[Discord.js](https://github.com/discordjs/discord.js)", true)
     .addField("Language", "JavaScript", true)
-    .addField("Contributors", `NightRaven#2172, CoalSephos#7566, FlatBird#9461, TheSkele27#1337`, true)
+    .addField("Contributors", `FlatBird#9461, TheSkele27#1337, The Phoenix of Phoebus#9935`, true)
+    .addField('Developers', `Matthew#0008, NightRaven#2172, CoalSephos#7566,`)
     .addField("Creator", `Matthew#0008`, true)
-    .setFooter(`${client.user.username} | Beta - Master`);
+    .setTimestamp()
+    .setFooter(`${client.user.username} | Beta - Master`, 'https://cdn.discordapp.com/attachments/358674161566220288/493662532746084352/js.png');
 
 
 
