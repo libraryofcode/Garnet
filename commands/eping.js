@@ -1,7 +1,7 @@
 exports.run = async (client, message) => {
     const msg = await message.channel.send("Ping...");
-    ping = message.channel.send(`Ping! \`${msg.createdTimestamp - message.createdTimestamp}ms\``)
-    msg.edit(ping);
+    
+    msg.edit(`Ping! \`${msg.createdTimestamp - message.createdTimestamp}ms\``)
 }
 
 exports.conf = {
