@@ -1,7 +1,4 @@
 exports.run = async (client, message, args) => {
-
-  if (!message.member.hasPermission("MANAGE_MESSAGES")) 
-   return message.reply("Sorry, you don't have permissions to use this!");
     
   message.delete();
   const deleteCount = parseInt(args[0], 10);
@@ -18,7 +15,7 @@ exports.conf = {
   enabled: true,
   guildOnly: true,
   aliases: [],
-  permLevel: "Server Moderator"
+  permLevel: "Server Admin"
  };
   
 exports.help = {
