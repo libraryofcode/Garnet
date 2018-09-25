@@ -23,7 +23,7 @@ exports.run = (client, message, args, level) => {
     const Discord = require('discord.js')
     const embed1 = new Discord.RichEmbed()
     .setAuthor(`${client.user.username}`, `${client.user.avatarURL}`)
-    .setDescription(output)
+    .setDescription(output, {code: "asciidoc", split: { char: "\u200b" }})
     .setTitle(`${client.user.username} Help Manual`)
     .setFooter(`${client.user.username} | Beta - Master`)
     .setTimestamp()
