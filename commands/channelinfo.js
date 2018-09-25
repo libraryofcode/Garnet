@@ -14,7 +14,7 @@ exports.run = async (client, message) => {
     } catch(err) {
         embed.addField('Category', 'None', true)
     }
-    if (message.channel.topic === null) {
+    if (!message.channel.topic) {
         embed.addField('Topic', 'None', true)
     }
     else {
