@@ -19,6 +19,7 @@ exports.run = async (client, message) => {
     }
     else {
         embed.addField('Topic', `${message.channel.topic}`, true)
+        message.channel.send('pls')
     }
     embed.addField('Position', `${message.channel.calculatedPosition}`, true)
     embed.addField('Overrides', `${message.channel.permissionOverwrites.size}`, true)
