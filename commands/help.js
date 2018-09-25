@@ -21,6 +21,17 @@ exports.run = (client, message, args, level) => {
       output += `${message.settings.prefix}${c.help.name}${" ".repeat(longest - c.help.name.length)} :: *${c.help.description}*\n`;
     });
     const Discord = require('discord.js')
+    if (output.length > 2048) {
+      const loe = new Discord.RichEmbed()
+      .setAuthor(`${client.user.username}`, `${client.user.avatarURL}`)
+      .setDescription('Sorry, but the embed is too long to be sent. We are working on a website for a list of commands, please be patient.')
+      .addField('Workaround', `In the meantime, however. You're more than welcome to use help to lookup information on individual commands.`)
+      .setTitle(`${client.user.username} Help Manual`)
+      .setFooter(`${client.user.username} | Beta - Master`)
+      .setTimestamp()
+      message.channel.send(loe)
+
+    } else {
     const embed1 = new Discord.RichEmbed()
     .setAuthor(`${client.user.username}`, `${client.user.avatarURL}`)
     .setDescription(output, {code: "asciidoc", split: { char: "\u200b" }})
@@ -28,6 +39,7 @@ exports.run = (client, message, args, level) => {
     .setFooter(`${client.user.username} | Beta - Master`)
     .setTimestamp()
     message.channel.send(embed1)
+    }
   //  message.channel.send(output, {code: "asciidoc", split: { char: "\u200b" }});
   } else {
     // Show individual command's help.
