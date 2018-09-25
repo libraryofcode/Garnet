@@ -1,6 +1,5 @@
 exports.run = (client, message, args) => {
     if(message.author.id === '208688963936845824' || '278620217221971968') {
-        message.delete()
         message.channel.send(`Joe have declared war on ${args[0]}, their anus will now be destroyed by the one and only... Virgin Slayer 69`);
     }
     else {
