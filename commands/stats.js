@@ -14,7 +14,7 @@ exports.run = (client, message, args, level) => { // eslint-disable-line no-unus
     .setAuthor(`${client.user.username}`, `${client.user.avatarURL}`)
     .setTitle(`STATISTICS`)
     .setColor(message.member.displayColor)
-    .addField("Version", "3.0.0", false)
+    .addField("Version", "3.5.5", false)
     .addField("• Memory Usage", `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB`, true)
     .addField("• Uptime", `${duration}`, true)
     .addField("• Users  ", `${client.users.size.toLocaleString()}`, true)
