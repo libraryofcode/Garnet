@@ -29,8 +29,8 @@ exports.conf = {
 };
 
 exports.help = {
-  name: "ping",
+  name: "eping",
   category: "Misc",
-  description: "Pings the bot, responds with API and regular latencies.",
-  usage: "ping"
+  description: "Pings the bot, but replies with an embed.",
+  usage: "eping"
 };
