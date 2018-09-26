@@ -15,6 +15,7 @@ exports.run = async (client, message, args, level) => {
   } catch (err) {
     const embed2 = new Discord.RichEmbed()
     embed2.setAuthor(client.user.username, client.user.avatarURL)
+    embed2.setColor('#FF0000')
     embed2.setTitle('__JAVASCRIPT EVALUATION__')
     embed2.setDescription(`\`ERROR\` \`\`\`xl\n${await client.clean(client, err)}\n\`\`\``);
     embed2.setTimestamp()
