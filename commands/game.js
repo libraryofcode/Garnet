@@ -6,9 +6,13 @@ const status = {
   offline: "Offline/Invisible"
 };
 exports.run = async (client, message, args) => {
+  const resolvedUser = (args[0] !== undefined) ? message.guild.members.get(args[0].match(/[0-9]/g).join("")) : null;
+  //In the future, we have plans to check if a user is playing Spotify, and if they are have a specific Spotify only embed for the game.
 
   const msg = await message.channel.send("Loading...");
-  const botuser = message.mentions.users.first() ? message.guild.members.get(message.mentions.users.first().id) : message.member;
+  const botuser = resolvedUser ? message.guild.members.get(resolvedUser.id) : message.member;
+  //Above constant adds the ability to get a game for a user by an ID instead of having to mention them.
+  //const botuser = message.mentions.users.first() ? message.guild.members.get(message.mentions.users.first().id) : message.member;
   const embed = new Discord.RichEmbed()
     .setColor(botuser.displayColor)
     .setFooter(`${client.user.username} | ID ${botuser.id} | Beta - Master`);
