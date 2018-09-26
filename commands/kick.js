@@ -7,9 +7,10 @@ exports.run = (client, message, [mention, ...reason]) => {
     return message.reply("I do not have the kick members permission.");
 
   const kickMember = message.mentions.members.first();
+  message.delete();
 
   kickMember.kick(reason.join(" ")).then(member => {
-    message.reply(`${member.user.username} was succesfully kicked.`);
+    message.reply(`***${member.user.username} has been kicked.***`);
   });
 } catch (err) {
   msg.edit("EXCPT*- " +

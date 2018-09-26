@@ -9,8 +9,7 @@
   "scripts": {
     "test": "node index.js && exit 1",
     "start": "node index.js",
-    "shard": "node shard.js",
-    "install": "node-gyp rebuild"
+    "shard": "node shard.js"
   },
   "engines": {
     "node": ">=8",
@@ -21,8 +20,10 @@
     "NightRaven#2172"
   ],
   "dependencies": {
+    "axios": "^0.18.0",
     "chalk": "^2.4.1",
     "discord.js": "^11.4.2",
+    "discord.js-musicbot-addon": "^12.0.6",
     "enmap": "^4.0.12",
     "enmap-sqlite": "^2.0.5",
     "jshint": "^2.9.6",
