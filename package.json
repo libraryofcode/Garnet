@@ -26,6 +26,7 @@
     "discord.js-musicbot-addon": "^12.0.6",
     "enmap": "^4.0.12",
     "enmap-sqlite": "^2.0.5",
+    "eris": "^0.9.0",
     "jshint": "^2.9.6",
     "mathjs": "^5.1.2",
     "mocha": "^5.2.0",

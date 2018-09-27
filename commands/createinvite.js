@@ -1,6 +1,7 @@
 const Discord = require('discord.js')
 
 exports.run = (client, message, args) => {
+    try {
   if(args < 1) {message.channel.createInvite({
       maxAge: 0
   })
@@ -13,6 +14,9 @@ if(args > 1) {
     })
     .then(invite => message.channel.send(`Created invite with a code of discord.gg/${invite.code} with the age of ${args[0]} seconds`))
 }
+    } catch(err) {
+        message.channel.send(err)
+    }
 }
 
 exports.conf = {
