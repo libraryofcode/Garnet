@@ -25,7 +25,7 @@ exports.run = async (client, message, args) => {
     const game = botuser.user.presence.game;
 
     try {
-      embed.setAuthor(botuser.displayName, game.assets.smallImageURL);
+      embed.setAuthor(`${botuser.displayName}#${botuser.user.discriminator}`, game.assets.smallImageURL);
     } catch (err) {
       embed.setAuthor(botuser.displayName, "https://cdn.discordapp.com/avatars/460639060851949569/4f545d7d0ee4fb31a411035793c4aef8.png?size=2048");
     }
