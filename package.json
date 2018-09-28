@@ -22,6 +22,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "chalk": "^2.4.1",
+    "dateformat": "^3.0.3",
     "discord.js": "^11.4.2",
     "discord.js-musicbot-addon": "^12.0.6",
     "enmap": "^4.0.12",
