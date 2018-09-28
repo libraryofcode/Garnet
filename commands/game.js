@@ -15,6 +15,7 @@ exports.run = async (client, message, args) => {
   //const botuser = message.mentions.users.first() ? message.guild.members.get(message.mentions.users.first().id) : message.member;
   const embed = new Discord.RichEmbed()
     .setColor(botuser.displayColor)
+    .setTimestamp()
     .setFooter(`${client.user.username} | ID ${botuser.id} | Beta - Master`);
 
   if (!botuser.user.presence.game) {
