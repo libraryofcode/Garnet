@@ -1,6 +1,4 @@
 const { exec } = require("child_process");
-const Discord = require('discord.js')
-const client = require('discord.js')
 
 exports.run = async (client, msg, args) => {
   const command = args.join(" ");
@@ -11,7 +9,25 @@ exports.run = async (client, msg, args) => {
 \`\`\`sh
 ${stdOut}
 \`\`\``);
+
+
+const outputErr = (msg, stdData) => {
+  let { stdout, stderr } = stdData;
+  stderr = stderr ? ["`STDERR`","```sh",client.clean(stderr.substring(0, 800)) || " ","```"] : [];
+  stdout = stdout ? ["`STDOUT`","```sh",client.clean(stdout.substring(0, stderr ? stderr.length : 2046 - 40)) || " ","```"] : [];
+  let message = stdout.concat(stderr).join("\n").substring(0, 2000);
+  msg.edit(message);
 };
+
+const doExec = (cmd, opts = {}) => {
+  return new Promise((resolve, reject) => {
+    exec(cmd, opts, (err, stdout, stderr) => {
+      if (err) return reject({ stdout, stderr });
+      resolve(stdout);
+    });
+  });
+};
+}
 
 exports.conf = {
   enabled: true,
@@ -24,19 +40,4 @@ exports.help = {
   name: 'exec',
   description: 'Executes a console command.',
   usage: 'exec [command]'
-};
-
-const outputErr = (msg, stdData) => {
-  let { stdout, stderr } = stdData;
-  let message = stdout.concat(`\`\`\`${stderr}\`\`\``)
-  msg.edit(message);
-};
-
-const doExec = (cmd, opts = {}) => {
-  return new Promise((resolve, reject) => {
-    exec(cmd, opts, (err, stdout, stderr) => {
-      if (err) return reject({ stdout, stderr });
-      resolve(stdout);
-    });
-  });
 };
