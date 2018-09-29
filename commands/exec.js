@@ -1,4 +1,6 @@
 const { exec } = require("child_process");
+const Discord = require('discord.js')
+const client = require('discord.js')
 
 exports.run = async (client, msg, args) => {
   const command = args.join(" ");
@@ -26,9 +28,7 @@ exports.help = {
 
 const outputErr = (msg, stdData) => {
   let { stdout, stderr } = stdData;
-  stderr = stderr ? ["`STDERR`","```sh",client.clean(stderr.substring(0, 800)) || " ","```"] : [];
-  stdout = stdout ? ["`STDOUT`","```sh",client.clean(stdout.substring(0, stderr ? stderr.length : 2046 - 40)) || " ","```"] : [];
-  let message = stdout.concat(stderr).join("\n").substring(0, 2000);
+  let message = stdout.concat(`\`\`\`${stderr}\`\`\``)
   msg.edit(message);
 };
 
