@@ -7,9 +7,22 @@ exports.run = async (client, msg, args) => {
   stdOut = stdOut.substring(0, 1750);
   outMessage.edit(`\`OUTPUT\`
 \`\`\`sh
-${stdOut}
+${client.clean(stdOut)}
 \`\`\``);
+};
 
+exports.conf = {
+  enabled: true,
+  guildOnly: false,
+  aliases: ["ex"],
+  permLevel: 'Systems Main Developer'
+};
+
+exports.help = {
+  name: 'exec',
+  description: 'Executes a console command.',
+  usage: 'exec [command]'
+};
 
 const outputErr = (msg, stdData) => {
   let { stdout, stderr } = stdData;
@@ -26,18 +39,4 @@ const doExec = (cmd, opts = {}) => {
       resolve(stdout);
     });
   });
-};
-}
-
-exports.conf = {
-  enabled: true,
-  guildOnly: false,
-  aliases: ["ex"],
-  permLevel: 'Systems Main Developer'
-};
-
-exports.help = {
-  name: 'exec',
-  description: 'Executes a console command.',
-  usage: 'exec [command]'
 };
