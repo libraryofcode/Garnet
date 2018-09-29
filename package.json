@@ -29,6 +29,7 @@
     "enmap-sqlite": "^2.0.5",
     "eris": "^0.9.0",
     "jshint": "^2.9.6",
+    "lavalink": "^2.2.0",
     "mathjs": "^5.1.2",
     "mocha": "^5.2.0",
     "moment": "^2.22.2",

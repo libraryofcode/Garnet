@@ -24,7 +24,7 @@ exports.run = (client, message, args, level) => { // eslint-disable-line no-unus
     .addField("• Node Version", `${process.version}`, true)
     .addField("Creator", `Matthew#0008`, true)
     .setTimestamp()
-    .setFooter(`${client.user.username} | Beta - Master`);
+    .setFooter(`${client.user.username} | Process ID ${process.ppid} - ${process.pid}`);
   message.channel.send(embed);
 };
 talkedRecently.add(message.author.id);
