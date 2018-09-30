@@ -10,6 +10,7 @@ exports.run = async (client, message) => {
     
   const freegbU = os.freemem / 1000000000;
   const freegbR = Math.round(freegbU);
+  const freegbF = gbR - freegbR;
 
   const hours = os.uptime / 1440;
   const sysuptime = Math.floor(hours);
@@ -42,7 +43,7 @@ exports.run = async (client, message) => {
   embed.addField('CPU', `${os.cpus()[0].model}`, true);
   embed.addField('CPU Usage', `${process.cpuUsage().user}ms clock`, true);
   embed.addField('Architecture', `${os.arch}`, true);
-  embed.addField('Memory', `${freegbR}GB/${gbR}GB`, true);
+  embed.addField('Memory', `${freegbF}GB/${gbR}GB`, true);
   embed.addField('Directory', `${os.homedir()}`, true);
   embed.addField('Process File', `${process.mainModule.filename}` ,true);
   embed.addField('System Uptime', `${sysuptimeDays} days | ${sysuptime} total hours`, true);
