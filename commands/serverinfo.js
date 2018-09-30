@@ -29,7 +29,7 @@ exports.run = async (client, message) => {
       .addField('Server Region', message.guild.region, true)
       .addField('Channels', message.guild.channels.size, false)
       .addField('Roles', `${message.guild.roles.size}`, false)
-      .addField('Created', `${message.guild.createdAt}`, false)
+      .addField('Created', `${message.guild.createdAt.toLocaleString('en-US')}`, false)
       .addField('Members', message.guild.memberCount, true)
       .addField('Humans', checkMembers(message.guild), true)
       .addField('Bots', checkBots(message.guild), true)
