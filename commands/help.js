@@ -9,7 +9,7 @@ exports.run = (client, message, args, level) => {
     const commandNames = myCommands.keyArray();
     const longest = commandNames.reduce((long, str) => Math.max(long, str.length), 0);
 
-    let currentCategory = "";
+    let currentCategory = '';
     let output = `__**Command List**__\n\n[Use ${message.settings.prefix}help <commandname> for details]\n`;
     const sorted = myCommands.array().sort((p, c) => p.help.category > c.help.category ? 1 :  p.help.name > c.help.name && p.help.category === c.help.category ? 1 : -1 );
     sorted.forEach( c => {
@@ -18,27 +18,27 @@ exports.run = (client, message, args, level) => {
         output += `\u200b\n **${cat}** \n`;
         currentCategory = cat;
       }
-      output += `${message.settings.prefix}${c.help.name}${" ".repeat(longest - c.help.name.length)} :: *${c.help.description}*\n`;
+      output += `${message.settings.prefix}${c.help.name}${' '.repeat(longest - c.help.name.length)} :: *${c.help.description}*\n`;
     });
-    const Discord = require('discord.js')
+    const Discord = require('discord.js');
     if (output.length > 2048) {
       const loe = new Discord.RichEmbed()
-      .setAuthor(`${client.user.username}`, `${client.user.avatarURL}`)
-      .setDescription('Sorry, but the embed is too long to be sent. We are working on a website for a list of commands, please be patient.')
-      .addField('Workaround', `In the meantime, however. You're more than welcome to use help to lookup information on individual commands.`)
-      .setTitle(`${client.user.username} Help Manual`)
-      .setFooter(`${client.user.username} | Beta - Master`)
-      .setTimestamp()
-      message.channel.send(loe)
+        .setAuthor(`${client.user.username}`, `${client.user.avatarURL}`)
+        .setDescription('Sorry, but the embed is too long to be sent. We are working on a website for a list of commands, please be patient.')
+        .addField('Workaround', 'In the meantime, however. You\'re more than welcome to use help to lookup information on individual commands.')
+        .setTitle(`${client.user.username} Help Manual`)
+        .setFooter(`${client.user.username} | Beta - Master`)
+        .setTimestamp();
+      message.channel.send(loe);
 
     } else {
-    const embed1 = new Discord.RichEmbed()
-    .setAuthor(`${client.user.username}`, `${client.user.avatarURL}`)
-    .setDescription(output, {code: "asciidoc", split: { char: "\u200b" }})
-    .setTitle(`${client.user.username} Help Manual`)
-    .setFooter(`${client.user.username} | Beta - Master`)
-    .setTimestamp()
-    message.channel.send(embed1)
+      const embed1 = new Discord.RichEmbed()
+        .setAuthor(`${client.user.username}`, `${client.user.avatarURL}`)
+        .setDescription(output, {code: 'asciidoc', split: { char: '\u200b' }})
+        .setTitle(`${client.user.username} Help Manual`)
+        .setFooter(`${client.user.username} | Beta - Master`)
+        .setTimestamp();
+      message.channel.send(embed1);
     }
   //  message.channel.send(output, {code: "asciidoc", split: { char: "\u200b" }});
   } else {
@@ -47,18 +47,18 @@ exports.run = (client, message, args, level) => {
     if (client.commands.has(command)) {
       command = client.commands.get(command);
       if (level < client.levelCache[command.conf.permLevel]) return;
-      const Discord = require('discord.js')
+      const Discord = require('discord.js');
       const embed2 = new Discord.RichEmbed()
-      .setAuthor(`${client.user.username}`, `${client.user.avatarURL}`)
-      .setTitle(`${client.user.username} Help Manual`)
-      .addField('Command', `${command.help.name}`, true)
-      .addField('Description', `${command.help.description}`, true)
-      .addField('Usage', `${command.help.usage}`, true)
-      .setFooter(`${client.user.username} | Beta - Master`)
-      .setTimestamp()
-      message.channel.send(embed2)
+        .setAuthor(`${client.user.username}`, `${client.user.avatarURL}`)
+        .setTitle(`${client.user.username} Help Manual`)
+        .addField('Command', `${command.help.name}`, true)
+        .addField('Description', `${command.help.description}`, true)
+        .addField('Usage', `${command.help.usage}`, true)
+        .setFooter(`${client.user.username} | Beta - Master`)
+        .setTimestamp();
+      message.channel.send(embed2);
 
-     // message.channel.send(`= ${command.help.name} = \n${command.help.description}\nusage:: ${command.help.usage}\naliases:: ${command.conf.aliases.join(", ")}\n= ${command.help.name} =`, {code:"asciidoc"});
+      // message.channel.send(`= ${command.help.name} = \n${command.help.description}\nusage:: ${command.help.usage}\naliases:: ${command.conf.aliases.join(", ")}\n= ${command.help.name} =`, {code:"asciidoc"});
     }
   }
 };
@@ -69,13 +69,13 @@ exports.run = (client, message, args, level) => {
 exports.conf = {
   enabled: true,
   guildOnly: false,
-  aliases: ["h", "halp"],
-  permLevel: "User"
+  aliases: ['h', 'halp'],
+  permLevel: 'User'
 };
 
 exports.help = {
-  name: "help",
-  category: "System",
-  description: "Displays all the available commands for your permission level.",
-  usage: "help [command]"
+  name: 'help',
+  category: 'System',
+  description: 'Displays all the available commands for your permission level.',
+  usage: 'help [command]'
 };
