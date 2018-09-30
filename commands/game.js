@@ -56,7 +56,7 @@ exports.run = async (client, message, args) => {
       embed.addField('State', 'No state', true);
     }
     try {
-      embed.addField('Started', `${game.timestamps.start}`, true);
+      embed.addField('Started', `${game.timestamps.start.toLocaleString('en-US')}`, true);
     } catch (err) {
       embed.addField('Started', 'None', true);
     }

@@ -5,7 +5,7 @@ exports.run = async (client, message) => {
     .setColor(message.member.displayColor)
     .setDescription('This is a clone of the [Moonglow](https://github.com/FCCouncil/Moonglow) GitHub repo. Join us today, and help contribute!')
     .addField('Version', '3.6.0', true)
-    .addField('Created At', `${client.user.createdAt}`, true)
+    .addField('Created At', `${client.user.createdAt.toLocaleString('en-US')}`, true)
     .addField('Library', '[Discord.js](https://github.com/discordjs/discord.js)', true)
     .addField('Language', 'JavaScript', true)
     .addField('Contributors', 'FlatBird#9461, TheSkele27#1337, The Phoenix of Phoebus#9935', true)
