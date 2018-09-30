@@ -1,7 +1,7 @@
-const { exec } = require("child_process");
+const { exec } = require('child_process');
 
 exports.run = async (client, msg, args) => {
-  const command = args.join(" ");
+  const command = args.join(' ');
   const outMessage = await msg.channel.send(`Running \`${command}\`...`);
   let stdOut = await doExec(command).catch(data=> outputErr(outMessage, data));
   stdOut = stdOut.substring(0, 1750);
@@ -14,7 +14,7 @@ ${stdOut}
 exports.conf = {
   enabled: true,
   guildOnly: false,
-  aliases: ["ex"],
+  aliases: ['ex'],
   permLevel: 'Systems Main Developer'
 };
 
@@ -25,8 +25,8 @@ exports.help = {
 };
 
 const outputErr = (msg, stdData) => {
-  let { stdout, stderr } = stdData;
-  let message = stdout.concat(`\`\`\`${stderr}\`\`\``)
+  const { stdout, stderr } = stdData;
+  const message = stdout.concat(`\`\`\`${stderr}\`\`\``);
   msg.edit(message);
 };
 
