@@ -14,16 +14,16 @@ exports.run = async (client, message, args) => {
     embed.addField('Color', `${roleM.hexColor.toUpperCase()}`, true);
     embed.addField('Position', `${roleM.position}`, true);
     if (roleM.hoist === false) {
-      embed.addField('Hoisted', 'False', true);
+      embed.addField('Hoisted', 'No', true);
     }
     else {
-      embed.addField('Hoisted', 'True', true);
+      embed.addField('Hoisted', 'Yes', true);
     }
     if (roleM.mentionable == false) {
-      embed.addField('Mentionable', 'False', true);
+      embed.addField('Mentionable', 'No', true);
     }
     else {
-      embed.addField('Mentionable', 'True', true);
+      embed.addField('Mentionable', 'Yes', true);
     }
     embed.addField('Created At', `${roleM.createdAt.toLocaleString('en-US')}`, true);
     embed.setFooter(`${client.user.username} | Role ID: ${roleM.id}`);
