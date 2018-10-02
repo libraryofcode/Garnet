@@ -35,20 +35,62 @@ exports.run = async (client, message, args, level) => {
       } else {
         bot = 'No';
       }
+      function checkUserPermission(guild, botuser) {
+        const arrayOfPerms = [];
+        if (botuser.hasPermission('ADMINISTRATOR')) {
+          arrayOfPerms.push('Administrator');
 
+        }
+        if (botuser.hasPermission('MANAGE_GUILD')) {
+          arrayOfPerms.push('Manage Server');
+        }
+        if (botuser.hasPermission('MANAGE_ROLES_OR_PERMISSIONS')) {
+          arrayOfPerms.push('Manage Roles');
+        }
+        if (botuser.hasPermission('MANAGE_CHANNELS')) {
+          arrayOfPerms.push('Manage Channels');
+        }
+        if (botuser.hasPermission('KICK_MEMBERS')) {
+          arrayOfPerms.push('Kick Members');
+        }
+        if (botuser.hasPermission('BAN_MEMBERS')) {
+          arrayOfPerms.push('Ban Members');
+        }
+        if (botuser.hasPermission('MANAGE_NICKNAMES')) {
+          arrayOfPerms.push('Manage Nicknames');
+        }
+        if (botuser.hasPermission('MANAGE_EMOJIS')) {
+          arrayOfPerms.push('Manage Emojis');
+        }
+        if (botuser.hasPermission('MANAGE_WEBHOOKS')) {
+          arrayOfPerms.push('Manage Webhooks');
+        }
+        if (botuser.hasPermission('MANAGE_MESSAGES')) {
+          arrayOfPerms.push('Manage Messages');
+        }
+        if (botuser.hasPermission('MENTION_EVERYONE')) {
+          arrayOfPerms.push('Mention Everyone');
+        }
+
+
+        return arrayOfPerms;
+      }
       const embed = new Discord.RichEmbed()
-        .setAuthor(botuser.displayName, botuser.user.avatarURL)
-        .setThumbnail(botuser.user.avatarURL)
-        .setColor(botuser.displayColor)
-        .addField('Joined Server At', `${botuser.joinedAt.toLocaleString('en-US')}`, true)
-        .addField('Created Account At', `${botuser.user.createdAt.toLocaleString('en-US')}`, true)
-        .addField('Status', `${status[botuser.user.presence.status]}`, true)
-        .addField('Playing', `${botuser.user.presence.game ? `${botuser.user.presence.game.name}` : 'No rich presense found.'}`, true)
-        .addField(`Roles [${botuser.roles.size - 1}]`, `${myDick}`, true)
-        .addField('Acknowledgements', `${friendly}`, true)
-        .addField('System Level', `${level}`, true)
-        .setTimestamp()
-        .setFooter(`${client.user.username} | ID ${botuser.id} |  Beta - Master`);
+      embed.setAuthor(botuser.displayName, botuser.user.avatarURL)
+      embed.setThumbnail(botuser.user.avatarURL)
+      embed.setColor(botuser.displayColor)
+      embed.addField('Joined Server At', `${botuser.joinedAt.toLocaleString('en-US')}`, true)
+      embed.addField('Created Account At', `${botuser.user.createdAt.toLocaleString('en-US')}`, true)
+      embed.addField('Status', `${status[botuser.user.presence.status]}`, true)
+      embed.addField('Playing', `${botuser.user.presence.game ? `${botuser.user.presence.game.name}` : 'No rich presense found.'}`, true)
+      embed.addField(`Roles [${botuser.roles.size - 1}]`, `${myDick}`, true)
+      if (checkUserPermission(message.guild, botuser) != []) {
+        embed.addField('Key Permissions', `${checkUserPermission(message.guild, botuser).join(', ')}`, true)
+      }
+      embed.addField('Acknowledgements', `${friendly}`, true)
+      embed.addField('System Level', `${level}`, true)
+      embed.setTimestamp()
+      embed.setFooter(`${client.user.username} | ID ${botuser.id} |  Beta - Master`);
       if (bot == 'Yes') {
         embed.addField('Bot', `${bot}`, true);
       }
