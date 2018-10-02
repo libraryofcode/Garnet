@@ -78,12 +78,16 @@ exports.run = async (client, message, args, level) => {
       const embed = new Discord.RichEmbed();
       embed.setAuthor(botuser.displayName, botuser.user.avatarURL);
       embed.setThumbnail(botuser.user.avatarURL);
-      embed.setColor(botuser.displayColor);
+      if (botuser.displayColor) {
+        embed.setColor(botuser.displayColor);
+      }
       embed.addField('Joined Server At', `${botuser.joinedAt.toLocaleString('en-US')}`, true);
       embed.addField('Created Account At', `${botuser.user.createdAt.toLocaleString('en-US')}`, true);
       embed.addField('Status', `${status[botuser.user.presence.status]}`, true);
       embed.addField('Playing', `${botuser.user.presence.game ? `${botuser.user.presence.game.name}` : 'Nothing'}`, true);
-      embed.addField(`Roles [${botuser.roles.size - 1}]`, `${myDick}`, true);
+      if (botuser.roles.size - 1) {
+        embed.addField(`Roles [${botuser.roles.size - 1}]`, `${myDick}`, true);
+      }
       if (checkUserPermission(message.guild, botuser).length > 0) {
         embed.addField('Key Permissions', `${checkUserPermission(message.guild, botuser).join(', ')}`, true);
       }
