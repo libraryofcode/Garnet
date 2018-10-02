@@ -43,7 +43,7 @@ exports.run = async (client, message, args, level) => {
       .addField("Joined Server At", `${botuser.joinedAt}`, true)
       .addField("Created Account At", `${botuser.user.createdAt}`, true)
       .addField("Status", `${status[botuser.user.presence.status]}`, true)
-      .addField("Playing", `${botuser.user.presence.game ? `${botuser.user.presence.game.name}` : "No rich presense found."}`, true)
+      .addField("Playing", `${botuser.user.presence.game ? `${botuser.user.presence.game.name}` : "Nothing"}`, true)
       .addField("Roles", `${myDick}`, true)
       .addField("Acknowledgements", `${friendly}`, true)
       .addField("System Level", `${level}`, true)
