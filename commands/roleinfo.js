@@ -13,6 +13,7 @@ exports.run = async (client, message, args) => {
     embed.addField('Members', `${roleM.members.size}`, true);
     embed.addField('Color', `${roleM.hexColor.toUpperCase()}`, true);
     embed.addField('Position', `${roleM.position}`, true);
+    embed.addField('Mention', `\`\`<@&${roleM.id}>\`\``, true);
     if (roleM.hoist === false) {
       embed.addField('Hoisted', 'No', true);
     }
@@ -24,6 +25,9 @@ exports.run = async (client, message, args) => {
     }
     else {
       embed.addField('Mentionable', 'Yes', true);
+    }
+    if (roleM.managed == true) {
+      embed.addField('Managed', 'Yes', true);
     }
     embed.addField('Created At', `${roleM.createdAt.toLocaleString('en-US')}`, true);
     embed.setFooter(`${client.user.username} | Role ID: ${roleM.id}`);
