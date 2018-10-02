@@ -4,7 +4,7 @@ exports.run = async (client, message, args) => {
   const deleteCount = parseInt(args[0], 10);
     
   if (!deleteCount || deleteCount < 1 || deleteCount > 10000)
-  return message.reply("Please provide a number between 1 and 10000 for the number of messages to delete");
+    return message.reply('Please provide a number between 1 and 10000 for the number of messages to delete');
     
   const fetched = await message.channel.fetchMessages({limit: deleteCount});
   message.channel.bulkDelete(fetched)
@@ -15,12 +15,12 @@ exports.conf = {
   enabled: true,
   guildOnly: true,
   aliases: [],
-  permLevel: "Server Admin"
- };
+  permLevel: 'Server Admin'
+};
   
 exports.help = {
-  name: "purge",
-  category: "Moderation",
-  description: "Deletes the specified amount of messages.",
-  usage: "purge [...# of messages]"
+  name: 'purge',
+  category: 'Moderation',
+  description: 'Deletes the specified amount of messages.',
+  usage: 'purge [...# of messages]'
 };
