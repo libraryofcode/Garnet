@@ -85,7 +85,7 @@ exports.run = async (client, message, args, level) => {
       embed.addField('Playing', `${botuser.user.presence.game ? `${botuser.user.presence.game.name}` : 'Nothing'}`, true);
       embed.addField(`Roles [${botuser.roles.size - 1}]`, `${myDick}`, true);
       if (checkUserPermission(message.guild, botuser).length >= 0) {
-        embed.addField('Key Permissions', `${checkUserPermission(message.guild, botuser).join(', ')}`, true)
+        embed.addField('Key Permissions', `${checkUserPermission(message.guild, botuser).join(', ')}`, true);
       }
       embed.addField('Acknowledgements', `${friendly}`, true);
       embed.addField('System Level', `${level}`, true);
