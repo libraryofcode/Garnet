@@ -97,6 +97,25 @@ exports.run = async (client, message, args, level) => {
       msg.edit(embed);
     } catch (err) {
       msg.edit('EXCPT*- ' +
+    const embed = new Discord.RichEmbed()
+      .setAuthor(botuser.displayName, botuser.user.avatarURL)
+      .setThumbnail(botuser.user.avatarURL)
+      .setColor(botuser.displayColor)
+      .addField("Joined Server At", `${botuser.joinedAt}`, true)
+      .addField("Created Account At", `${botuser.user.createdAt}`, true)
+      .addField("Status", `${status[botuser.user.presence.status]}`, true)
+      .addField("Playing", `${botuser.user.presence.game ? `${botuser.user.presence.game.name}` : "Nothing"}`, true)
+      .addField("Roles", `${myDick}`, true)
+      .addField("Acknowledgements", `${friendly}`, true)
+      .addField("System Level", `${level}`, true)
+      .setTimestamp()
+      .setFooter(`${client.user.username} | ID ${botuser.id} |  Beta - Master`);
+    if (bot == "Yes") {
+      embed.addField("Bot", `${bot}`, true)
+    }
+    msg.edit(embed);
+  } catch (err) {
+    msg.edit("EXCPT*- " +
       err);
     }
     talkedRecently.add(message.author.id);
@@ -118,4 +137,9 @@ exports.help = {
   category: 'Misc',
   description: 'Provides user information.',
   usage: 'whois'
+};
+  name: "whois",
+  category: "Misc",
+  description: "Provides user information.",
+  usage: "whois"
 };
