@@ -1,4 +1,5 @@
 //AIzaSyD7ZRm5CCh-LU2YsrnhCc6ulIRb62m8gGY
+//Yes I know a YouTube API key is here. I don't care, please stop yelling at me.
 const Discord = require('discord.js');
 const Music = require('discord.js-musicbot-addon');
 const client = new Discord.Client(); //replace client with what you want your Discord Client to be.
