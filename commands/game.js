@@ -21,7 +21,7 @@ exports.run = async (client, message, args) => {
   if (!botuser.user.presence.game) {
     embed.setAuthor(botuser.displayName),
     embed.addField('Playing', 'This user is not playing anything.', true);
-  } else {
+  } else if (!botuser.user.presence.game.name == 'Spotify') {
     const game = botuser.user.presence.game;
 
     try {
@@ -60,8 +60,22 @@ exports.run = async (client, message, args) => {
     } catch (err) {
       embed.addField('Started', 'None', true);
     }
+  } else {
+    embed.setTitle('Spotify', 'https://cdn.discordapp.com/attachments/358674161566220288/496894273304920064/2000px-Spotify_logo_without_text.png')
+    embed.setAuthor(`${client.user.username}`, `${client.user.avatarURL}`);
+    embed.setThumbnail(botuser.user.presence.game.assets.largeImageURL)
+    embed.setColor('#1DB954')
+    embed.addField('Song', `${botuser.user.presence.game.details}`, true)
+    embed.addField('Artist', `${botuser.user.presence.game.state}`, true)
+    embed.addField('Album', `${botuser.user.presence.game.assets.largeText}`, true)
+    embed.addField('Start', `${botuser.user.presence.game.timestamps.start.toLocaleString('en-US')}`, true)
+    embed.addField('End', `${botuser.user.presence.game.timestamps.end.toLocaleString('en-US')}`, true)
+    embed.setTimestamp()
+    embed.setFooter(`${botuser.displayName}#${botuser.user.discriminator} is listening to Spotify.`, 'https://cdn.discordapp.com/attachments/358674161566220288/496894273304920064/2000px-Spotify_logo_without_text.png')
   }
   msg.edit(embed);
+
+
 };
 
 
