@@ -21,7 +21,7 @@ exports.run = async (client, message, args) => {
   if (!botuser.user.presence.game) {
     embed.setAuthor(botuser.displayName),
     embed.addField('Playing', 'This user is not playing anything.', true);
-  } else if (!botuser.user.presence.game.name == 'Spotify') {
+  } else if (botuser.user.presence.game.name !== 'Spotify') {
     const game = botuser.user.presence.game;
 
     try {
@@ -60,7 +60,7 @@ exports.run = async (client, message, args) => {
     } catch (err) {
       embed.addField('Started', 'None', true);
     }
-  } else {
+  } if (botuser.user.presence.game.name === 'Spotify') {
     embed.setTitle('Spotify', 'https://cdn.discordapp.com/attachments/358674161566220288/496894273304920064/2000px-Spotify_logo_without_text.png')
     embed.setAuthor(`${client.user.username}`, `${client.user.avatarURL}`);
     embed.setThumbnail(botuser.user.presence.game.assets.largeImageURL)
