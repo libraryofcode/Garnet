@@ -3,7 +3,7 @@ module.exports = async client => {
   client.logger.log(`${client.user.tag}, ready to serve ${client.users.size} users in ${client.guilds.size} servers.`, "ready");
 
   // Make the bot "play the game" which is the help command with default prefix.
-  client.user.setActivity(`${client.config.defaultSettings.prefix}help | Beta - Master`, {type: "PLAYING"});
+  client.user.setActivity(`${client.config.defaultSettings.prefix}help | ${client.users.size} users`, {type: "PLAYING"});
 //die
 
 };

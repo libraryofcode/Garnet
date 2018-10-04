@@ -18,10 +18,8 @@ exports.run = async (client, message, args) => {
     .setTimestamp()
     .setFooter(`${client.user.username} | ID ${botuser.id} | Beta - Master`);
 
-  if (!botuser.user.presence.game) {
-    embed.setAuthor(botuser.displayName),
-    embed.addField('Playing', 'This user is not playing anything.', true);
-  } else if (botuser.user.presence.game.name !== 'Spotify') {
+  
+  if (botuser.user.presence.game.name !== 'Spotify') {
     const game = botuser.user.presence.game;
 
     try {
@@ -60,7 +58,7 @@ exports.run = async (client, message, args) => {
     } catch (err) {
       embed.addField('Started', 'None', true);
     }
-  } if (botuser.user.presence.game.name === 'Spotify') {
+  } else if (botuser.user.presence.game.name === 'Spotify') {
     embed.setTitle('Spotify', 'https://cdn.discordapp.com/attachments/358674161566220288/496894273304920064/2000px-Spotify_logo_without_text.png');
     embed.setAuthor(`${client.user.username}`, `${client.user.avatarURL}`);
     embed.setThumbnail(botuser.user.presence.game.assets.largeImageURL);
@@ -71,11 +69,15 @@ exports.run = async (client, message, args) => {
     embed.addField('Start', `${botuser.user.presence.game.timestamps.start.toLocaleString('en-US')}`, true);
     embed.addField('End', `${botuser.user.presence.game.timestamps.end.toLocaleString('en-US')}`, true);
     embed.setTimestamp();
-    embed.setFooter(`${botuser.displayName}#${botuser.user.discriminator} is listening to Spotify.`, 'https://cdn.discordapp.com/attachments/358674161566220288/496894273304920064/2000px-Spotify_logo_without_text.png');
+    if (botuser.user.presence.game.party === botuser.id) {
+      embed.setFooter(`${botuser.displayName}#${botuser.user.discriminator} is listening to Spotify.`, 'https://cdn.discordapp.com/attachments/358674161566220288/496894273304920064/2000px-Spotify_logo_without_text.png');
+    } else {
+      embed.setFooter(`${botuser.displayName}#${botuser.user.discriminator} is listening to Spotify with <@!${botuser.user.presence.game.party.id.split(':')[1]}>`, 'https://cdn.discordapp.com/attachments/358674161566220288/496894273304920064/2000px-Spotify_logo_without_text.png');
+    }
   }
   msg.edit(embed);
 
-
+  
 };
 
 
