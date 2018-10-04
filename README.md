@@ -3,6 +3,9 @@
 
 
 [![Moonglow Version](https://img.shields.io/github/release/FCCouncil/Moonglow.svg)](https://github.com/FCCouncil/Moonglow)
+[![Discord](https://img.shields.io/discord/446067825673633794.svg)](https://discord.gg/F4ztpQh)
+
+
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/8d4d797e9c5745f08cb96fbdd8e6bcb8)](https://app.codacy.com/app/matthew_ray/ShadowShard?utm_source=github.com&utm_medium=referral&utm_content=FCCouncil/ShadowShard&utm_campaign=Badge_Grade_Settings)
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/FCCouncil/ShadowShard.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/FCCouncil/ShadowShard/context:javascript)
 [![CodeFactor](https://www.codefactor.io/repository/github/fccouncil/moonglow/badge/master)](https://www.codefactor.io/repository/github/fccouncil/shadowshard/overview/master)
