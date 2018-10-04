@@ -1,6 +1,6 @@
 # Moonglow
 
-[![Moonglow Version](https://github.com/FCCouncil/Moonglow/releases)]
+[Moonglow Version](https://github.com/FCCouncil/Moonglow/releases)]
 (https://github.com/FCCouncil/Moonglow/releases)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/8d4d797e9c5745f08cb96fbdd8e6bcb8)](https://app.codacy.com/app/matthew_ray/ShadowShard?utm_source=github.com&utm_medium=referral&utm_content=FCCouncil/ShadowShard&utm_campaign=Badge_Grade_Settings)
 [![Language grade: JavaScript](https://img.shields.io/lgtm/grade/javascript/g/FCCouncil/ShadowShard.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/FCCouncil/ShadowShard/context:javascript)
