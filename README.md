@@ -1,8 +1,12 @@
 # Moonglow
 
+[![Moonglow Stable Version](https://img.shields.io/github/release/FCCouncil/Moonglow.svg?style=for-the-badge)](https://github.com/FCCouncil/Moonglow/releases)
+[![Moonglow Dev Version](https://img.shields.io/github/release/FCCouncil/moonglow/all.svg?style=for-the-badge)](https://github.com/FCCouncil/Moonglow/releases)
 
 
-[![Moonglow Version](https://img.shields.io/github/release/FCCouncil/Moonglow.svg)](https://github.com/FCCouncil/Moonglow)
+[![Commits (Since Latest Release)](https://img.shields.io/github/commits-since/FCCouncil/Moonglow/latest.svg)](https://github.com/FCCouncil/Moonglow/commits/master)
+
+
 [![Discord](https://img.shields.io/discord/446067825673633794.svg)](https://discord.gg/F4ztpQh)
 
 
