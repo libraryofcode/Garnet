@@ -1,6 +1,8 @@
 # Moonglow
 
+Stable Version
 [![Moonglow Stable Version](https://img.shields.io/github/release/FCCouncil/Moonglow.svg?style=for-the-badge)](https://github.com/FCCouncil/Moonglow/releases)
+Dev Version
 [![Moonglow Dev Version](https://img.shields.io/github/release/FCCouncil/moonglow/all.svg?style=for-the-badge)](https://github.com/FCCouncil/Moonglow/releases)
 
 
