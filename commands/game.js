@@ -69,9 +69,8 @@ exports.run = async (client, message, args) => {
     embed.addField('Start', `${botuser.user.presence.game.timestamps.start.toLocaleString('en-US')}`, true);
     embed.addField('End', `${botuser.user.presence.game.timestamps.end.toLocaleString('en-US')}`, true);
     embed.setTimestamp();
-    if (botuser.user.presence.game.party === botuser.id) {
-      embed.setFooter(`${botuser.displayName}#${botuser.user.discriminator} is listening to Spotify.`, 'https://cdn.discordapp.com/attachments/358674161566220288/496894273304920064/2000px-Spotify_logo_without_text.png');
-    } /*else {
+    embed.setFooter(`${botuser.displayName}#${botuser.user.discriminator} is listening to Spotify.`, 'https://cdn.discordapp.com/attachments/358674161566220288/496894273304920064/2000px-Spotify_logo_without_text.png');
+    /*else {
       embed.setFooter(`${botuser.displayName}#${botuser.user.discriminator} is listening to Spotify with <@!${botuser.user.presence.game.party.id.split(':')[1]}>`, 'https://cdn.discordapp.com/attachments/358674161566220288/496894273304920064/2000px-Spotify_logo_without_text.png');
     } */
   }
