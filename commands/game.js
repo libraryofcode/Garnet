@@ -71,9 +71,9 @@ exports.run = async (client, message, args) => {
     embed.setTimestamp();
     if (botuser.user.presence.game.party === botuser.id) {
       embed.setFooter(`${botuser.displayName}#${botuser.user.discriminator} is listening to Spotify.`, 'https://cdn.discordapp.com/attachments/358674161566220288/496894273304920064/2000px-Spotify_logo_without_text.png');
-    } else {
+    /*} else {
       embed.setFooter(`${botuser.displayName}#${botuser.user.discriminator} is listening to Spotify with <@!${botuser.user.presence.game.party.id.split(':')[1]}>`, 'https://cdn.discordapp.com/attachments/358674161566220288/496894273304920064/2000px-Spotify_logo_without_text.png');
-    }
+    } */
   }
   msg.edit(embed);
 
