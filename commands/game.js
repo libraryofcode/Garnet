@@ -13,6 +13,13 @@ exports.run = async (client, message, args) => {
   const botuser = resolvedUser ? message.guild.members.get(resolvedUser.id) : message.member;
   //Above constant adds the ability to get a game for a user by an ID instead of having to mention them.
   //const botuser = message.mentions.users.first() ? message.guild.members.get(message.mentions.users.first().id) : message.member;
+  const errorembed = new Discord.RichEmbed()
+    .setColor(botuser.displayColor)
+    .setDescription('This user isn\'t playing anything.')
+    .setTimestamp()
+    .setFooter(`${client.user.username} | ID ${botuser.id} | Beta - Master`);
+
+  if (!botuser.user.presence.game) return msg.edit(errorembed);
   const embed = new Discord.RichEmbed()
     .setColor(botuser.displayColor)
     .setTimestamp()
