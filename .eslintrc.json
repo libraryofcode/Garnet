@@ -17,12 +17,11 @@
       }
     ],
     "linebreak-style": [
-      "error",
-      "unix"
+      "off"
     ],
     "quotes": [
       "warn",
-      "double"
+      "single"
     ],
     "semi": [
       "warn",
@@ -47,6 +46,9 @@
         "named": "never",
         "asyncArrow": "always"
       }
+    ],
+    "no-inner-declarations": [
+      "off"
     ],
     "prefer-const": [
       "error", {

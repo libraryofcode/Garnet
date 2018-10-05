@@ -1,4 +1,4 @@
-exports.run = (client, message, [mention, ...reason]) => {
+exports.run = (client, message, [mention, ...reason]) => { //eslint-disable no-unused-vars
 
   try { if (message.mentions.members.size === 0)
     return message.reply('Please mention a user to kick');

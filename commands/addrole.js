@@ -7,12 +7,13 @@ exports.run = async (client, message, args) => {
   if (!gRole) return message.reply('I couldn\'t find that role.');
         
   if (Member.roles.has(gRole.id)) return message.reply('The user specified already has that role.');
-  await(rMember.addRole(gRole.id));
+  await(Member.addRole(gRole.id));
         
   try {
     await Member.send(`You have been given the ${gRole.name} role.`);
+    await message.channel.send(`Given ${gRole} to ${Member}.`);
   } catch (e) {
-    message.channel.send(`${gRole.name} role given to <@${rMember.id}>.`);
+    message.channel.send(`${gRole.name} role given to <@${Member.id}>.`);
   }
 };
 

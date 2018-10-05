@@ -38,7 +38,7 @@ exports.run = async (client, message, args, level) => {
       function checkUserPermission(guild, botuser) {
         const arrayOfPerms = [];
         if (message.guild.ownerID === botuser.id) {
-          arrayOfPerms.push('Owner')
+          arrayOfPerms.push('Owner');
         }
         if (botuser.hasPermission('ADMINISTRATOR')) {
           arrayOfPerms.push('Administrator');
