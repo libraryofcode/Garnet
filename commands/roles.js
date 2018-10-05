@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 exports.run = (client, message) => {
   const roleslist = message.channel.guild.roles.map(r => r.name + ' - ' + r.members.size);
 
-  const embed = new Discord.RichEmbed()
+  const embed = new Discord.RichEmbed();
   embed.setTitle('**Server Roles List**');
   embed.setAuthor(client.user.username, client.user.avatarURL);
   embed.setDescription(roleslist);
