@@ -1,19 +1,20 @@
 exports.run = async (client, message, args) => {
-  const Member = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
-  if (!Member) return message.reply('That user could not be found.');
+  const resolvedUser = (args[0] !== undefined) ? message.guild.members.get(args[0].match(/[0-9]/g).join('')) : null;
+  const botuser = resolvedUser ? message.guild.members.get(resolvedUser.id) : null;
+  if (!botuser) return message.reply('That user could not be found.');
   const role = args.join(' ').slice(22);
   if (!role) return message.reply('Please specify a role name.');
   const gRole = message.guild.roles.find('name', role);
   if (!gRole) return message.reply('I couldn\'t find that role.');
         
-  if (Member.roles.has(gRole.id)) return message.reply('The user specified already has that role.');
-  await(Member.addRole(gRole.id));
+  if (botuser.roles.has(gRole.id)) return message.reply('The user specified already has that role.');
+  await(botuser.addRole(gRole.id));
         
   try {
-    await Member.send(`You have been given the ${gRole.name} role.`);
-    await message.channel.send(`Given ${gRole} to ${Member}.`);
+    message.delete();
+    await message.channel.send(`✅ ***Changed roles for ${botuser}, added ${gRole.name}***`);
   } catch (e) {
-    message.channel.send(`${gRole.name} role given to <@${Member.id}>.`);
+    message.channel.send(e);
   }
 };
 
