@@ -8,7 +8,7 @@ exports.run = async (client, message) => {
     .addField('Created At', `${client.user.createdAt.toLocaleString('en-US')}`, true)
     .addField('Library', '[Discord.js](https://github.com/discordjs/discord.js)', true)
     .addField('Language', 'JavaScript', true)
-    .addField('Contributors', 'FlatBird#9461, TheSkele27#1337, The Phoenix of Phoebus#9935', true)
+    .addField('Contributors', 'Flatbird#0001, TheSkele27#1337, The Phoenix of Phoebus#9935', true)
     .addField('Developers', 'Matthew#0008, NightRaven#2172, CoalSephos#7566')
     .addField('Creator', 'Matthew#0008', true)
     .setTimestamp()

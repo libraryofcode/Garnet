@@ -24,7 +24,7 @@ exports.run = (client, message, args) => {
     message.delete();
     slowmode(0, '***Slowmode has been disabled in this channel.***');
   } else if (isNaN(args[0]) || parseInt(args[0]) > 120 || parseInt(args[0]) < 1) {
-    message.channel.send(`${client.config.emotes.error} **Error:** Please use a number between 1 and 120`);
+    message.channel.send(`Please provide a number between 1 and 120!`);
   } else {
     message.delete();
     slowmode(args[0], `***Slowmode is enabled in this channel for ${args[0]} seconds.***`);
