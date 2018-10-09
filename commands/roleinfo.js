@@ -19,8 +19,8 @@ exports.run = async (client, message, args) => {
       if (roleM.hasPermission('MANAGE_CHANNELS')) {
         arrayOfPerms.push('Manage Channels');
       }
-      if (botuser.hasPermission('VIEW_AUDIT_LOG')) {
-          arrayOfPerms.push('View Audit Logs');
+      if (roleM.hasPermission('VIEW_AUDIT_LOG')) {
+        arrayOfPerms.push('View Audit Logs');
       }
       if (roleM.hasPermission('KICK_MEMBERS')) {
         arrayOfPerms.push('Kick Members');
