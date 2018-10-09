@@ -1,5 +1,5 @@
 exports.run = async (client, message) => {
-  const msg = await message.channel.send('Ping...');
+  const msg = await message.channel.send('🏓 Pong!');
     
   msg.edit(`🏓 Pong! \`${msg.createdTimestamp - message.createdTimestamp}ms\``);
 };
