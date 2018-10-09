@@ -38,7 +38,7 @@ exports.run = async (client, message, args, level) => {
       const millisJoined = new Date().getTime() - botuser.joinedAt.getTime();
       const dj = millisJoined / 1000 / 60 / 60 / 24;
 
-      const joinPos = message.guild.members.sort((a,b) =>(a.joinedAt < b.joinedAt) ? -1 : ((a.joinedAt > b.joinedAt) ? 1 : 0)).map(m => m).findIndex(m => m.id == botuser.id);
+      //const joinPos = message.guild.members.sort((a,b) =>(a.joinedAt < b.joinedAt) ? -1 : ((a.joinedAt > b.joinedAt) ? 1 : 0)).map(m => m).findIndex(m => m.id == botuser.id);
       function checkUserPermission(guild, botuser) {
         const arrayOfPerms = [];
         if (message.guild.ownerID === botuser.id) {
@@ -93,7 +93,7 @@ exports.run = async (client, message, args, level) => {
         embed.setColor(botuser.displayColor);
       }
       embed.addField('Joined Server At', `${botuser.joinedAt.toLocaleString('en-US', options)} | ${dj.toFixed(0)} Days Ago`, true);
-      embed.addField('Join Position', `${joinPos}`);
+      //embed.addField('Join Position', `${joinPos}`);
       embed.addField('Created Account At', `${botuser.user.createdAt.toLocaleString('en-US')}`, true);
       embed.addField('Status', `${status[botuser.user.presence.status]}`, true);
       embed.addField('Playing', `${botuser.user.presence.game ? `${botuser.user.presence.game.name}` : 'Nothing'}`, true);
