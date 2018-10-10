@@ -4,6 +4,50 @@ exports.run = async (client, message, args) => {
   const roleM = message.guild.roles.find(role => role.name.toLowerCase() === args.join(' ').toLowerCase());
   try {
 
+    function checkRolePermission(guild, roleM) {
+      const arrayOfPerms = [];
+      if (roleM.hasPermission('ADMINISTRATOR')) {
+        arrayOfPerms.push('Administrator');
+
+      }
+      if (roleM.hasPermission('MANAGE_GUILD')) {
+        arrayOfPerms.push('Manage Server');
+      }
+      if (roleM.hasPermission('MANAGE_ROLES_OR_PERMISSIONS')) {
+        arrayOfPerms.push('Manage Roles');
+      }
+      if (roleM.hasPermission('MANAGE_CHANNELS')) {
+        arrayOfPerms.push('Manage Channels');
+      }
+      if (roleM.hasPermission('VIEW_AUDIT_LOG')) {
+        arrayOfPerms.push('View Audit Logs');
+      }
+      if (roleM.hasPermission('KICK_MEMBERS')) {
+        arrayOfPerms.push('Kick Members');
+      }
+      if (roleM.hasPermission('BAN_MEMBERS')) {
+        arrayOfPerms.push('Ban Members');
+      }
+      if (roleM.hasPermission('MANAGE_NICKNAMES')) {
+        arrayOfPerms.push('Manage Nicknames');
+      }
+      if (roleM.hasPermission('MANAGE_EMOJIS')) {
+        arrayOfPerms.push('Manage Emojis');
+      }
+      if (roleM.hasPermission('MANAGE_WEBHOOKS')) {
+        arrayOfPerms.push('Manage Webhooks');
+      }
+      if (roleM.hasPermission('MANAGE_MESSAGES')) {
+        arrayOfPerms.push('Manage Messages');
+      }
+      if (roleM.hasPermission('MENTION_EVERYONE')) {
+        arrayOfPerms.push('Mention Everyone');
+      }
+
+
+      return arrayOfPerms;
+    }
+
   
     const embed = new Discord.RichEmbed();
 
@@ -28,6 +72,9 @@ exports.run = async (client, message, args) => {
     }
     if (roleM.managed == true) {
       embed.addField('Managed', 'Yes', true);
+    }
+    if (checkRolePermission(message.guild, roleM).length > 0) {
+      embed.addField('Key Permissions', `${checkRolePermission(message.guild, roleM).join(', ')}`, true);
     }
     embed.addField('Created At', `${roleM.createdAt.toLocaleString('en-US')}`, true);
     embed.setFooter(`${client.user.username} | Role ID: ${roleM.id}`);

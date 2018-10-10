@@ -13,9 +13,9 @@ exports.run = (client, message, args, level) => { // eslint-disable-line no-unus
     const embed = new Discord.RichEmbed()
       .setAuthor(`${client.user.username}`, `${client.user.avatarURL}`)
       .setColor(message.member.displayColor)
-      .addField('• Uptime', `${duration}`, true)
+      .addField('• Uptime', `${duration}`, false)
       .addField('• Ping', `${Math.round(client.ping)}ms`, true)
-      .addField('• Ping Ratings', `${client.pings}`, true)
+      .addField('• Ping Ratings', `${client.pings.slice(', ')}`, true)
       .setFooter(`${client.user.username} | Beta - Master`);
     
 

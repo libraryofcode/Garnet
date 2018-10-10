@@ -35,7 +35,7 @@ exports.run = async (client, message, args) => {
                     
         });
         message.delete();
-        message.channel.send(`✅ Moonglow has been activated on ${guildID} for <@!${args[1]}>`);
+        message.channel.send(`✅ ***Moonglow has been activated on ${guildID} for <@!${args[1]}>***`);
         // I'm going to convert this over to discord.js really quick btw
         // Alright
       }

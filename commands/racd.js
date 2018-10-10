@@ -20,7 +20,7 @@ exports.run = (client, message, args) => {
         message.delete();
         const guild = client.guilds.get(guildID);
         (guild !== undefined) ? guild.leave() : null;
-        message.channel.send(`✅ Deactivated Moonglow on ${args[0]}`);
+        message.channel.send(`✅ ***Deactivated Moonglow on ${args[0]}***`);
       }
       else {
         message.channel.send('Specified guild was never activated.');
