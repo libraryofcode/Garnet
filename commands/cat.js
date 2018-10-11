@@ -1,12 +1,12 @@
 const Discord = require("discord.js");
 const superagent = require ("superagent");
 
-module.exports.run = async (client, message, arges) => {
+module.exports.run = async (client, message, args) => {
     
-    let {body} = await superagent
+    const {body} = await superagent
     .get('http://aws.random.cat/meow');
 
-    let catembed = new Discord.RichEmbed()
+    const catembed = new Discord.RichEmbed()
     .setColor("#f48c42")
     .setTitle(":cat: Meow")
     .setImage(body.file);
