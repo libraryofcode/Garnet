@@ -83,9 +83,9 @@ module.exports = (client) => {
       text = require('util').inspect(text, {depth: 1});
 
     text = text
-      .replace(/`/g, "`" + String.fromCharCode(8203));
-      .replace(/@/g, "@" + String.fromCharCode(8203));
-      .replace(client.token, 'Token is classfied and hidden from this field.');
+      text.replace(/`/g, "`" + String.fromCharCode(8203));
+      text.replace(/@/g, "@" + String.fromCharCode(8203));
+      text.replace(client.token, 'Token is classfied and hidden from this field.');
 
     return text;
   };
