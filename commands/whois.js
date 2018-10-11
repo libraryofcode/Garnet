@@ -133,5 +133,5 @@ exports.help = {
   name: 'whois',
   category: 'Misc',
   description: 'Provides user information.',
-  usage: 'whois'
+  usage: 'whois [...user]'
 };
