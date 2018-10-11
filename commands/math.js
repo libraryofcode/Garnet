@@ -1,5 +1,6 @@
 const superagent = require('superagent');
 const math = require('mathjs');
+const Discord = require('discord.js');
 
 async function request(i) {
   return await superagent.get(`http://numbersapi.com/${i}?json`);
@@ -15,15 +16,21 @@ exports.run = async (client, message, args) => {
   let output; // Output from mathjs
   let result = {}; // Sends the result message
   result.embed = {};
-  result.embed.fields = [];
-  result.embed.color = 0x41dae2;
+  result.fields = [];
+  const mathembed = new Discord.RichEmbed();
+  mathembed.setTitle('Calculator');
+  mathembed.setFooter(`${client.user.username}`, `${client.user.avatarURL}`);
+  mathembed.addField('Input', input);
+  mathembed.setTimestamp();
+  //result.embed.title = 'Calculator';
+  //result.embed.foot = `${client.user.username}, ${client.user.avatarURL}`;
 
   if (args[0].toLowerCase() === 'fact') {
     try {
       res = await request('random/math');
 
       if (res.body.found) {
-        result.embed.fields.push({
+        result.fields.push({
           name: `Fact about ${res.body.number}`,
           value: res.body.text,
           inline: false,
@@ -33,7 +40,7 @@ exports.run = async (client, message, args) => {
       result = errmsg.err;
     }
 
-    return message.channel.send(result);
+    return message.channel.send(mathembed);
   }
 
   if (args.length === 1 && !isNaN(args[0])) {
@@ -52,15 +59,16 @@ exports.run = async (client, message, args) => {
   } else {
     try {
       output = math.eval(input).toString();
+      mathembed.addField('Output', output);
 
-      result.embed.fields.push({
+      result.fields.push({
         name: 'Input',
         value: input,
         inline: false,
       });
 
-      result.embed.fields.push({
-        name: 'Output',
+      result.fields.push({
+        name: 'Input',
         value: output,
         inline: false,
       });
@@ -69,7 +77,7 @@ exports.run = async (client, message, args) => {
     }
   }
 
-  return message.channel.send(result);
+  return message.channel.send(mathembed);
 };
 
 
