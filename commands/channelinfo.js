@@ -1,8 +1,5 @@
 const Discord = require('discord.js');
 
-
-
-
 exports.run = async (client, message) => {
   const msg = await message.channel.send('Loading...');
   const embed = new Discord.RichEmbed()
