@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const superagent = require ("superagent");
 
-module.exports.run = async (client, message, args) => {
+module.exports.run = async (client, message) => {
     
     const {body} = await superagent
     .get('http://aws.random.cat/meow');
@@ -12,7 +12,7 @@ module.exports.run = async (client, message, args) => {
     .setImage(body.file);
 
     message.channel.send(catembed);
-}
+};
 
 exports.conf = {
   enabled: true,
