@@ -3,8 +3,8 @@ exports.run = async (client, message, args) => {
   const code = args.join(' ');
   try {
     let evaled = eval(code);
-    if (typeof evaled !== 'string')
-      evaled = require('util').inspect(evaled, {depth:1});
+    //if (typeof evaled !== 'string')
+      //evaled = require('util').inspect(evaled, {depth:1});
     const clean = await client.clean(client, evaled);
     const embed1 = new Discord.RichEmbed()
       .setAuthor(client.user.username, client.user.avatarURL)
