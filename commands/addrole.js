@@ -1,5 +1,5 @@
 exports.run = async (client, message, args) => {
-  const resolvedUser = (args[0] !== undefined) ? message.guild.members.get(args[0].match(/[0-9]/g).join('')) : null;
+  /*const resolvedUser = (args[0] !== undefined) ? message.guild.members.get(args[0].match(/[0-9]/g).join('')) : null;
   const botuser = resolvedUser ? message.guild.members.get(resolvedUser.id) : null;
   if (!botuser) return message.reply('That user could not be found.');
   const role = args.join(' ').slice(22);
@@ -16,7 +16,9 @@ exports.run = async (client, message, args) => {
   } catch (e) {
     message.channel.send(e);
   }
-};
+};*/
+  message.channel.send('This command is temporary disabled.');
+  throw new TypeError('This command is disabled.');
 
 exports.conf = {
   enabled: false,
