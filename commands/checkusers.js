@@ -6,13 +6,13 @@ exports.run = (client, message) => {
 exports.conf = {
   enabled: true,
   guildOnly: true,
-  aliases: ['cs'],
+  aliases: ['cu'],
   permLevel: 'Server Moderator'
 };
   
 exports.help = {
-  name: 'checkservers',
+  name: 'checkusers',
   category: 'Moderation',
   description: 'Returns a list of members with an invite as their username.',
-  usage: 'checkservers'
+  usage: 'checkusers'
 };
