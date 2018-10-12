@@ -27,7 +27,7 @@ exports.run = async (client, message) => {
       .setColor(message.member.displayColor)
       .addField('Server Owner', message.guild.owner, true)
       .addField('Server Region', message.guild.region, true)
-      .addField('Channels', message.guild.channels.size, false)
+      //.addField('Channels', message.guild.channels.size, false)
       .addField('Roles', `${message.guild.roles.size}`, false)
       .addField('Created', `${message.guild.createdAt.toLocaleString('en-US')}`, false)
       .addField('Members', message.guild.memberCount, true)
