@@ -38,6 +38,7 @@
     "os-name": "^2.0.1",
     "raven": "^2.6.4",
     "superagent": "^3.8.3",
+    "systeminformation": "^3.45.7",
     "uws": "^99.0.0",
     "vows": "^0.8.2",
     "windows-release": "^3.1.0",
