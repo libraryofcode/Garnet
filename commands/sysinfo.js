@@ -1,7 +1,8 @@
 const Discord = require('discord.js');
 const os = require('os');
 const osName = require('os-name');
-const windowsRelease = require('windows-release');
+//const windowsRelease = require('windows-release');
+const si = require('systeminformation');
 
 
 
@@ -18,15 +19,27 @@ exports.run = async (client, message) => {
   const sysuptime = Math.floor(hours);
   const days = hours / 24;
   const sysuptimeDays = Math.round(days);
+
     
 
   const msg = await message.channel.send('Loading...');
   const embed = new Discord.RichEmbed()
     .setTitle('System Information')
     .setTimestamp();
+  //let windowsVersion =si.osInfo().then(data => (data.distro));
     
   if (os.platform == 'win32') {
-    embed.addField('Operating System', `Microsoft Windows ${windowsRelease()}`, true);
+  /*  si.osInfo(function(data) {
+      return embed.addField('Operating System', data.distro, true);
+    });*/
+    //embed.addField('Operating System', `${}`, true);
+    //let osValue = si.osInfo();
+    //embed.addField('Operating System', osValue.distro);
+    //embed.addField('Operating System', `${osName(os.platform(), os.release())}`, true);
+    //embed.addField('Operating System', `${windowsVersion}`, true);
+
+    const data = await si.osInfo();
+    embed.addField('Operating System', `${data.distro}`, true);
     embed.setThumbnail('https://cdn.discordapp.com/attachments/491024501971222538/491024518761021460/Windows-Logo.png');
   }
   if (os.platform == 'linux') {
