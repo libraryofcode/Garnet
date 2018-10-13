@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const os = require('os');
 const osName = require('os-name');
+const windowsRelease = require('windows-release');
 
 
 
@@ -25,7 +26,7 @@ exports.run = async (client, message) => {
     .setTimestamp();
     
   if (os.platform == 'win32') {
-    embed.addField('Operating System', `${osName(os.platform(), os.release())}`, true);
+    embed.addField('Operating System', `Microsoft Windows ${windowsRelease()}`, true);
     embed.setThumbnail('https://cdn.discordapp.com/attachments/491024501971222538/491024518761021460/Windows-Logo.png');
   }
   if (os.platform == 'linux') {
