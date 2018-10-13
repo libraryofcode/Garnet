@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const os = require('os');
+const osName = require('os-name');
 
 
 
@@ -24,7 +25,7 @@ exports.run = async (client, message) => {
     .setTimestamp();
     
   if (os.platform == 'win32') {
-    embed.addField('Operating System', 'Windows', true);
+    embed.addField('Operating System', `${osName(os.platform(), os.release())}`, true);
     embed.setThumbnail('https://cdn.discordapp.com/attachments/491024501971222538/491024518761021460/Windows-Logo.png');
   }
   if (os.platform == 'linux') {
@@ -32,7 +33,7 @@ exports.run = async (client, message) => {
     embed.setThumbnail('https://cdn.discordapp.com/attachments/491024501971222538/491024720733536277/LINUX-LOGO.png');
   }
   if (os.platform == 'darwin') {
-    embed.addField('Operating System', 'Mac OS', true);
+    embed.addField('Operating System', `${osName(os.platform(), os.release())}`, true);
     embed.setThumbnail('https://cdn.discordapp.com/attachments/491024501971222538/491024928028491779/2000px-OS_X_El_Capitan_logo.png');
   }
   if (os.platform == null || undefined) {
