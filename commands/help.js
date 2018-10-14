@@ -32,12 +32,13 @@ exports.run = (client, message, args, level) => {
       message.channel.send(loe);
 
     } else {
-      const embed1 = new Discord.RichEmbed()
-        .setAuthor(`${client.user.username}`, `${client.user.avatarURL}`)
-        .setDescription(output, {code: 'asciidoc', split: { char: '\u200b' }})
-        .setTitle(`${client.user.username} Help Manual`)
-        .setFooter(`${client.user.username} | Beta - Master`)
-        .setTimestamp();
+      const embed1 = new Discord.RichEmbed();
+      embed1.setAuthor(`${client.user.username}`, `${client.user.avatarURL}`);
+      embed1.setColor('RANDOM');
+      embed1.setDescription(output, {code: 'asciidoc', split: { char: '\u200b' }});
+      embed1.setTitle(`${client.user.username} Help Manual`);
+      embed1.setFooter(`${client.user.username} | Beta - Master`);
+      embed1.setTimestamp();
       message.channel.send(embed1);
     }
   //  message.channel.send(output, {code: "asciidoc", split: { char: "\u200b" }});
@@ -48,14 +49,15 @@ exports.run = (client, message, args, level) => {
       command = client.commands.get(command);
       if (level < client.levelCache[command.conf.permLevel]) return;
       const Discord = require('discord.js');
-      const embed2 = new Discord.RichEmbed()
-        .setAuthor(`${client.user.username}`, `${client.user.avatarURL}`)
-        .setTitle(`${client.user.username} Help Manual`)
-        .addField('Command', `${command.help.name}`, true)
-        .addField('Description', `${command.help.description}`, true)
-        .addField('Usage', `${command.help.usage}`, true)
-        .setFooter(`${client.user.username} | Beta - Master`)
-        .setTimestamp();
+      const embed2 = new Discord.RichEmbed();
+      embed2.setAuthor(`${client.user.username}`, `${client.user.avatarURL}`);
+      embed2.setTitle(`${client.user.username} Help Manual`);
+      embed2.setColor('RANDOM');
+      embed2.addField('Command', `${command.help.name}`, true);
+      embed2.addField('Description', `${command.help.description}`, true);
+      embed2.addField('Usage', `${command.help.usage}`, true);
+      embed2.setFooter(`${client.user.username} | Beta - Master`);
+      embed2.setTimestamp();
       message.channel.send(embed2);
 
       // message.channel.send(`= ${command.help.name} = \n${command.help.description}\nusage:: ${command.help.usage}\naliases:: ${command.conf.aliases.join(", ")}\n= ${command.help.name} =`, {code:"asciidoc"});
