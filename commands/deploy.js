@@ -1,6 +1,6 @@
 const { exec } = require('child_process');
 
-exports.run = async (client, msg, args) => {
+exports.run = async (client, msg) => {
   const command = 'git pull';
   //args.join(' ');
   const outMessage = await msg.channel.send('`Deploying...`');
