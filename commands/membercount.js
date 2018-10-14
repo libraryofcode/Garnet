@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 
-exports.run = (client, message) => {
+exports.run = async (client, message) => {
   function checkBots(guild) {
     let botCount = 0; 
     guild.members.forEach(member => { 
@@ -23,8 +23,9 @@ exports.run = (client, message) => {
   embed.addField('Total Members', message.guild.memberCount, true);
   embed.addField('Humans', checkMembers(message.guild), true);
   embed.addField('Bots', checkBots(message.guild), true);
-  message.guild.fetchBans()
-    .then(bans => embed.addField('Bans', `${bans.size}`));
+  const bans = await message.guild.fetchBans();
+  //.then(bans => embed.addField('Bans', `${bans.size}`));
+  embed.addField('Bans', `${bans.size}`, true);
   embed.setTimestamp();
   embed.setFooter(`${client.user.username} | Server ID: ${message.guild.id}`);
   message.channel.send(embed);
