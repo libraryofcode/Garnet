@@ -9,6 +9,7 @@ exports.run = async (client, message, args) => {
   const embed = new Discord.RichEmbed();
   embed.setAuthor(client.user.username, client.user.avatarURL);
   embed.setTitle('Avatar');
+  embed.setColor(botuser.displayHexColor);
   embed.addField('User', `${botuser.user.tag}`);
   embed.setImage(botuser.user.avatarURL);
   embed.setTimestamp();
