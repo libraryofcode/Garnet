@@ -1,6 +1,7 @@
 const axios = require('axios');
 
-exports.run = (client, message, args) => {
+exports.run = async (client, message, args) => {
+  const msg = await message.channel.send('Changing slowmode...');
   function slowmode(s, m) {
     axios({
       method: 'patch',
@@ -12,7 +13,7 @@ exports.run = (client, message, args) => {
         rate_limit_per_user: s,
         reason: args.slice(1).join(' ')
       }
-    }).then(message.channel.send(m))
+    }).then(msg.edit(m))
       .catch(() =>{
         message.channel.send('An error has occurred, either I do not have permissions or the ID is undefined.');
       });
@@ -24,7 +25,7 @@ exports.run = (client, message, args) => {
     message.delete();
     slowmode(0, '***Slowmode has been disabled in this channel.***');
   } else if (isNaN(args[0]) || parseInt(args[0]) > 120 || parseInt(args[0]) < 1) {
-    message.channel.send(`**Error:** Please use a number between 1 and 120`);
+    message.channel.send('**Error:** Please use a number between 1 and 120');
   } else {
     message.delete();
     slowmode(args[0], `***Slowmode is enabled in this channel for ${args[0]} seconds.***`);
