@@ -15,7 +15,7 @@ exports.run = async (client, message, args) => {
       }
     }).then(msg.edit(m))
       .catch(() =>{
-        message.channel.send('An error has occurred, either I do not have permissions or the ID is undefined.');
+        msg.edit('An error has occurred, either I do not have permissions or the ID is undefined.');
       });
   }
 
