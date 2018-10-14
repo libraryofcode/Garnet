@@ -12,6 +12,7 @@ exports.conf = {
   
 exports.help = {
   name: 'serverlist',
+  category: 'Bot Information',
   description: 'Shows a list of the server the bot is on.',
   usage: 'serverlist'
 };

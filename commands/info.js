@@ -30,5 +30,5 @@ exports.help = {
   name: 'info',
   category: 'Bot Information',
   description: 'Provides system information.',
-  usage: 'whois'
+  usage: 'info'
 };

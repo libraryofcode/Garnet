@@ -50,10 +50,11 @@ exports.conf = {
   aliases: [],
   permLevel: 'Standard User'
 };
-
+  
 exports.help = {
   name: 'serverinfo',
   category: 'Misc',
-  description: 'Provides information about the current guild.',
+  description: 'Provides information for the server.',
   usage: 'serverinfo'
 };
+

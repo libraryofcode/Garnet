@@ -13,7 +13,7 @@ exports.conf = {
   
 exports.help = {
   name: 'ping',
-  category: 'Misc',
+  category: 'Bot Information',
   description: 'Pings the bot, without the embed.',
   usage: 'ping'
 };

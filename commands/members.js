@@ -8,7 +8,7 @@ exports.run = async (client, message, args) => {
   embed.setAuthor(client.user.username, client.user.avatarURL);
   embed.setTitle(`Members | **${roleM.name}**`);
   if (roleM.hexColor) {
-    embed.setColor(`${roleM.hexColor}`)
+    embed.setColor(`${roleM.hexColor}`);
   }
   embed.setDescription(`${roleM.members.map(m=>m.user.tag).join('\n')}`);
   embed.setTimestamp();

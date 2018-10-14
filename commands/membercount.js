@@ -23,9 +23,12 @@ exports.run = async (client, message) => {
   embed.addField('Total Members', message.guild.memberCount, true);
   embed.addField('Humans', checkMembers(message.guild), true);
   embed.addField('Bots', checkBots(message.guild), true);
-  const bans = await message.guild.fetchBans();
-  //.then(bans => embed.addField('Bans', `${bans.size}`));
-  embed.addField('Bans', `${bans.size}`, true);
+  if (message.guild.me.hasPermission('BAN_MEMBERS')) {
+    const bans = await message.guild.fetchBans();
+    embed.addField('Bans', `${bans.size}`, true);
+  } else {
+    embed.addField('Bans', '`Ban Members` permission required.', true);
+  }
   embed.setTimestamp();
   embed.setFooter(`${client.user.username} | Server ID: ${message.guild.id}`);
   message.channel.send(embed);

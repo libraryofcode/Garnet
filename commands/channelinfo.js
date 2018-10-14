@@ -38,5 +38,5 @@ exports.help = {
   name: 'channelinfo',
   category: 'Misc',
   description: 'Provides information for the channel.',
-  usage: 'channel info'
+  usage: 'channelinfo'
 };
