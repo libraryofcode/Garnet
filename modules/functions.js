@@ -77,15 +77,15 @@ module.exports = (client) => {
   This is mostly only used by the Eval and Exec commands.
   */
   client.clean = async (client, text) => {
-    if (text && text.constructor.name == "Promise")
+    if (text && text.constructor.name == 'Promise');
       text = await text;
-    if (typeof evaled !== "string")
-      text = require("util").inspect(text, {depth: 1});
+    if (typeof evaled !== 'string');
+      text = require('util').inspect(text, {depth: 1});
 
     text = text
-      .replace(/`/g, "`" + String.fromCharCode(8203))
-      .replace(/@/g, "@" + String.fromCharCode(8203))
-      .replace(client.token, "mfa.VkO_2G4Qv3T--NO--lWetW_tjND--TOKEN--QFTm6YGtzq9PH--4U--tG0");
+      text.replace(/`/g, "`" + String.fromCharCode(8203));
+      text.replace(/@/g, "@" + String.fromCharCode(8203));
+      text.replace(client.token, 'Token is classfied and hidden from this field.');
 
     return text;
   };
@@ -155,13 +155,13 @@ module.exports = (client) => {
   // These 2 process methods will catch exceptions and give *more details* about the error and stack trace.
   process.on("uncaughtException", (err) => {
     const errorMsg = err.stack.replace(new RegExp(`${__dirname}/`, "g"), "./");
-    client.logger.error(`Uncaught Exception: ${errorMsg}`);
+    client.logger.error(`Uncaught Exception Error: ${errorMsg}`);
     // Always best practice to let the code crash on uncaught exceptions. 
     // Because you should be catching them anyway.
     process.exit(1);
   });
 
   process.on("unhandledRejection", err => {
-    client.logger.error(`Unhandled rejection: ${err}`);
+    client.logger.error(`Unhandled Rejection Error: ${err}`);
   });
 };

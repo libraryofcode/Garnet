@@ -1,6 +1,6 @@
 {
   "name": "moonglow",
-  "version": "3.0.0",
+  "version": "4.0.0",
   "description": "Moonglow is a developed bot by the FCC.",
   "main": "index.js",
   "repository": {
@@ -9,8 +9,7 @@
   "scripts": {
     "test": "node index.js && exit 1",
     "start": "node index.js",
-    "shard": "node shard.js",
-    "install": "node-gyp rebuild"
+    "shard": "node shard.js"
   },
   "engines": {
     "node": ">=8",
@@ -21,19 +20,28 @@
     "NightRaven#2172"
   ],
   "dependencies": {
+    "axios": "^0.18.0",
     "chalk": "^2.4.1",
+    "dateformat": "^3.0.3",
     "discord.js": "^11.4.2",
+    "discord.js-musicbot-addon": "^12.0.6",
     "enmap": "^4.0.12",
     "enmap-sqlite": "^2.0.5",
+    "eris": "^0.9.0",
+    "eslint": "^5.6.1",
     "jshint": "^2.9.6",
+    "lavalink": "^2.2.0",
     "mathjs": "^5.1.2",
     "mocha": "^5.2.0",
     "moment": "^2.22.2",
     "moment-duration-format": "^2.2.2",
+    "os-name": "^2.0.1",
     "raven": "^2.6.4",
     "superagent": "^3.8.3",
+    "systeminformation": "^3.45.7",
     "uws": "^99.0.0",
     "vows": "^0.8.2",
+    "windows-release": "^3.1.0",
     "ytdl-core": "^0.25.2"
   }
 }
