@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 exports.run = async (client, message) => {
+  const msg = await message.channel.send('Loading info...');
   const embed = new Discord.RichEmbed()
     .setAuthor(`${client.user.username}`, `${client.user.avatarURL}`)
     .setColor(message.member.displayColor)
@@ -16,7 +17,7 @@ exports.run = async (client, message) => {
 
 
 
-  message.channel.send(embed);
+  msg.edit(embed);
 };
   
 exports.conf = {
