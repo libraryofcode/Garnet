@@ -1,5 +1,5 @@
 exports.run = async (client, message) => {
-  const msg = message.channel.send('Loading the Carti...');
+  const msg = await message.channel.send('Loading the Carti...');
   msg.edit('The Carti gun has been loaded and is ready to ban, pew pew.');
 };
 
