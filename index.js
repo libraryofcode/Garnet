@@ -31,7 +31,8 @@ client.settings = new Enmap({provider: new EnmapLevel({name: 'settings'})});
 
 const init = async () => {
 
-  const moderationFiles = await readdir('./commands/');
+  const { join } = require('path');
+  const moderationFiles = await readdir(join(__dirname, './commands/'));
   client.logger.log(`Loading a total of ${moderationFiles.length} commands.`);
   moderationFiles.forEach(f => {
     if (!f.endsWith('.js' || '.ts')) return;
@@ -41,7 +42,7 @@ const init = async () => {
 
 
 
-  const evtFiles = await readdir('./events/');
+  const evtFiles = await readdir(join(__dirname, './events/'));
   client.logger.log(`Loading a total of ${evtFiles.length} events.`);
   evtFiles.forEach(file => {
     const eventName = file.split('.')[0];
