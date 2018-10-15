@@ -1,3 +1,6 @@
+const sentryconfig = require('../sentry.json');
+var Raven = require('raven');
+Raven.config(sentryconfig.link).install();
 module.exports = (client) => {
 
   /*
@@ -156,6 +159,7 @@ module.exports = (client) => {
   process.on("uncaughtException", (err) => {
     const errorMsg = err.stack.replace(new RegExp(`${__dirname}/`, "g"), "./");
     client.logger.error(`Uncaught Exception Error: ${errorMsg}`);
+    //Raven.captureException(err);
     // Always best practice to let the code crash on uncaught exceptions. 
     // Because you should be catching them anyway.
     process.exit(1);
@@ -163,5 +167,6 @@ module.exports = (client) => {
 
   process.on("unhandledRejection", err => {
     client.logger.error(`Unhandled Rejection Error: ${err}`);
+    Raven.captureException(err);
   });
 };

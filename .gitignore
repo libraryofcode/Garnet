@@ -9,6 +9,8 @@ config.js
 data/
 test.js
 musicsettings.json
+sentry.json
+
 
 # Runtime data
 pids
