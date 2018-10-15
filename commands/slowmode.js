@@ -21,7 +21,7 @@ exports.run = async (client, message, args) => {
 
 
         
-  if (args[0] === 'off' || '0') {
+  if (args[0] === 'off') {
     message.delete();
     slowmode(0, '***Slowmode has been disabled in this channel.***');
   } else if (isNaN(args[0]) || parseInt(args[0]) > 120 || parseInt(args[0]) < 1) {
