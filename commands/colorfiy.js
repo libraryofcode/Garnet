@@ -18,8 +18,8 @@ exports.conf = {
 };
       
 exports.help = {
-  name: 'embed',
+  name: 'colorfiy',
   category: 'Fun',
-  description: 'Embeds your text.',
-  usage: 'embed [...text]'
+  description: 'Embeds your text, with a color!',
+  usage: 'colorfiy [...text]'
 };
