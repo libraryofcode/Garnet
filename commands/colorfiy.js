@@ -1,13 +1,15 @@
 const Discord = require('discord.js');
-exports.run = (client, message, args) => {
-const content = args.join(" ");
+exports.run = async (client, message, args) => {
+  ///const content = args.join(' ');
 
-if(!content) return message.reply('Please add text to include in the embed!')
 
-const embed = new Discord.RichEmbed()
-.setDescription(`${content}`)
-.setColor('RANDOM')
-return await message.channel.send({embed});
+  const embed = new Discord.RichEmbed();
+  embed.setDescription(args.join(' '))
+  embed.setColor('RANDOM');
+  embed.setFooter(client.user.username, client.user.avatarURL);
+  embed.setTimestamp();
+  message.delete();
+  return await message.channel.send({embed});
 };
 
 exports.conf = {
