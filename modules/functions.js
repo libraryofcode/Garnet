@@ -81,14 +81,14 @@ module.exports = (client) => {
   */
   client.clean = async (client, text) => {
     if (text && text.constructor.name == 'Promise');
-      text = await text;
+    text = await text;
     if (typeof evaled !== 'string');
-      text = require('util').inspect(text, {depth: 1});
+    text = require('util').inspect(text, {depth: 1});
 
     text = text
-      text.replace(/`/g, "`" + String.fromCharCode(8203));
-      text.replace(/@/g, "@" + String.fromCharCode(8203));
-      text.replace(client.token, 'Token is classfied and hidden from this field.');
+    text.replace(/`/g, "`" + String.fromCharCode(8203));
+    text.replace(/@/g, "@" + String.fromCharCode(8203));
+    text.replace(client.token, 'Token is classfied and hidden from this field.');
 
     return text;
   };
@@ -117,7 +117,7 @@ module.exports = (client) => {
     } else if (client.aliases.has(commandName)) {
       command = client.commands.get(client.aliases.get(commandName));
     }
-    if (!command) return `The command \`${commandName}\` doesn"t seem to exist, nor is it an alias. Try again!`;
+    if (!command) return `The command \`${commandName}\` doesn't seem to exist, nor is it an alias. Try again!`;
   
     if (command.shutdown) {
       await command.shutdown(client);
@@ -153,11 +153,11 @@ module.exports = (client) => {
   };
 
   // `await client.wait(1000);` to "pause" for 1 second.
-  client.wait = require("util").promisify(setTimeout);
+  client.wait = require('util').promisify(setTimeout);
 
   // These 2 process methods will catch exceptions and give *more details* about the error and stack trace.
-  process.on("uncaughtException", (err) => {
-    const errorMsg = err.stack.replace(new RegExp(`${__dirname}/`, "g"), "./");
+  process.on('uncaughtException', (err) => {
+    const errorMsg = err.stack.replace(new RegExp(`${__dirname}/`, 'g'), './');
     client.logger.error(`Uncaught Exception Error: ${errorMsg}`);
     //Raven.captureException(err);
     // Always best practice to let the code crash on uncaught exceptions. 
@@ -165,7 +165,7 @@ module.exports = (client) => {
     process.exit(1);
   });
 
-  process.on("unhandledRejection", err => {
+  process.on('unhandledRejection', err => {
     client.logger.error(`Unhandled Rejection Error: ${err}`);
     Raven.captureException(err);
   });
