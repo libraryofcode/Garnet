@@ -14,7 +14,7 @@ module.exports = async (client, message) => {
   // Checks if the bot was mentioned, with no message after it, returns the prefix.
   const prefixMention = new RegExp(`^<@!?${client.user.id}>( |)$`);
   if (message.content.match(prefixMention)) {
-    return message.reply(`My prefix on this guild is \`${settings.prefix}\``);
+    return message.channel.send(`Hi, ${message.author.tag}, my prefix on this guild is \`${settings.prefix}\``);
   }
 
   // Also good practice to ignore any message that does not start with our prefix,
@@ -49,8 +49,8 @@ module.exports = async (client, message) => {
   if (level < client.levelCache[cmd.conf.permLevel]) {
     if (settings.systemNotice === "true") {
       return message.channel.send(`You do not have permission to use this command.
-  Your permission level is ${level} (${client.config.permLevels.find(l => l.level === level).name})
-  This command requires level ${client.levelCache[cmd.conf.permLevel]} (${cmd.conf.permLevel})`);
+  Your permission level is ${level} **(${client.config.permLevels.find(l => l.level === level).name})**
+  This command requires level ${client.levelCache[cmd.conf.permLevel]} **(${cmd.conf.permLevel})**`);
     } else {
       return;
     }
