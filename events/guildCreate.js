@@ -11,9 +11,11 @@ module.exports = (client, guild) => {
     else {
         const allowedGuild = JSON.parse(data);
         if (allowedGuild.allowedGuildIDs.includes(guild.id)) {
+            client.logger.debug(`[GUILD AUTHORIZED] ${guild.name}`)
             return;
         }
-        else {
+        else { 
+            client.logger.debug(`[GUILD UNAUTHORIZED] ${guild.name} (${guild.id}) added the bot. Owner: ${guild.owner.user.tag} (${guild.owner.user.id})`)
             return guild.leave(guild.id);
         }                                                            
     }
