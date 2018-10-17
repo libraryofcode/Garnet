@@ -109,7 +109,8 @@ exports.run = async (client, message) => {
     const ownerDiscrim = message.guild.members.get(message.guild.owner.id).user.discriminator;
     const embed = new Discord.RichEmbed()
       //.setAuthor(`${client.user.username}`, `${client.user.avatarURL}`)
-      .setTitle('Server Information')
+      .setAuthor('Server Information')
+      .setTitle(message.guild.name)
       .setThumbnail(message.guild.iconURL)
       //.setColor(message.member.displayColor)
       .addField('Server Owner', `${ownerUsername}#${ownerDiscrim}`, true)
