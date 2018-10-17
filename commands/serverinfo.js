@@ -22,7 +22,7 @@ exports.run = async (client, message) => {
     }
 
     const guild = message.guild;
-    function checkRegion(message, guild) {
+    function checkRegion(message, guild) { // eslint-disable-line no-unused-vars
       const regionArray = [];
       if (message.guild.region === 'us-east' ) {
         regionArray.push('US East');
@@ -90,11 +90,11 @@ exports.run = async (client, message) => {
       if (message.guild.region === 'vip-eu-west') {
         regionArray.push('EU West `VIP`');
       }
-      if (message.guild.region === 'eu-east') {
-        regionArray.push('EU East');
+      if (message.guild.region === 'eu-central') {
+        regionArray.push('EU Central');
       }
-      if (message.guild.region === 'vip-eu-east') {
-        regionArray.push('EU East `VIP`');
+      if (message.guild.region === 'vip-eu-central') {
+        regionArray.push('EU Central `VIP`');
       }
       if (message.guild.region === 'brazil') {
         regionArray.push('Brazil');
