@@ -59,7 +59,6 @@ const init = async () => {
   }
 
   // Here we login the client.
-  console.logger.log('Logging in client...');
   client.login(client.config.token);
 
 };
