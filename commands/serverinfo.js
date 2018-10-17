@@ -20,21 +20,37 @@ exports.run = async (client, message) => {
       });
       return memberCount;
     }
+    const ownerUsername = message.guild.members.get(message.guild.owner.id).user.username;
+    const ownerDiscrim = message.guild.members.get(message.guild.owner.id).user.discriminator;
     const embed = new Discord.RichEmbed()
       .setAuthor(`${client.user.username}`, `${client.user.avatarURL}`)
       .setTitle('Server Information')
       .setThumbnail(message.guild.iconURL)
-      .setColor(message.member.displayColor)
-      .addField('Server Owner', message.guild.owner, true)
+      //.setColor(message.member.displayColor)
+      .addField('Server Owner', `${ownerUsername}#${ownerDiscrim}`, true)
       .addField('Server Region', message.guild.region, true)
-      //.addField('Channels', message.guild.channels.size, false)
-      .addField('Roles', `${message.guild.roles.size}`, false)
-      .addField('Created', `${message.guild.createdAt.toLocaleString('en-US')}`, false)
+      .addField('Created', `${message.guild.createdAt.toLocaleString('en-US')}`, true)
+      .addField('Roles', `${message.guild.roles.size}`, true)
       .addField('Members', message.guild.memberCount, true)
       .addField('Humans', checkMembers(message.guild), true)
-      .addField('Bots', checkBots(message.guild), true)
-      .addField('Verification Level', message.guild.verificationLevel, true)
-      .setFooter(`${client.user.username} | Beta - Master`);
+      .addField('Bots', checkBots(message.guild), true);
+    if (message.guild.verificationLevel === 0) {
+      embed.addField('Verification Level', 'None',true);
+    }
+    if (message.guild.verificationLevel === 1) {
+      embed.addField('Verification Level', 'Low',true );
+    }
+    if (message.guild.verificationLevel === 2) {
+      embed.addField('Verification Level', 'Medium', true);
+    }
+    if (message.guild.verificationLevel === 3) {
+      embed.addField('Verification Level', 'Medium-High', true);
+    }
+    if (message.guild.verificationLevel === 4) {
+      embed.addField('Verification Level', 'High', true);
+    }
+    //.addField('Verification Level', message.guild.verificationLevel, true)
+    embed.setFooter(`${client.user.username} | Beta - Master`);
     msg.edit(embed);
     talkedRecently.add(message.author.id);
     setTimeout(() => {
