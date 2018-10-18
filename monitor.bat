@@ -1,4 +1,4 @@
 @echo off
-title PM2 Dashboard
+title Moonglow PM2 Dashboard
 pm2 monit
 pause
