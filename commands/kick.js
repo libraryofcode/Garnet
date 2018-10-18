@@ -1,6 +1,7 @@
 exports.run = (client, message, [mention, ...reason]) => { //eslint-disable no-unused-vars
+  return message.channel.send('This command has been globally disabled by the Development Team.')
 
-  try { if (message.mentions.members.size === 0)
+  /*try { if (message.mentions.members.size === 0)
     return message.reply('Please mention a user to kick');
 
   if (!message.guild.me.hasPermission('KICK_MEMBERS'))
@@ -15,7 +16,7 @@ exports.run = (client, message, [mention, ...reason]) => { //eslint-disable no-u
   } catch (err) {
     message.edit('EXCPT*- ' +
     err);
-  }
+  }*/
 
 };
 
