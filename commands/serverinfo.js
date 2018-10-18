@@ -109,14 +109,15 @@ exports.run = async (client, message) => {
     const ownerDiscrim = message.guild.members.get(message.guild.owner.id).user.discriminator;
     const embed = new Discord.RichEmbed()
       //.setAuthor(`${client.user.username}`, `${client.user.avatarURL}`)
-      .setAuthor('Server Information')
-      .setTitle(message.guild.name)
+      .setAuthor(message.guild.name, message.guild.iconURL)
+      .setTitle('Server Information')
       .setThumbnail(message.guild.iconURL)
       //.setColor(message.member.displayColor)
       .addField('Server Owner', `${ownerUsername}#${ownerDiscrim}`, true)
       .addField('Server Region', `${checkRegion(message, guild)}`, true)
       .addField('Created', `${message.guild.createdAt.toLocaleString('en-US')}`, true)
       .addField('Roles', `${message.guild.roles.size}`, true)
+      .addField('Emojis', message.guild.emojis.size, true)
       .addField('Members', message.guild.memberCount, true)
       .addField('Humans', checkMembers(message.guild), true)
       .addField('Bots', checkBots(message.guild), true);
@@ -137,7 +138,7 @@ exports.run = async (client, message) => {
     }
     embed.setTimestamp();
     //.addField('Verification Level', message.guild.verificationLevel, true)
-    embed.setFooter(`${client.user.username}`, client.user.avatarURL);
+    embed.setFooter(`${client.user.username} | Server ID: ${message.guild.id}`, client.user.avatarURL);
     msg.edit(embed);
     talkedRecently.add(message.author.id);
     setTimeout(() => {
