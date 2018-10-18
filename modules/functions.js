@@ -1,5 +1,5 @@
 const sentryconfig = require('../sentry.json');
-var Raven = require('raven');
+let Raven = require('raven');
 Raven.config(sentryconfig.link).install();
 module.exports = (client) => {
 
