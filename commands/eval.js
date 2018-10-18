@@ -8,12 +8,14 @@ exports.run = async (client, message, args) => {
     const clean = await client.clean(client, evaled);
     const embed1 = new Discord.RichEmbed()
       .setAuthor(client.user.username, client.user.avatarURL)
+      .setColor('#00FF00')
       .setTitle('__JAVASCRIPT EVALUATION__')
       .setDescription(`\`\`\`js\n${clean}\n\`\`\``)
       .setTimestamp()
       .setFooter(`${client.user.username} | Requested by ${message.author.username}#${message.author.discriminator}`);
     message.channel.send(embed1);
   } catch (err) {
+    console.log(err);
     const embed2 = new Discord.RichEmbed();
     embed2.setAuthor(client.user.username, client.user.avatarURL);
     embed2.setColor('#FF0000');
