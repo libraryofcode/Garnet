@@ -9,7 +9,7 @@ exports.run = async (client, message, args) => {
       .setColor(colorCode)
       .setTitle('COLOR')
       .addField('Hex Code', `#${colorCode.toUpperCase()}`, true)
-      .setImage(`https://dummyimage.com/600x400/${colorCode}/ffffff&text=Moonglow`)
+      .setImage(`https://dummyimage.com/100x100/${colorCode}/ffffff&text=Moonglow`)
       .setFooter(client.user.username, client.user.avatarURL)
       .setTimestamp();
     msg.edit(embed);
