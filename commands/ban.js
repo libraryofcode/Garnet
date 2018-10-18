@@ -1,7 +1,8 @@
 exports.run = async (client, message, args) => {
+  return message.channel.send('This command has been globally disabled by the Development Team.')
 
   
-  const member = message.mentions.members.first();
+  /*const member = message.mentions.members.first();
   if (!member)
     return message.reply('please mention an user of this server.');
   if (!member.bannable) 
@@ -13,6 +14,7 @@ exports.run = async (client, message, args) => {
   await member.ban(reason)
     .catch(error => message.reply(`Sorry ${message.author} I couldn't ban because of : ${error}`));
   message.reply(`${member.user.tag} has been banned by ${message.author.tag} because: ${reason}`);
+  */
 };
 
 exports.conf = {
