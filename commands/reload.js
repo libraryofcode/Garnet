@@ -1,7 +1,7 @@
-exports.run = async (client, message, args, level) => {// eslint-disable-line no-unused-vars
-  if (!args || args.length < 1) return message.reply("please provide a package to reload.");
+exports.run = async (client, message, args) => {
+  if (!args || args.length < 1) return message.reply('please provide a package to reload.');
 
-  let response = await client.unloadCommand(args[0]);
+  let response = await client.unloadCommand(args[0]); //eslint-disable-line
   if (response) return message.reply(`Error Unloading: ${response}`);
 
   response = client.loadCommand(args[0]);
@@ -13,13 +13,13 @@ exports.run = async (client, message, args, level) => {// eslint-disable-line no
 exports.conf = {
   enabled: true,
   guildOnly: false,
-  aliases: ["r"],
-  permLevel: "Systems Administrator"
+  aliases: ['r'],
+  permLevel: 'Systems Administrator'
 };
 
 exports.help = {
-  name: "reload",
-  category: "System",
-  description: "Reloads a command that\"s been modified.",
-  usage: "reload [command]"
+  name: 'reload',
+  category: 'System',
+  description: 'Reloads a command that\'s been modified.',
+  usage: 'reload [command]'
 };
