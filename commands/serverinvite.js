@@ -21,7 +21,7 @@ exports.conf = {
   
 exports.help = {
   name: 'serverinvite',
-  category: 'System',
+  category: 'Bot Information',
   description: 'Posts the invite URL to the main server.',
   usage: 'serverinvite'
 };

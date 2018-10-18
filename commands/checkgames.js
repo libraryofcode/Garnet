@@ -6,7 +6,7 @@ exports.run = (client, msg) => {
 exports.conf = {
   enabled: true,
   guildOnly: true,
-  aliases: ['ci'],
+  aliases: ['cg'],
   permLevel: 'Server Moderator'
 };
   

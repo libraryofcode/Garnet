@@ -1,21 +1,22 @@
 exports.run = async (client, message, args, level) => {// eslint-disable-line no-unused-vars
-  await message.reply('System is shutting down.');
+  const msg = await message.channel.send('Executing PM2 full restart...');
+  msg.edit('Restarting...');
   client.commands.forEach( async cmd => {
     await client.unloadCommand(cmd);
   });
-  client.destory();
+  process.exit(1);
 };
-
+  
 exports.conf = {
   enabled: true,
   guildOnly: false,
-  aliases: ['s'],
+  aliases: ['r'],
   permLevel: 'Systems Administrator'
 };
-
+  
 exports.help = {
-  name: 'shutdown',
+  name: 'restart',
   category: 'System',
-  description: 'Shuts down the bot.',
-  usage: 'shutdown'
+  description: 'Restarts using PM2.',
+  usage: 'restart'
 };

@@ -1,8 +1,8 @@
 const { exec } = require('child_process');
 
 exports.run = async (client, msg, args) => {
-  const command = args.join(' ');
-  const outMessage = await msg.channel.send(`Running \`${command}\`...`);
+  const command = `pm2 ${args.join(' ')}`;
+  const outMessage = await msg.channel.send(`Processing \`${args.join(' ')}\`...`);
   let stdOut = await doExec(command).catch(data=> outputErr(outMessage, data));
   stdOut = stdOut.substring(0, 1750);
   outMessage.edit(`\`OUTPUT\`
@@ -15,14 +15,14 @@ exports.conf = {
   enabled: true,
   guildOnly: false,
   aliases: ['ex'],
-  permLevel: 'Systems Main Developer'
+  permLevel: 'Systems Administrator'
 };
 
 exports.help = {
-  name: 'exec',
+  name: 'manager',
   category: 'System',
-  description: 'Executes a console command.',
-  usage: 'exec [command]'
+  description: 'Tells the Process Manager to execute something.',
+  usage: 'manager [...command]'
 };
 
 const outputErr = (msg, stdData) => {

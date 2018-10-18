@@ -1,6 +1,6 @@
 {
   "name": "moonglow",
-  "version": "3.6.0",
+  "version": "4.1.1",
   "description": "Moonglow is a developed bot by the FCC.",
   "main": "index.js",
   "repository": {
@@ -20,6 +20,7 @@
     "NightRaven#2172"
   ],
   "dependencies": {
+    "@sentry/node": "^4.1.1",
     "axios": "^0.18.0",
     "chalk": "^2.4.1",
     "dateformat": "^3.0.3",
@@ -35,10 +36,13 @@
     "mocha": "^5.2.0",
     "moment": "^2.22.2",
     "moment-duration-format": "^2.2.2",
+    "os-name": "^2.0.1",
     "raven": "^2.6.4",
     "superagent": "^3.8.3",
+    "systeminformation": "^3.45.7",
     "uws": "^99.0.0",
     "vows": "^0.8.2",
+    "windows-release": "^3.1.0",
     "ytdl-core": "^0.25.2"
   }
 }
