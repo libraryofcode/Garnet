@@ -19,6 +19,7 @@ exports.run = async (client, message, args) => {
 };*/
   message.channel.send('This command is temporary disabled.');
   throw new TypeError('This command is disabled.');
+};
 
 exports.conf = {
   enabled: false,
