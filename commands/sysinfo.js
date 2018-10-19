@@ -24,6 +24,7 @@ exports.run = async (client, message) => {
 
   const msg = await message.channel.send('Loading...');
   const embed = new Discord.RichEmbed()
+    .setAuthor(client.user.username)
     .setTitle('System Information')
     .setTimestamp();
   //let windowsVersion =si.osInfo().then(data => (data.distro));
