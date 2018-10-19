@@ -10,7 +10,8 @@ const Enmap = require('enmap');
 const EnmapLevel = require('enmap-sqlite');
 
 const client = new Discord.Client({
-  fetchAllMembers: true}); 
+  fetchAllMembers: true,
+  disableEveryone: true}); 
 
 
 client.config = require('./config.js');
