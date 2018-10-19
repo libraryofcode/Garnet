@@ -7,13 +7,13 @@ exports.run = async (client, message, args) => {
   const msg = await message.channel.send('Loading...');
 
   const embed = new Discord.RichEmbed();
-  embed.setAuthor(client.user.username, client.user.avatarURL);
+  embed.setAuthor(botuser.user.avatarURL);
   embed.setTitle('Avatar');
   embed.setColor(botuser.displayHexColor);
   embed.addField('User', `${botuser.user.tag}`);
   embed.setImage(botuser.user.avatarURL);
   embed.setTimestamp();
-  embed.setFooter(`${client.user.username} | User ID: ${botuser.id}`);
+  embed.setFooter(`${client.user.username} | User ID: ${botuser.id}`, client.user.avatarURL);
 
   msg.edit(embed);
 };
