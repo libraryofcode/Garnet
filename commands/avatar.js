@@ -7,7 +7,7 @@ exports.run = async (client, message, args) => {
   const msg = await message.channel.send('Loading...');
 
   const embed = new Discord.RichEmbed();
-  embed.setAuthor(botuser.user.avatarURL);
+  embed.setAuthor(botuser.user.tag);
   embed.setTitle('Avatar');
   embed.setColor(botuser.displayHexColor);
   embed.addField('User', `${botuser.user.tag}`);
