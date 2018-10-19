@@ -46,18 +46,24 @@ exports.run = async (client, message, args) => {
       embed.addField('Status', 'An error occured while getting the user\'s status.', true);
     }
     try {
-      embed.addField('Playing', `${game.name}`, true);
+      if (game.name === null) embed.addField('Playing', 'Unspecified', true);
+      else
+        embed.addField('Playing', `${game.name}`, true);
     } catch (err) {
       embed.addField('Playing', 'An error occured while getting the game\'s name.', true);
     }
     try {
-      embed.addField('Details', `${game.details}`, true);
+      if (game.details === null) embed.addField('Details', 'Unspecified', true);
+      else
+        embed.addField('Details', `${game.details}`, true);
     }
     catch (err) {
       embed.addField('Details', 'No Info', true);
     }
     try {
-      embed.addField('State', `${game.state}`, true);
+      if (game.state === null) embed.addField('Details', 'Unspecified', true)
+      else 
+        embed.addField('State', `${game.state}`, true);
     } catch (err) {
       embed.addField('State', 'No state', true);
     }
