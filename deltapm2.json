@@ -1,6 +1,6 @@
 {
   "apps" : [{
-    "name"        : "Moonglow",
+    "name"        : "Delta Management",
     "script"      : "./index.js",
     "watch"       : true,
     "ignore_watch" : ["node_modules", "client/img", "data", "build"],
