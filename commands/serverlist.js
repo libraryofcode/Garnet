@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 
-exports.run = (client, message) => {
+exports.run = async (client, message, args) => {
   const guildmap = client.guilds.map(i => `(Name: ${i.name}) | (ID: \`${i.id}\`) | (Members: ${i.members.size})`);
 
   const embed = new Discord.RichEmbed()
@@ -9,7 +9,11 @@ exports.run = (client, message) => {
     .setFooter(client.user.username, client.user.avatarURL)
     .setTimestamp();
 
-  message.channel.send(embed);
+  const sendSL = await message.channel.send(embed);
+  if (args[0] === 'hide') {
+    sendSL.delete(10000);
+    message.delete(9000);
+  }
 };
 
 exports.conf = {
