@@ -19,7 +19,11 @@ exports.run = async (client, message, args) => {
       .setTimestamp()
       .setColor('RANDOM')
       .setFooter(client.user.username, client.user.avatarURL);
-    client.channels.get('462361967026241536').send({embed});
+    const embedsend = await client.channels.get('462361967026241536').send({embed});
+    //const successEmote = client.emojis.get('477618704155410452');
+    embedsend.react(client.emojis.get('477618704155410452'));
+    //const errorEmote = client.emojis.get('477698393754304513');
+    embedsend.react(client.emojis.get('477698393754304513'));
     msg.edit('Suggestion has been successfully sent!');
     msg.delete(10000);
     message.delete(10000);
