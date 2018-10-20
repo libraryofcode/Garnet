@@ -3,7 +3,7 @@ const cooldown = new Set();
 exports.run = async (client, message, args) => {
   if (cooldown.has(message.author.id)) {
    
-    const cooldownMessage = await message.channel.send('you are being ratelimited. Chill out for a minute.');
+    const cooldownMessage = await message.reply('you are being ratelimited. Chill out for a minute.');
     cooldownMessage.delete(10000);
   } else {
     const dataSuggestion = args.join(' ');
