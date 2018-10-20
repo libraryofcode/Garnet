@@ -26,18 +26,8 @@ exports.run = async (client, message) => {
   const embed = new Discord.RichEmbed()
     .setTitle('System Information')
     .setTimestamp();
-  //let windowsVersion =si.osInfo().then(data => (data.distro));
     
   if (os.platform == 'win32') {
-  /*  si.osInfo(function(data) {
-      return embed.addField('Operating System', data.distro, true);
-    });*/
-    //embed.addField('Operating System', `${}`, true);
-    //let osValue = si.osInfo();
-    //embed.addField('Operating System', osValue.distro);
-    //embed.addField('Operating System', `${osName(os.platform(), os.release())}`, true);
-    //embed.addField('Operating System', `${windowsVersion}`, true);
-
     const data = await si.osInfo();
     embed.addField('Operating System', `${data.distro}`, true);
     embed.setThumbnail('https://cdn.discordapp.com/attachments/491024501971222538/491024518761021460/Windows-Logo.png');
