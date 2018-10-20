@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 exports.run = async (client, message, args) => {
   const dataSuggestion = args.join(' ');
-  if (!dataSuggestion) return message.reply('**Please include text for the suggestion!**');
+  if (!dataSuggestion) return message.channel.send('**Please include text for the suggestion!**');
 
   const msg = await message.channel.send('Sending your suggestion to Development...');
   
