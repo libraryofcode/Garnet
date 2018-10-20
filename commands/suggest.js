@@ -4,7 +4,7 @@ exports.run = async (client, message, args) => {
   if (!dataSuggestion) return message.reply('**Please include text for the suggestion!**');
   
   const Discord = new Discord.RichEmbed()
-  .setTitle('FC Server Suggestion')
+  .setTitle('FCC Server Suggestion')
   .addField('Author:', `${message.author.username} (${message.author.id})`)
   .addField('Suggestion:', `${dataSuggestion}`)
   .setTimestamp()
@@ -22,7 +22,7 @@ exports.conf = {
   
 exports.help = {
   name: 'suggest',
-  category: 'system',
+  category: 'System',
   description: 'Suggest something on the guild.',
   usage: 'suggest [..suggestion]'
 };
