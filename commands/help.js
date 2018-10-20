@@ -53,9 +53,9 @@ exports.run = (client, message, args, level) => {
       embed2.setAuthor(`${client.user.username}`, `${client.user.avatarURL}`);
       embed2.setTitle(`${client.user.username} Help Manual`);
       embed2.setColor('RANDOM');
-      embed2.addField('Command', `${command.help.name}`, true);
-      embed2.addField('Description', `${command.help.description}`, true);
-      embed2.addField('Usage', `${command.help.usage}`, true);
+      embed2.addField('Command', `${command.help.name}`);
+      embed2.addField('Description', `${command.help.description}`);
+      embed2.addField('Usage', `${command.help.usage}`);
       embed2.setFooter(`${client.user.username} | Beta - Master`);
       embed2.setTimestamp();
       message.channel.send(embed2);
