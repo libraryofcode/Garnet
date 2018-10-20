@@ -2,9 +2,9 @@ const ms = require("ms");
 
 module.exports.run = async (bot, message, args) => {
 
-  let tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-  if(!tomute) return message.reply("Couldn't find user.");
-  if(tomute.hasPermission("MANAGE_MESSAGES")) return message.reply("Can't mute them!");
+  const tomute = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
+  if (!tomute) return message.reply("Couldn't find user.");
+  if (tomute.hasPermission("MANAGE_MESSAGES")) return message.reply("Can't mute them!");
   let muterole = message.guild.roles.find(`name`, "Muted");
   //start of create role
   if(!muterole){
@@ -26,7 +26,7 @@ module.exports.run = async (bot, message, args) => {
   }
   //end of create role
   let mutetime = args[1];
-  if(!mutetime) return message.reply("You didn't specify a time!");
+  if (!mutetime) return message.reply(`You didn't specify a time!`);
 
   await(tomute.addRole(muterole.id));
   message.channel.send(`<@${tomute.id}> has been muted.`);
@@ -36,7 +36,7 @@ module.exports.run = async (bot, message, args) => {
     message.channel.send(`<@${tomute.id}> has been unmuted!`);
   }, ms(mutetime));
 
-}
+};
 
 
 exports.conf = {
