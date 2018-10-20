@@ -12,10 +12,11 @@ exports.run = async (client, message, args) => {
     .setTimestamp()
     .setColor('RANDOM')
     .setFooter(client.user.username, client.user.avatarURL);
-  client.channels.get('481766328886362112').send({embed});
+  client.channels.get('462361967026241536').send({embed});
   msg.edit('Suggestion has been successfully sent!');
   msg.delete(10000);
   message.delete(10000);
+  //pls
 };
 
 exports.conf = {
