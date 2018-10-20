@@ -107,7 +107,8 @@ exports.run = async (client, message, args, level) => {
       } else {
         embed.addField('Join Position', joinPosition1, true);
       }*/
-      embed.addField('Join Position', joinPosition1, true);
+      const joinPosition3 = joinPosition1 + 1;
+      embed.addField('Join Position', joinPosition3, false);
       embed.addField('Created Account At', `${botuser.user.createdAt.toLocaleString('en-US')}`, true);
       embed.addField('Status', `${status[botuser.user.presence.status]}`, true);
       embed.addField('Playing', `${botuser.user.presence.game ? `${botuser.user.presence.game.name}` : 'Nothing'}`, true);
