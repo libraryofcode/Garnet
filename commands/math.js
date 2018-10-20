@@ -86,7 +86,7 @@ exports.conf = {
   enabled: true,
   guildOnly: false,
   aliases: ['calc'],
-  permLevel: 'Systems Alpha/Dev Tester'
+  permLevel: 'Standard User'
 };
   
 exports.help = {
