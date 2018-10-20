@@ -85,6 +85,15 @@ exports.run = async (client, message, args, level) => {
 
         return arrayOfPerms;
       }
+      const joinPosition1 = message.channel.guild.members.map(i => i).sort((a, b) => a.joinedAt - b.joinedAt).indexOf(botuser);
+      /*function checkBots(guild) {
+        let botCount = 0; 
+        guild.members.forEach(member => { 
+          if (member.user.bot) botCount++; 
+        });
+        return botCount; 
+      }*/
+      //const joinPosition2 = joinPosition1 - checkBots(message.guild);
       const options = {timeZone: 'America/New_York', hour12: true};
       const embed = new Discord.RichEmbed();
       embed.setAuthor(botuser.displayName, botuser.user.avatarURL);
@@ -93,7 +102,12 @@ exports.run = async (client, message, args, level) => {
         embed.setColor(botuser.displayColor);
       }
       embed.addField('Joined Server At', `${botuser.joinedAt.toLocaleString('en-US', options)} | ${dj.toFixed(0)} Days Ago`, true);
-      //embed.addField('Join Position', `${joinPos}`);
+      /*if (joinPosition2 <= 10) {
+        embed.addField('Join Position', joinPosition2, true);
+      } else {
+        embed.addField('Join Position', joinPosition1, true);
+      }*/
+      embed.addField('Join Position', joinPosition1, true);
       embed.addField('Created Account At', `${botuser.user.createdAt.toLocaleString('en-US')}`, true);
       embed.addField('Status', `${status[botuser.user.presence.status]}`, true);
       embed.addField('Playing', `${botuser.user.presence.game ? `${botuser.user.presence.game.name}` : 'Nothing'}`, true);
