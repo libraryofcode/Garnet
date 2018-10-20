@@ -8,6 +8,7 @@ exports.run = async (client, message, args) => {
   const embed = new Discord.RichEmbed()
     .setTitle('Moonglow Suggestion')
     .addField('Author', `${message.author.username} (${message.author.id})`)
+    .addField('Orgin Guild', `${message.guild.name} (${message.guild.id})`)
     .addField('Suggestion', `${dataSuggestion}`)
     .setTimestamp()
     .setColor('RANDOM')
