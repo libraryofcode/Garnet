@@ -118,9 +118,7 @@ exports.run = async (client, message) => {
       .addField('Created', `${message.guild.createdAt.toLocaleString('en-US')}`, true)
       .addField('Roles', `${message.guild.roles.size}`, true)
       .addField('Emojis', message.guild.emojis.size, true)
-      .addField('Members', message.guild.memberCount, true)
-      .addField('Humans', checkMembers(message.guild), true)
-      .addField('Bots', checkBots(message.guild), true);
+      .addField("Total | Humans | Bots", `${message.guild.memberCount} | ${message.guild.members.filter(member => !member.user.bot).size} | ${message.guild.members.filter(member => member.user.bot).size}`, true)
     if (message.guild.verificationLevel === 0) {
       embed.addField('Verification Level', 'None',true);
     }
