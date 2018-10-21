@@ -74,7 +74,7 @@ module.exports = async (client, message) => {
   embed.addField('Command', cmd.help.name, true);
   try {
     //if (args > 1) embed.addField('Content', args, true);
-    embed.addField(message.content);
+    embed.addField('Content', message.content, true);
     embed.addField('Guild', `${message.guild.name} \`(${message.guild.id})\``, true);
     embed.addField('Channel', `${message.channel.name} \`(${message.channel.id})\``, true);
   } catch (error) {
