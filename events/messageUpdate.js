@@ -14,7 +14,7 @@ module.exports = async (client, message, oldMessage) => { //eslint-disable-line 
   const embed = new Discord.RichEmbed()
     .setTitle('Message Edited Event')
     //.setDescription(`**OLD CONTENT**\n\n\`\`\`${oldContent}\`\`\`\n\n**NEW CONTENT**\n\n\`\`\`${newContent}\`\`\``)
-    .setDescription(`\`OLD CONTENT\`\n\n${oldContent}\n\n\`\`NEW CONTENT\`\`\n\n${newContent}`)
+    .setDescription(`\`\`\`OLD CONTENT\`\`\`\n\n${oldContent}\n\n\`\`\`NEW CONTENT\`\`\`\n\n${newContent}`)
     .addField('User', `${memberName} \`(${memberID})\``, true)
     .addField('Guild', `${guildName} \`(${guildID})\``, true)
     .addField('Channel', `${channelName} \`(${channelID})\``, true)
