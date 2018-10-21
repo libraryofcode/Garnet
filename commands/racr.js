@@ -1,4 +1,5 @@
 const fs = require('fs');
+const Discord = require('discord.js');
 exports.run = async (client, message, args) => {
 
   fs.readFile('./allowedGuildDB.json', 'utf8', async (err, data) => { // readFile method basically allows us to read the data in that file
@@ -35,10 +36,20 @@ exports.run = async (client, message, args) => {
           }
                     
         });
+        //503491110149160961
         message.delete();
         message.channel.send(`✅ ***Moonglow has been activated on ${guildID} for <@!${args[1]}>***`);
-        // I'm going to convert this over to discord.js really quick btw
-        // Alright
+        const acUser = client.users.get(args[1]).tag;
+
+        const embed = new Discord.RichEmbed()
+          .setTitle('SERVER ACTIVATION')
+          .addField('Staff', `${message.author.tag} \`(${message.author.id})\``, true)
+          .addField('Guild', guildID, true)
+          .addField('User', `${acUser} \`(${args[1]})\``)
+          .setFooter(client.user.username, client.user.avatarURL)
+          .setTimestamp();
+        client.channels.get('503491110149160961').send(embed);
+
       }
     }
   }); 
