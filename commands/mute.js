@@ -7,7 +7,7 @@ module.exports.run = async (bot, message, args) => {
   if (tomute.hasPermission(`MANAGE_MESSAGES`)) return message.reply(`Can't mute them!`);
   let muterole = message.guild.roles.find(`name`, `Muted`);
   //start of create role
-  if (!muterole){
+  if (!muterole) {
     try {
       muterole = await message.guild.createRole({
         name: `Muted`,
@@ -20,7 +20,7 @@ module.exports.run = async (bot, message, args) => {
           ADD_REACTIONS: false
         });
       });
-    }catch(e){
+    } catch (e){
       console.log(e.stack);
     }
   }
