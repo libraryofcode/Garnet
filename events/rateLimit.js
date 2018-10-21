@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 module.exports = (client, guild, message, rateLimit, rateLimitInfo) => { //eslint-disable-line no-unused-vars
-  const info = rateLimitInfo;
+  const info = rateLimit.rateLimitInfo;
   const args = message.content.slice(settings.prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
   const cmd = client.commands.get(command) || client.commands.get(client.aliases.get(command));
