@@ -20,7 +20,7 @@ module.exports.run = async (bot, message, args) => {
           ADD_REACTIONS: false
         });
       });
-    } catch(e) {
+    } catch (e) {
       console.log(e.stack);
     }
   }
