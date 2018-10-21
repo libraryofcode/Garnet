@@ -17,7 +17,7 @@ module.exports = async client => {
     .setFooter(client.user.username, client.user.avatarURL)
     .setTimestamp();
     
-]client.channels.get('503384677227429888').send(embed);
+  client.channels.get('503384677227429888').send(embed);
     
 
 };
