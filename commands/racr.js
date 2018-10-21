@@ -7,7 +7,7 @@ exports.run = async (client, message, args) => {
     }
     else {
       const guildID = args[0];
-      if (typeof (args[0]) !== 'number') return message.channel.send('TypeError: Cannot read property \'guildID\' of undefined'); //throw new TypeError('Cannot read property \'guildID\' of none')
+      if (typeof guildID !== 'number') return message.channel.send('TypeError: Cannot read property \'guildID\' of undefined'); //throw new TypeError('Cannot read property \'guildID\' of none')
       if (data.length === 0) { // So let's use this case when the file data is empty
         // So let's get the guild ID first. In eris, the arguments (Whatever follows the command name) is split by spaces, so it should be pretty easy to get the guild ID we need
         const requiredObject = {
