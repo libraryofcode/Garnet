@@ -5,12 +5,12 @@ module.exports = async (client, channel, guild) => { //eslint-disable-line no-un
   const guildName = await channel.guild.name;
   const guildID = await channel.guild.id;
 
-  const embed = new Discord.RichEmbed()
+  const embed = new Discord.RichEmbed();
   embed.setTitle('Channel Create Event');
   embed.addField('Channel', `${channelName} \`(${channelID})\``);
   embed.addField('Guild', `${guildName} \`(${guildID})\``);
   embed.setFooter(client.user.username, client.user.avatarURL);
   embed.setTimestamp();
 
-  client.channels.get('503431040451215360').send(embed)
-}
+  client.channels.get('503431040451215360').send(embed);
+};
