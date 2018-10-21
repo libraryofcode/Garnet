@@ -20,7 +20,7 @@ module.exports.run = async (bot, message, args) => {
           ADD_REACTIONS: false
         });
       });
-    } catch (e){
+    } catch(e) {
       console.log(e.stack);
     }
   }
@@ -31,7 +31,7 @@ module.exports.run = async (bot, message, args) => {
   await(tomute.addRole(muterole.id));
   message.channel.send(`<@${tomute.id}> has been muted.`);
 
-  setTimeout (function(){
+  setTimeout(function() {
     tomute.removeRole(muterole.id);
     message.channel.send(`<@${tomute.id}> has been unmuted!`);
   }, ms(mutetime));
