@@ -13,6 +13,16 @@ module.exports = (client, guild) => {
       const allowedGuild = JSON.parse(data);
       if (allowedGuild.allowedGuildIDs.includes(guild.id)) {
         client.logger.debug(`[GUILD AUTHORIZED] ${guild.name}`);
+        const successEmbed = new Discord.RichEmbed()
+          .setTitle('Guild Create Event')
+          .addField('Authorized', 'True', true)
+          .addField('Guild', `${guild.name} \`\`(${guild.id})\`\``, true)
+          .addField('Owner', `${guild.owner.user.tag} \`\`(${guild.owner.user.id})\`\``)
+          .setFooter(client.user.username, client.user.avatarURL)
+          .setTimestamp();
+    
+        client.channels.get('503374601892397060').send(successEmbed);
+    
         return;
       }
       else { 
@@ -35,16 +45,6 @@ module.exports = (client, guild) => {
 
 
   client.logger.debug(`[GUILD JOIN] ${guild.name} (${guild.id}) added the bot. Owner: ${guild.owner.user.tag} (${guild.owner.user.id})`);
-  const successEmbed = new Discord.RichEmbed()
-    .setTitle('Guild Create Event')
-    .addField('Authorized', 'True', true)
-    .addField('Guild', `${guild.name} \`\`(${guild.id})\`\``, true)
-    .addField('Owner', `${guild.owner.user.tag} \`\`(${guild.owner.user.id})\`\``)
-    .setFooter(client.user.username, client.user.avatarURL)
-    .setTimestamp();
-
-  client.channels.get('503374601892397060').send(successEmbed);
-
 
 
 };
