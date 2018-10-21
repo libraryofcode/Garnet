@@ -5,7 +5,7 @@ exports.run = (client, message, args) => {
       return console.log(err);
     } else {
       const guildID = args[0];
-      if (typeof guildID !== 'number') return message.channel.send('TypeError: Cannot read property \'guildID\' of undefined');
+      //if (typeof guildID !== 'number') return message.channel.send('TypeError: Cannot read property \'guildID\' of undefined');
 
       const requiredData = JSON.parse(data);
       const index = requiredData.allowedGuildIDs.indexOf(guildID);
