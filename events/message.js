@@ -73,7 +73,8 @@ module.exports = async (client, message) => {
   embed.addField('User Permissions', client.config.permLevels.find(l => l.level === level).name, true);
   embed.addField('Command', cmd.help.name, true);
   try {
-    if (args > 1) embed.addField('Content', args, true);
+    //if (args > 1) embed.addField('Content', args, true);
+    embed.addField(message.content);
     embed.addField('Guild', `${message.guild.name} \`(${message.guild.id})\``, true);
     embed.addField('Channel', `${message.channel.name} \`(${message.channel.id})\``, true);
   } catch (error) {
