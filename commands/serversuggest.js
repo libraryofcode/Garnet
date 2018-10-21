@@ -18,7 +18,7 @@ exports.run = async (client, message, args) => {
       .addField('Suggestion', `${dataSuggestion}`)
       .setTimestamp()
       .setColor('RANDOM')
-      .setFooter(client.user.username, client.user.avatarURL);
+      .setFooter(`${client.user.username} User ID: ${message.author.id}`, client.user.avatarURL);
     const embedsend = await client.channels.get('462361967026241536').send({embed});
     //const successEmote = client.emojis.get('477618704155410452');
     embedsend.react(client.emojis.get('477618704155410452'));
