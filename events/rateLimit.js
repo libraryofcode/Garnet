@@ -1,5 +1,5 @@
-const Discord = require('discord.js');
-module.exports = (client, guild, message, rateLimit, rateLimitInfo) => { //eslint-disable-line no-unused-vars
+//const Discord = require('discord.js');
+/*module.exports = (client, guild, message, rateLimit, rateLimitInfo) => { //eslint-disable-line no-unused-vars
   //const info = rateLimit.rateLimitInfo;
   const args = message.content.slice(settings.prefix.length).trim().split(/ +/g);
   const command = args.shift().toLowerCase();
@@ -11,7 +11,7 @@ module.exports = (client, guild, message, rateLimit, rateLimitInfo) => { //eslin
   const timeDifference = rateLimitInfo.timeDifference;
   const method = rateLimitInfo.method;
   const path = rateLimitInfo.path;
-  */
+  
   
   const embed = new Discord.RichEmbed();
   embed.setTitle('Rate Limit Event');
@@ -34,4 +34,4 @@ module.exports = (client, guild, message, rateLimit, rateLimitInfo) => { //eslin
   embed.setFooter(client.user.username, client.user.avatarURL);
   embed.setTimestamp();
   client.channels.get('503374359918805009').send(embed);
-};
+};*/
