@@ -7,8 +7,8 @@ module.exports = async (client, message, oldMessage) => { //eslint-disable-line 
   const createdAt = message.createdAt;
   const channelName = message.channel.name;
   const channelID = message.channel.id;
-  const oldContent = oldMessage.content;
-  const newContent = message.content;
+  const oldContent = message.content;
+  const newContent = oldMessage.content;
   if (oldContent === newContent) return;
   
   const embed = new Discord.RichEmbed()
