@@ -10,8 +10,8 @@ module.exports = async (client, message, member, guild) => { //eslint-disable-li
   const channelID = message.channel.id;
 
   const embed = new Discord.RichEmbed()
-    .setTitle('Message Deletion Event')
-    .setDescription(`**CONTENT**\n\n${content}`)
+    .setTitle('Message Deletion Event');
+  if (!message.guild.id === '203039963636301824') embed.setDescription(`**CONTENT**\n\n${content}`)
     .addField('User', `${memberName} \`(${memberID})\``, true)
     .addField('Guild', `${guildName} \`(${guildID})\``, true)
     .addField('Channel', `${channelName} \`(${channelID})\``, true)
