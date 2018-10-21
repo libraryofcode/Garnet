@@ -16,6 +16,5 @@ module.exports = (client, guild, message, rateLimit, rateLimitInfo) => { //eslin
   //embed.addField('Path', path, true);
   embed.setFooter(client.user.username, client.user.avatarURL);
   embed.setTimestamp();
-
-  client.channel.get('503374359918805009').send(embed);
+  client.channels.get('503374359918805009').send(embed);
 };
