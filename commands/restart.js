@@ -1,5 +1,5 @@
 exports.run = async (client, message, args, level) => {// eslint-disable-line no-unused-vars
-  const msg = await message.channel.send('Executing PM2 full restart...');
+  const msg = await message.channel.send('Restarting process...');
   msg.edit('Restarting...');
   client.commands.forEach( async cmd => {
     await client.unloadCommand(cmd);
