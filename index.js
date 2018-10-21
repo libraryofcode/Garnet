@@ -2,7 +2,7 @@ if (Number(process.version.slice(1).split('.')[0]) < 8) throw new Error('Node 8.
 
 const Discord = require('discord.js'); 
 const sentryconfig = require('./sentry.json');
-let Raven = require('raven');
+const Raven = require('raven');
 Raven.config(sentryconfig.link).install();
 const { promisify } = require('util');
 const readdir = promisify(require('fs').readdir);

@@ -1,5 +1,5 @@
 const sentryconfig = require('../sentry.json');
-let Raven = require('raven');
+var Raven = require('raven');
 Raven.config(sentryconfig.link).install();
 module.exports = (client) => {
 
@@ -63,7 +63,7 @@ module.exports = (client) => {
     const filter = m => m.author.id === msg.author.id;
     await msg.channel.send(question);
     try {
-      const collected = await msg.channel.awaitMessages(filter, { max: 1, time: limit, errors: ["time"] });
+      const collected = await msg.channel.awaitMessages(filter, { max: 1, time: limit, errors: ['time'] });
       return collected.first().content;
     } catch (e) {
       return false;
@@ -85,9 +85,9 @@ module.exports = (client) => {
     if (typeof evaled !== 'string');
     text = require('util').inspect(text, {depth: 1});
 
-    text = text
-    text.replace(/`/g, "`" + String.fromCharCode(8203));
-    text.replace(/@/g, "@" + String.fromCharCode(8203));
+    text = text; //eslint-disable-line no-self-assign
+    text.replace(/`/g, '`' + String.fromCharCode(8203));
+    text.replace(/@/g, '@' + String.fromCharCode(8203));
     text.replace(client.token, 'Token is classfied and hidden from this field.');
 
     return text;
@@ -167,6 +167,7 @@ module.exports = (client) => {
 
   process.on('unhandledRejection', err => {
     client.logger.error(`Unhandled Rejection Error: ${err}`);
+    client.channels.get('503374059044601872').send(err);
     Raven.captureException(err);
   });
 };
