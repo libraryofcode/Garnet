@@ -1,7 +1,7 @@
 // The MESSAGE event runs anytime a message is received
 // Note that due to the binding of client to every event, every event
 // goes `client, other, args` when this function is run.
-const Discord = require('discord.js')
+const Discord = require('discord.js');
 module.exports = async (client, message) => {
   // It's good practice to ignore other bots. This also makes your bot ignore itself
   // and not get into a spam loop (we call that "botception").
@@ -73,6 +73,7 @@ module.exports = async (client, message) => {
   embed.addField('User Permissions', client.config.permLevels.find(l => l.level === level).name, true);
   embed.addField('Command', cmd.help.name, true);
   try {
+    embed.addField('Content', args, true);
     embed.addField('Guild', `${message.guild.name} \`(${message.guild.id})\``, true);
     embed.addField('Channel', `${message.channel.name} \`(${message.channel.id})\``, true);
   } catch (error) {
