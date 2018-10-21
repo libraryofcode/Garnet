@@ -1,9 +1,9 @@
-const Discord = require('discord.js')
-module.exports = async (client, channel, guild) => {
+const Discord = require('discord.js');
+module.exports = async (client, channel, guild) => { //eslint-disable-line no-unused-vars
   const channelName = await channel.name;
   const channelID = await channel.id;
-  const guildName = await guild.name;
-  const guildID = await guild.id
+  const guildName = await channel.guild.name;
+  const guildID = await channel.guild.id;
 
   const embed = new Discord.RichEmbed()
   embed.setTitle('Channel Create Event');
