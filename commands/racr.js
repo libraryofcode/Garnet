@@ -1,4 +1,5 @@
 const fs = require('fs');
+const Discord = require('discord.js');
 exports.run = async (client, message, args) => {
 
   fs.readFile('./allowedGuildDB.json', 'utf8', async (err, data) => { // readFile method basically allows us to read the data in that file
@@ -7,6 +8,7 @@ exports.run = async (client, message, args) => {
     }
     else {
       const guildID = args[0];
+      //if (typeof guildID !== 'number') return message.channel.send('TypeError: Cannot read property \'guildID\' of undefined'); //throw new TypeError('Cannot read property \'guildID\' of none')
       if (data.length === 0) { // So let's use this case when the file data is empty
         // So let's get the guild ID first. In eris, the arguments (Whatever follows the command name) is split by spaces, so it should be pretty easy to get the guild ID we need
         const requiredObject = {
@@ -26,6 +28,12 @@ exports.run = async (client, message, args) => {
       else { // this case would mean that the file isn't empty
         const requiredData = JSON.parse(data);
         requiredData.allowedGuildIDs.push(guildID);
+        const find = client.activatedServers.get(args[1]);
+        if (find === undefined) {
+          client.activatedServers.set(args[1], [`${guildID}`]);
+        } else {
+          client.activatedServers.push(args[1], `${guildID}`);
+        }
         // And now we write the final data again
         const json = JSON.stringify(requiredData);
         fs.writeFile('./allowedGuildDB.json', json, 'utf8', (err) => {
@@ -34,13 +42,30 @@ exports.run = async (client, message, args) => {
           }
                     
         });
+        //503491110149160961
         message.delete();
         message.channel.send(`✅ ***Moonglow has been activated on ${guildID} for <@!${args[1]}>***`);
-        // I'm going to convert this over to discord.js really quick btw
-        // Alright
+        const acUser = client.users.get(args[1]).tag;
+        //const filter = (reaction) => reaction.emoji.name === '✅';
+
+
+        const embed = new Discord.RichEmbed()
+          .setTitle('SERVER ACTIVATION')
+          .addField('Staff', `${message.author.tag} \`(${message.author.id})\``, true)
+          .addField('Guild', guildID, true)
+          .addField('User', `${acUser} \`(${args[1]})\``, true)
+          .setFooter(client.user.username, client.user.avatarURL)
+          .setTimestamp();
+        const messageEmbed = await client.channels.get('503491110149160961').send(embed);
+        //console.log(messageEmbed)
+        await messageEmbed.react('✅');
+        //same tbh
+
+
       }
     }
-  });    
+  }); 
+     
 };
 
 exports.conf = {
@@ -53,6 +78,6 @@ exports.conf = {
 exports.help = {
   name: 'racr',
   category: 'System',
-  description: 'Confirms server activation.',
-  usage: 'racr [...server ID]'
+  description: 'Activates the specified server for the specified user.',
+  usage: 'racr [...server ID] [...user ID]'
 };
