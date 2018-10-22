@@ -7,6 +7,7 @@ exports.run = async (client, message, args) => {
   
   const embed = new Discord.RichEmbed()
     .setTitle('Moonglow Suggestion')
+    .setThumbnail(message.guild.iconURL)
     .addField('Author', `${message.author.username} (${message.author.id})`)
     .addField('Orgin Guild', `${message.guild.name} (${message.guild.id})`)
     .addField('Suggestion', `${dataSuggestion}`)

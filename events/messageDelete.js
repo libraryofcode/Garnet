@@ -4,6 +4,7 @@ module.exports = async (client, message, member, guild) => { //eslint-disable-li
   const memberID = message.member.id;
   const guildName = message.guild.name;
   const guildID = message.guild.id;
+  const guildIcon = message.guild.iconURL;
   const content = message.content;
   const createdAt = message.createdAt;
   const channelName = message.channel.name;
@@ -11,6 +12,7 @@ module.exports = async (client, message, member, guild) => { //eslint-disable-li
 
   const embed = new Discord.RichEmbed()
     .setTitle('Message Deletion Event')
+    .setThumbnail(guildIcon)
     .setDescription(`**CONTENT**\n\n${content}`)
     .addField('User', `${memberName} \`(${memberID})\``, true)
     .addField('Guild', `${guildName} \`(${guildID})\``, true)

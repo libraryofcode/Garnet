@@ -4,6 +4,7 @@ module.exports = async (client, message, oldMessage) => { //eslint-disable-line 
   const memberID = message.member.id;
   const guildName = message.guild.name;
   const guildID = message.guild.id;
+  const guildIcon = message.guild.iconURL;
   const createdAt = message.createdAt;
   const channelName = message.channel.name;
   const channelID = message.channel.id;
@@ -13,6 +14,7 @@ module.exports = async (client, message, oldMessage) => { //eslint-disable-line 
   
   const embed = new Discord.RichEmbed()
     .setTitle('Message Edited Event')
+    .setThumbnail(guildIcon)
     //.setDescription(`**OLD CONTENT**\n\n\`\`\`${oldContent}\`\`\`\n\n**NEW CONTENT**\n\n\`\`\`${newContent}\`\`\``)
     .setDescription(`\`\`\`diff\n--OLD CONTENT--\`\`\`\n\n${oldContent}\n\n\`\`\`diff\n--NEW CONTENT--\`\`\`\n\n${newContent}`)
     .addField('User', `${memberName} \`(${memberID})\``, true)

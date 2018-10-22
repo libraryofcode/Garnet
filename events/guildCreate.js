@@ -15,6 +15,7 @@ module.exports = (client, guild) => {
         client.logger.debug(`[GUILD AUTHORIZED] ${guild.name}`);
         const successEmbed = new Discord.RichEmbed()
           .setTitle('Guild Create Event')
+          .setThumbnail(guild.iconURl)
           .addField('Authorized', 'True', true)
           .addField('Guild', `${guild.name} \`\`(${guild.id})\`\``, true)
           .addField('Owner', `${guild.owner.user.tag} \`\`(${guild.owner.user.id})\`\``)
@@ -29,6 +30,7 @@ module.exports = (client, guild) => {
         client.logger.debug(`[GUILD UNAUTHORIZED] ${guild.name} (${guild.id}) added the bot. Owner: ${guild.owner.user.tag} (${guild.owner.user.id})`);
         const errorEmbed = new Discord.RichEmbed()
           .setTitle('Guild Create Event')
+          .setThumbnail(guild.iconURl)
           .addField('Authorized', 'False', true)
           .addField('Guild', `${guild.name} \`\`(${guild.id})\`\``, true)
           .addField('Owner', `${guild.owner.user.tag} \`\`(${guild.owner.user.id})\`\``)
