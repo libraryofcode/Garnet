@@ -2,7 +2,7 @@ if (Number(process.version.slice(1).split('.')[0]) < 8) throw new Error('Node 8.
 
 const Discord = require('discord.js'); 
 const sentryconfig = require('./sentry.json');
-let Raven = require('raven');
+const Raven = require('raven');
 Raven.config(sentryconfig.link).install();
 const { promisify } = require('util');
 const readdir = promisify(require('fs').readdir);
@@ -10,7 +10,8 @@ const Enmap = require('enmap');
 const EnmapLevel = require('enmap-sqlite');
 
 const client = new Discord.Client({
-  fetchAllMembers: true}); 
+  fetchAllMembers: true,
+  disableEveryone: true}); 
 
 
 client.config = require('./config.js');
@@ -26,6 +27,8 @@ client.aliases = new Enmap();
 
 
 client.settings = new Enmap({provider: new EnmapLevel({name: 'settings'})});
+
+client.activatedServers = new Enmap({provider: new EnmapLevel({name: 'activatedServers', autofetch: true, fetchAll: true})});
 
 
 
