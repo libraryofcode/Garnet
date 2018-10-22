@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 module.exports = async (client, guild, channel) => {
-  const channelName = await channel.name;
+/*  const channelName = await channel.name;
   const channelID = await channel.id;
   const guildName = await channel.guild.name;
   const guildID = await channel.guild.id;
@@ -14,5 +14,7 @@ module.exports = async (client, guild, channel) => {
     .setFooter(client.user.username, client.user.avatarURL)
     .setTimestamp();
   client.channels.get('503729103917023252').send(embed);
+  */
+ client.channels.get('503729103917023252').send('Event triggered.');
 
 };
