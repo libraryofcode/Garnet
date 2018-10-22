@@ -18,7 +18,7 @@ client.config = require('./config.js');
 // client.config.token contains the bot's token
 // client.config.prefix contains the message prefix
 
-client.logger = require('./modules/Logger');
+client.logger = require('./modules/Logger.js');
 
 require('./modules/functions.js')(client);
 
