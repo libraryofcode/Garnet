@@ -21,7 +21,7 @@ exports.run = async (client, message, args) => {
 exports.conf = {
   enabled: true,
   guildOnly: true,
-  aliases: ['av'],
+  aliases: ['av', 'pfp'],
   permLevel: 'Standard User'
 };
   
