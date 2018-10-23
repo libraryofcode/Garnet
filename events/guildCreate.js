@@ -1,6 +1,7 @@
 // This event executes when a new guild (server) is joined.
 const Discord = require('discord.js');
 const fs = require('fs');
+const web = require('../webhooks.json');
 module.exports = (client, guild) => {
   /* this code checks to make sure that the bot is in the authorized list of servers below in the "activatedServers"
   If it's not in this list, then the bot will leave the server and then will return a DEBUG message to the console. */
@@ -13,6 +14,7 @@ module.exports = (client, guild) => {
       const allowedGuild = JSON.parse(data);
       if (allowedGuild.allowedGuildIDs.includes(guild.id)) {
         client.logger.debug(`[GUILD AUTHORIZED] ${guild.name}`);
+        const hook1 = new Discord.WebhookClient(web.guildCreateID, web.guildCreateToken);
         const successEmbed = new Discord.RichEmbed()
           .setTitle('Guild Create Event')
           .setThumbnail(guild.iconURl)
@@ -22,12 +24,14 @@ module.exports = (client, guild) => {
           .setFooter(client.user.username, client.user.avatarURL)
           .setTimestamp();
     
-        client.channels.get('503374601892397060').send(successEmbed);
+        //client.channels.get('503374601892397060').send(successEmbed);
+        hook1.send(successEmbed);
     
         return;
       }
       else { 
         client.logger.debug(`[GUILD UNAUTHORIZED] ${guild.name} (${guild.id}) added the bot. Owner: ${guild.owner.user.tag} (${guild.owner.user.id})`);
+        const hook2 = new Discord.WebhookClient(web.guildCreateID, web.guildCreateToken);
         const errorEmbed = new Discord.RichEmbed()
           .setTitle('Guild Create Event')
           .setThumbnail(guild.iconURl)
@@ -36,7 +40,8 @@ module.exports = (client, guild) => {
           .addField('Owner', `${guild.owner.user.tag} \`\`(${guild.owner.user.id})\`\``)
           .setFooter(client.user.username, client.user.avatarURL)
           .setTimestamp();
-        client.channels.get('503374601892397060').send(errorEmbed);
+        //client.channels.get('503374601892397060').send(errorEmbed);
+        hook2.send(errorEmbed);
         return guild.leave(guild.id);
       }                                                            
     }

@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const web = require('../webhooks.json')
 module.exports = async (client, message, oldMessage) => { //eslint-disable-line no-unused-vars
   const memberName = message.member.user.tag;
   const memberID = message.member.id;
@@ -11,7 +12,8 @@ module.exports = async (client, message, oldMessage) => { //eslint-disable-line 
   const oldContent = message.content;
   const newContent = oldMessage.content;
   if (oldContent === newContent) return;
-  
+
+  const hook = new Discord.WebhookClient(web.messageUpdateID, web.messageUpdateToken);
   const embed = new Discord.RichEmbed()
     .setTitle('Message Edited Event')
     .setThumbnail(guildIcon)
@@ -23,5 +25,6 @@ module.exports = async (client, message, oldMessage) => { //eslint-disable-line 
     .addField('Created At', createdAt, true)
     .setFooter(client.user.username, client.user.avatarURL)
     .setTimestamp();
-  client.channels.get('503387318162292736').send(embed);
+  //client.channels.get('503387318162292736').send(embed);
+  hook.send(embed);
 };

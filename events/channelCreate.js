@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const web = require('../webhooks.json')
 module.exports = async (client, channel, guild) => { //eslint-disable-line no-unused-vars
   const channelName = await channel.name;
   const channelID = await channel.id;
@@ -7,6 +8,7 @@ module.exports = async (client, channel, guild) => { //eslint-disable-line no-un
   const guildIcon = await channel.guild.iconURL;
 
   const embed = new Discord.RichEmbed();
+  const hook = new Discord.WebhookClient(web.channelCreateID, web.channelCreateToken);
   embed.setTitle('Channel Create Event');
   embed.setThumbnail(guildIcon)
   embed.addField('Channel', `${channelName} \`(${channelID})\``);
@@ -14,5 +16,6 @@ module.exports = async (client, channel, guild) => { //eslint-disable-line no-un
   embed.setFooter(client.user.username, client.user.avatarURL);
   embed.setTimestamp();
 
-  client.channels.get('503431040451215360').send(embed);
+  //client.channels.get('503431040451215360').send(embed);
+  hook.send(embed);
 };

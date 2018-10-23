@@ -2,6 +2,7 @@
 // Note that due to the binding of client to every event, every event
 // goes `client, other, args` when this function is run.
 const Discord = require('discord.js');
+const web = require('../webhooks.json');
 module.exports = async (client, message) => {
   // It's good practice to ignore other bots. This also makes your bot ignore itself
   // and not get into a spam loop (we call that "botception").
@@ -66,7 +67,8 @@ module.exports = async (client, message) => {
   }
   // If the command exists, **AND** the user has permission, run it.
   client.logger.cmd(`[CMD] ${client.config.permLevels.find(l => l.level === level).name} ${message.author.username} (${message.author.id}) ran command ${cmd.help.name}`);
-
+  
+  const hook = new Discord.WebhookClient(web.commandLogID, web.commandLogToken);
   const embed = new Discord.RichEmbed();
   embed.setTitle('COMMAND EXECUTED');
   embed.addField('User', `${message.author.username} \`(${message.author.id})\``, true);
@@ -82,6 +84,8 @@ module.exports = async (client, message) => {
   }
   embed.setFooter(client.user.username, client.user.avatarURL);
   embed.setTimestamp();
-  client.channels.get('503391943452000257').send(embed);
+  //client.channels.get('503391943452000257').send(embed);
+  hook.send(embed);
+  
   cmd.run(client, message, args, level);
 };

@@ -1,5 +1,6 @@
 const fs = require('fs');
 const Discord = require('discord.js');
+const web = require('../webhooks.json');
 exports.run = async (client, message, args) => {
 
   fs.readFile('./allowedGuildDB.json', 'utf8', async (err, data) => { // readFile method basically allows us to read the data in that file
@@ -28,6 +29,12 @@ exports.run = async (client, message, args) => {
       else { // this case would mean that the file isn't empty
         const requiredData = JSON.parse(data);
         requiredData.allowedGuildIDs.push(guildID);
+        /*const find = client.activatedServers.get(args[1]);
+        if (find === undefined) {
+          client.activatedServers.set(args[1], [`${guildID}`]);
+        } else {
+          client.activatedServers.push(args[1], `${guildID}`);
+        }*/
         // And now we write the final data again
         const json = JSON.stringify(requiredData);
         fs.writeFile('./allowedGuildDB.json', json, 'utf8', (err) => {
@@ -40,15 +47,22 @@ exports.run = async (client, message, args) => {
         message.delete();
         message.channel.send(`✅ ***Moonglow has been activated on ${guildID} for <@!${args[1]}>***`);
         const acUser = client.users.get(args[1]).tag;
+        //const filter = (reaction) => reaction.emoji.name === '✅';
 
+        const hook = new Discord.WebhookClient(web.activationLogID, web.activationLogToken);
         const embed = new Discord.RichEmbed()
           .setTitle('SERVER ACTIVATION')
           .addField('Staff', `${message.author.tag} \`(${message.author.id})\``, true)
           .addField('Guild', guildID, true)
-          .addField('User', `${acUser} \`(${args[1]})\``)
+          .addField('User', `${acUser} \`(${args[1]})\``, true)
           .setFooter(client.user.username, client.user.avatarURL)
           .setTimestamp();
-        client.channels.get('503491110149160961').send(embed);
+        //const messageEmbed = await client.channels.get('503491110149160961').send(embed);
+        const messageEmbed = await hook.send(embed);
+        //console.log(messageEmbed)
+        await messageEmbed.react('✅');
+        //same tbh
+
 
       }
     }
