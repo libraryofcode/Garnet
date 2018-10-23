@@ -13,7 +13,7 @@ exports.run = (client, message) => {
     embed.setAuthor(`${client.user.username}`, `${client.user.avatarURL}`);
     embed.setTitle('STATISTICS');
     embed.setColor('RANDOM');
-    embed.addField('Version', '4.1.1', false);
+    embed.addField('Version', '4.3.0', false);
     embed.addField('• Memory Usage', `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB`, true);
     embed.addField('• Uptime', `${duration}`, true);
     embed.addField('• Users  ', `${client.users.size.toLocaleString()}`, true);
