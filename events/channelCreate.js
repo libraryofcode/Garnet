@@ -10,7 +10,7 @@ module.exports = async (client, channel, guild) => { //eslint-disable-line no-un
   const embed = new Discord.RichEmbed();
   const hook = new Discord.WebhookClient(web.channelCreateID, web.channelCreateToken);
   embed.setTitle('Channel Create Event');
-  embed.setThumbnail(guildIcon)
+  embed.setThumbnail(guildIcon);
   embed.addField('Channel', `${channelName} \`(${channelID})\``);
   embed.addField('Guild', `${guildName} \`(${guildID})\``);
   embed.setFooter(client.user.username, client.user.avatarURL);
