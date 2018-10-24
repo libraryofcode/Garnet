@@ -1,5 +1,5 @@
 const sentryconfig = require('../sentry.json');
-var Raven = require('raven');
+let Raven = require('raven');
 Raven.config(sentryconfig.link).install();
 module.exports = (client) => {
 
@@ -85,7 +85,7 @@ module.exports = (client) => {
     if (typeof evaled !== 'string');
     text = require('util').inspect(text, {depth: 1});
 
-    text = text; //eslint-disable-line no-self-assign
+    //text = text; //eslint-disable-line no-self-assign
     text.replace(/`/g, '`' + String.fromCharCode(8203));
     text.replace(/@/g, '@' + String.fromCharCode(8203));
     text.replace(client.token, 'Token is classfied and hidden from this field.');
