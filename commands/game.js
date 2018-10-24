@@ -61,7 +61,7 @@ exports.run = async (client, message, args) => {
       embed.addField('Details', 'No Info', true);
     }
     try {
-      if (game.state === null) embed.addField('Details', 'Unspecified', true)
+      if (game.state === null) embed.addField('Details', 'Unspecified', true);
       else 
         embed.addField('State', `${game.state}`, true);
     } catch (err) {
