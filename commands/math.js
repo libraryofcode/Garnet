@@ -19,7 +19,7 @@ exports.run = async (client, message, args) => {
   result.fields = [];
   const mathembed = new Discord.RichEmbed();
   mathembed.setTitle('Calculator');
-  mathembed.setColor('RANDOM')
+  mathembed.setColor('RANDOM');
   mathembed.setFooter(`${client.user.username}`, `${client.user.avatarURL}`);
   mathembed.addField('Input', input);
   mathembed.setTimestamp();
