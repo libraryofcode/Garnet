@@ -11,6 +11,7 @@ exports.run = async (client, message, args) => {
   const resolvedUser = (args[0] !== undefined) ? message.guild.members.get(args[0].match(/[0-9]/g).join('')) : null;
   const botuser = resolvedUser ? message.guild.members.get(resolvedUser.id) : message.member;
   const thisUser = botuser.id;
+  if (thisUser === message.author.id) return msg.edit('You cannot give a reputation point to yourself!');
   if (client.repPoints.get(thisUser) === undefined) {
     await client.repPoints.set(thisUser, 1);
     msg.edit(`***You have given a reputation point to ${botuser.user.tag}!***`);
