@@ -1,25 +1,21 @@
 exports.run = async (client, message, args) => {
-  /*const resolvedUser = (args[0] !== undefined) ? message.guild.members.get(args[0].match(/[0-9]/g).join('')) : null;
-  const botuser = resolvedUser ? message.guild.members.get(resolvedUser.id) : null;
-  if (!botuser) return message.reply('That user could not be found.');
-  const role = args.join(' ').slice(22);
-  if (!role) return message.reply('Please specify a role name.');
-  const gRole = message.guild.roles.find('name', role);
-  if (!gRole) return message.reply('I couldn\'t find that role.');
-        
-  if (botuser.roles.has(gRole.id)) return message.reply('The user specified already has that role.');
-  await(botuser.addRole(gRole.id));
-        
-  try {
-    message.delete();
-    await message.channel.send(`✅ ***Changed roles for ${botuser}, added ${gRole.name}***`);
-  } catch (e) {
-    message.channel.send(e);
+  if(!message.member.hasPermission("MANAGE_MEMBERS")) return message.reply("Sorry pal, you can't do that.");
+  let rMember = message.guild.member(message.mentions.users.first()) || message.guild.members.get(args[0]);
+  if(!rMember) return message.reply("Couldn't find that user, yo.");
+  let role = args.join(" ").slice(22);
+  if(!role) return message.reply("Specify a role!");
+  let gRole = message.guild.roles.find(`name`, role);
+  if(!gRole) return message.reply("Couldn't find that role.");
+
+  if(rMember.roles.has(gRole.id)) return message.reply("They already have that role.");
+  await(rMember.addRole(gRole.id));
+
+  try{
+    await rMember.send(`Congrats, you have been given the role ${gRole.name}`)
+  }catch(e){
+    console.log(e.stack);
+    message.channel.send(`Congrats to <@${rMember.id}>, they have been given the role ${gRole.name}. We tried to DM them, but their DMs are locked.`)
   }
-};*/
-  message.channel.send('This command is temporary disabled.');
-  throw new TypeError('This command is disabled.');
-};
 
 exports.conf = {
   enabled: false,
