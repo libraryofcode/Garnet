@@ -26,8 +26,17 @@ client.commands = new Enmap();
 client.aliases = new Enmap();
 
 
-client.settings = new Enmap({provider: new EnmapLevel({name: 'settings'})});
+client.settings = new Enmap({provider: new EnmapLevel({name: 'settings', autoFetch: true})});
 
+client.stats = new Enmap({provider: new EnmapLevel({name: 'stats', autoFetch: true, fetchAll: true})});
+
+client.activatedServers = new Enmap({provider: new EnmapLevel({name: 'activatedServers', autofetch: true, fetchAll: true})});
+
+client.repPoints = new Enmap({
+  name: 'reputation',
+  autoFetch: true,
+  fetchAll: true
+});
 
 
 const init = async () => {

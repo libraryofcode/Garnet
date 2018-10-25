@@ -12,6 +12,14 @@ module.exports = async (client, message) => {
   // If there is no guild, get default conf (DMs)
   const settings = message.settings = client.getGuildSettings(message.guild);
 
+  //if (settings.stats === true) {
+  if (client.stats.get(`${message.member.id} | ${message.guild.id}`) === undefined) {
+    client.stats.set(`${message.member.id} | ${message.guild.id}`, 1);
+  } else {
+    client.stats.inc(`${message.member.id} | ${message.guild.id}`);
+  }
+  //}
+
   // Checks if the bot was mentioned, with no message after it, returns the prefix.
   const prefixMention = new RegExp(`^<@!?${client.user.id}>( |)$`);
   if (message.content.match(prefixMention)) {
@@ -86,6 +94,6 @@ module.exports = async (client, message) => {
   embed.setTimestamp();
   //client.channels.get('503391943452000257').send(embed);
   hook.send(embed);
-  
+
   cmd.run(client, message, args, level);
 };
