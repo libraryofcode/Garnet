@@ -5,7 +5,7 @@ exports.run = async (client, message) => {
   embed.setAuthor(`${client.user.username}`, `${client.user.avatarURL}`);
   embed.setColor('RANDOM');
   embed.setDescription('This is a clone of the [Moonglow](https://github.com/FCCouncil/Moonglow) GitHub repo. Join us today, and help contribute!');
-  embed.addField('Version', '4.3.0', true);
+  embed.addField('Version', '4.5.0', true);
   embed.addField('Created At', `${client.user.createdAt.toLocaleString('en-US')}`, true);
   embed.addField('Library', '[Discord.js](https://github.com/discordjs/discord.js)', true);
   embed.addField('Language', 'JavaScript', true);
