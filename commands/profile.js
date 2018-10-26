@@ -1,11 +1,16 @@
 const Discord = require('discord.js');
 
 exports.run = async (client, message, args) => {
-  await message.channel.send(':pencil: ***Profile Card***');
+  const profileCardMessage = await message.channel.send(':pencil: ***Profile Card***');
   const msg = await message.channel.send('Loading...');
   const resolvedUser = (args[0] !== undefined) ? message.guild.members.get(args[0].match(/[0-9]/g).join('')) : null;
   const botuser = resolvedUser ? message.guild.members.get(resolvedUser.id) : message.member;
   const thisUser = botuser.id;
+
+  if (botuser.user.bot) {
+    profileCardMessage.delete();
+    return msg.edit('***Bots do not have personalized profiles, please try again.***');
+  }
 
   const myMessages = await client.stats.get(`${thisUser} | ${message.guild.id}`);
   const repPoints = await client.repPoints.get(thisUser);
