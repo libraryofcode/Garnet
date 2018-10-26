@@ -38,6 +38,17 @@ client.repPoints = new Enmap({
   fetchAll: true
 });
 
+client.userTitle = new Enmap({
+  name: 'title',
+  autoFetch: true,
+  fetchAll: true
+});
+
+client.userBio = new Enmap({
+  name: 'bio',
+  autoFetch: true,
+  fetchAll: true
+});
 
 const init = async () => {
 

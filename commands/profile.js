@@ -1,16 +1,23 @@
 const Discord = require('discord.js');
 
 exports.run = async (client, message, args) => {
+  await message.channel.send(':pencil: ***Profile Card***');
+  const msg = await message.channel.send('Loading...');
   const resolvedUser = (args[0] !== undefined) ? message.guild.members.get(args[0].match(/[0-9]/g).join('')) : null;
   const botuser = resolvedUser ? message.guild.members.get(resolvedUser.id) : message.member;
   const thisUser = botuser.id;
 
   const myMessages = await client.stats.get(`${thisUser} | ${message.guild.id}`);
   const repPoints = await client.repPoints.get(thisUser);
+  const userTitle = await client.userTitle.get(thisUser);
+  const userBio = await client.userBio.get(thisUser);
 
   const embed = new Discord.RichEmbed();
+
+  //msg2.edit(':pencil: Profile Card');
   embed.setAuthor(botuser.user.tag, botuser.user.avatarURL);
-  embed.setTitle('Profile Card');
+  if (userTitle) embed.setTitle(userTitle);
+  if (userBio) embed.setDescription(userBio);
   embed.setColor(botuser.displayHexColor);
   embed.setThumbnail(botuser.user.avatarURL);
   if (myMessages === undefined) {
@@ -30,7 +37,8 @@ exports.run = async (client, message, args) => {
   }
   embed.setFooter(client.user.username, client.user.avatarURL);
   embed.setTimestamp();
-  await message.channel.send(embed);
+  
+  await msg.edit(embed);
 };
 
 
