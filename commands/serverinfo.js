@@ -6,14 +6,14 @@ exports.run = async (client, message) => {
     message.channel.send('You are being rate limited!' + message.author);
   } else { // eslint-disable-line no-unused-vars
     const msg = await message.channel.send('Loading...');
-    async function checkBots(guild) {
+    function checkBots(guild) {
       let botCount = 0; 
       guild.members.forEach(member => { 
         if (member.user.bot) botCount++; 
       });
       return botCount; 
     }
-    async function checkMembers(guild) {
+    function checkMembers(guild) {
       let memberCount = 0;
       guild.members.forEach(member => {
         if (!member.user.bot) memberCount++; 
