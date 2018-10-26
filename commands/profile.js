@@ -1,9 +1,16 @@
 const Discord = require('discord.js');
 
-exports.run = async (client, message, args) => {
+exports.run = async (client, message, args, level) => {
   const profileCardMessage = await message.channel.send(':pencil: ***Profile Card***');
   const msg = await message.channel.send('Loading...');
   const resolvedUser = (args[0] !== undefined) ? message.guild.members.get(args[0].match(/[0-9]/g).join('')) : null;
+  if (resolvedUser)
+    try {
+      level = client.permlevel(resolvedUser.lastMessage);
+    } catch (e) {
+      level = 0;
+    }
+  const friendly = client.config.permLevels.find(l => l.level === level).name;
   const botuser = resolvedUser ? message.guild.members.get(resolvedUser.id) : message.member;
   const thisUser = botuser.id;
 
@@ -35,6 +42,7 @@ exports.run = async (client, message, args) => {
   } else {
     embed.addField('Reputation Points', repPoints, true);
   }
+  embed.addField('Acknowledgements', `${friendly}`, true);
   try {
     embed.addField('Last Seen', botuser.lastMessage.createdAt.toLocaleString('en-US'));
   } catch (err) {

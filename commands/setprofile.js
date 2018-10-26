@@ -31,5 +31,5 @@ exports.help = {
   name: 'setprofile',
   category: 'Fun',
   description: 'Allows you to edit your title or bio.',
-  usage: 'setprofile [title (New Title) **OR** [bio (New Bio)'
+  usage: 'setprofile [title (New Title)] **OR** [bio (New Bio)]'
 };
