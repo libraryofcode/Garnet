@@ -26,7 +26,7 @@ client.commands = new Enmap();
 client.aliases = new Enmap();
 
 
-client.settings = new Enmap({provider: new EnmapLevel({name: 'settings', autoFetch: true})});
+client.settings = new Enmap({name: 'settings', autoFetch: true});
 
 client.stats = new Enmap({name: 'stats', autoFetch: true, fetchAll: true});
 
