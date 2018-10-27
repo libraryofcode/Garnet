@@ -12,7 +12,11 @@ exports.run = (client, message) => {
     const embed = new Discord.RichEmbed();
     embed.setAuthor(`${client.user.username}`, `${client.user.avatarURL}`);
     embed.setTitle('STATISTICS');
-    embed.setColor(message.guild.me.displayHexColor);
+    if (message.guild) {
+      embed.setColor(message.guild.me.displayHexColor);
+    } else {
+      embed.setColor('RANDOM');
+    }
     embed.addField('Version', '4.5.0', false);
     embed.addField('• Memory Usage', `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB`, true);
     embed.addField('• Uptime', `${duration}`, true);

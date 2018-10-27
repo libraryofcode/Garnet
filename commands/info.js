@@ -3,7 +3,11 @@ exports.run = async (client, message) => {
   const msg = await message.channel.send('Loading info...');
   const embed = new Discord.RichEmbed();
   embed.setAuthor(`${client.user.username}`, `${client.user.avatarURL}`);
-  embed.setColor(message.guild.me.displayHexColor);
+  if (message.guild) {
+    embed.setColor(message.guild.me.displayHexColor);
+  } else {
+    embed.setColor('RANDOM');
+  }
   embed.setDescription('This is a clone of the [Moonglow](https://github.com/FCCouncil/Moonglow) GitHub repo. Join us today, and help contribute!');
   embed.addField('Version', '4.5.0', true);
   embed.addField('Created At', `${client.user.createdAt.toLocaleString('en-US')}`, true);
