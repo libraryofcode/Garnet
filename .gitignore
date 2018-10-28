@@ -11,6 +11,7 @@ test.js
 musicsettings.json
 sentry.json
 webhooks.json
+config.js
 
 
 # Runtime data

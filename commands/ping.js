@@ -1,19 +1,15 @@
-exports.run = async (client, message) => {
-  const msg = await message.channel.send('🏓 Pong!');
-    
-  msg.edit(`🏓 Pong! \`${msg.createdTimestamp - message.createdTimestamp}ms\``);
-};
-
-exports.conf = {
-  enabled: true,
-  guildOnly: false,
-  aliases: [],
-  permLevel: 'Standard User'
-};
-  
-exports.help = {
+//const client = require('../../client.js');
+//const chalk = require('chalk');
+module.exports = {
   name: 'ping',
-  category: 'Bot Information',
-  description: 'Pings the bot, without the embed.',
-  usage: 'ping'
-};
+  action: async (msg) => {
+    const then = Date.now();
+    const newmsg = await msg.channel.createMessage('Pong..');
+    const diff = Date.now() - then;
+    await newmsg.edit(`Pong! \`${diff}ms\``);
+  },
+  options: {
+    'description': 'Get the bot\'s response time.',
+    'fullDescription': 'Get the bot\'s ping / response time.'
+  }
+};   

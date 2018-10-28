@@ -1,164 +1,198 @@
-const Discord = require('discord.js');
-const talkedRecently = new Set();
-exports.run = async (client, message) => {
-  if (talkedRecently.has(message.author.id) && !message.member.roles.has('490364533550874644')) {
+const client = require('../client.js');
+module.exports = {
+  name: 'serverinfo',
+  action: async (msg, message, channel) => { //eslint-disable-line
 
-    message.channel.send('You are being rate limited!' + message.author);
-  } else { // eslint-disable-line no-unused-vars
-    const msg = await message.channel.send('Loading...');
-    function checkBots(guild) {
+
+    function checkBots(msg, channel) { //eslint-disable-line
       let botCount = 0; 
-      guild.members.forEach(member => { 
+      msg.channel.guild.members.forEach(member => { 
         if (member.user.bot) botCount++; 
       });
       return botCount; 
     }
-    function checkMembers(guild) {
+    function checkMembers(msg, channel) { //eslint-disable-line
       let memberCount = 0;
-      guild.members.forEach(member => {
+      msg.channel.guild.members.forEach(member => {
         if (!member.user.bot) memberCount++; 
       });
+
       return memberCount;
     }
 
-    const guild = message.guild;
-    function checkRegion(message, guild) { // eslint-disable-line no-unused-vars
+    const guild = msg.channel.guild;
+    function checkRegion(msg, channel) { // eslint-disable-line no-unused-vars
+      const server = msg.channel.guild;
       const regionArray = [];
-      if (message.guild.region === 'us-east' ) {
+      if (server.region === 'us-east' ) {
         regionArray.push('US East');
       }
-      if (message.guild.region === 'vip-us-east') {
+      if (server.region === 'vip-us-east') {
         regionArray.push('US East `VIP`');
       }
-      if (message.guild.region === 'us-south') {
+      if (server.region === 'us-south') {
         regionArray.push('US South');
       }
-      if (message.guild.region === 'vip-us-south') {
+      if (server.region === 'vip-us-south') {
         regionArray.push('US South `VIP`');
       }
-      if (message.guild.region === 'us-west') {
+      if (server.region === 'us-west') {
         regionArray.push('US West');
       }
-      if (message.guild.region === 'vip-us-west') {
+      if (server.region === 'vip-us-west') {
         regionArray.push('US West `VIP`');
       }
-      if (message.guild.region === 'us-central') {
+      if (server.region === 'us-central') {
         regionArray.push('US Central');
       }
-      if (message.guild.region === 'vip-us-central') {
+      if (server.region === 'vip-us-central') {
         regionArray.push('US Central `VIP`');
       }
-      if (message.guild.region === 'sydney') {
+      if (server.region === 'sydney') {
         regionArray.push('Sydney');
       }
-      if (message.guild.region === 'vip-sydney') {
+      if (server.region === 'vip-sydney') {
         regionArray.push('Sydney `VIP`');
       }
-      if (message.guild.region === 'southafrica') {
+      if (server.region === 'southafrica') {
         regionArray.push('South Africa');
       }
-      if (message.guild.region === 'vip-southafrica') {
+      if (server.region === 'vip-southafrica') {
         regionArray.push('South Africa `VIP`');
       }
-      if (message.guild.region === 'singapore') {
+      if (server.region === 'singapore') {
         regionArray.push('Singapore');
       }
-      if (message.guild.region === 'vip-singapore') {
+      if (server.region === 'vip-singapore') {
         regionArray.push('Singapore `VIP`');
       }
-      if (message.guild.region === 'russia') {
+      if (server.region === 'russia') {
         regionArray.push('Russia');
       }
-      if (message.guild.region === 'vip-russia') {
+      if (server.region === 'vip-russia') {
         regionArray.push('Russia `VIP`');
       }
-      if (message.guild.region === 'japan') {
+      if (server.region === 'japan') {
         regionArray.push('Japan');
       }
-      if (message.guild.region === 'vip-japan') {
+      if (server.region === 'vip-japan') {
         regionArray.push('Japan `VIP`');
       }
-      if (message.guild.region === 'hongkong') {
+      if (server.region === 'hongkong') {
         regionArray.push('Hong Kong');
       }
-      if (message.guild.region === 'vip-hongkong') {
+      if (server.region === 'vip-hongkong') {
         regionArray.push('Hong Kong `VIP`');
       }
-      if (message.guild.region === 'eu-west') {
+      if (server.region === 'eu-west') {
         regionArray.push('EU West');
       }
-      if (message.guild.region === 'vip-eu-west') {
+      if (server.region === 'vip-eu-west') {
         regionArray.push('EU West `VIP`');
       }
-      if (message.guild.region === 'eu-central') {
+      if (server.region === 'eu-central') {
         regionArray.push('EU Central');
       }
-      if (message.guild.region === 'vip-eu-central') {
+      if (server.region === 'vip-eu-central') {
         regionArray.push('EU Central `VIP`');
       }
-      if (message.guild.region === 'brazil') {
+      if (server.region === 'brazil') {
         regionArray.push('Brazil');
       }
-      if (message.guild.region === 'vip-brazil') {
+      if (server.region === 'vip-brazil') {
         regionArray.push('Brazil `VIP`');
       }
 
       return regionArray;
     }
-    const ownerUsername = message.guild.members.get(message.guild.owner.id).user.username;
-    const ownerDiscrim = message.guild.members.get(message.guild.owner.id).user.discriminator;
-    const embed = new Discord.RichEmbed()
-      //.setAuthor(`${client.user.username}`, `${client.user.avatarURL}`)
-      .setAuthor(message.guild.name, message.guild.iconURL)
-      .setTitle('Server Information')
-      .setThumbnail(message.guild.iconURL)
-      //.setColor(message.member.displayColor)
-      .addField('Server Owner', `${ownerUsername}#${ownerDiscrim}`, true)
-      .addField('Server Region', `${checkRegion(message, guild)}`, true)
-      .addField('Created', `${message.guild.createdAt.toLocaleString('en-US')}`, true)
-      .addField('Roles', `${message.guild.roles.size}`, true)
-      .addField('Emojis', message.guild.emojis.size, true)
-      .addField('Members', message.guild.memberCount, true)
-      .addField('Humans', checkMembers(message.guild), true)
-      .addField('Bots', checkBots(message.guild), true);
-    if (message.guild.verificationLevel === 0) {
-      embed.addField('Verification Level', 'None',true);
+    const ownerUsername = msg.channel.guild.members.get(msg.channel.guild.ownerID).user.username;
+    const ownerDiscrim = msg.channel.guild.members.get(msg.channel.guild.ownerID).user.discriminator;
+
+    const thisVL = msg.channel.guild.verificationLevel;
+    let mVL;
+    if (thisVL === 0) {
+      mVL = 'None';
     }
-    if (message.guild.verificationLevel === 1) {
-      embed.addField('Verification Level', 'Low',true );
+    if (thisVL === 1) {
+      mVL = 'Low';
     }
-    if (message.guild.verificationLevel === 2) {
-      embed.addField('Verification Level', 'Medium', true);
+    if (thisVL === 2) {
+      mVL = 'Medium';
     }
-    if (message.guild.verificationLevel === 3) {
-      embed.addField('Verification Level', 'Medium-High', true);
+    if (thisVL === 3) {
+      mVL = 'Medium High';
     }
-    if (message.guild.verificationLevel === 4) {
-      embed.addField('Verification Level', 'High', true);
+    if (thisVL === 4) {
+      mVL = 'High';
     }
-    embed.setTimestamp();
-    //.addField('Verification Level', message.guild.verificationLevel, true)
-    embed.setFooter(`${client.user.username} | Server ID: ${message.guild.id}`, client.user.avatarURL);
-    msg.edit(embed);
-    talkedRecently.add(message.author.id);
-    setTimeout(() => {
-    // Removes the user from the set after a minute
-      talkedRecently.delete(message.author.id);
-    }, 2000);
+
+    const embed = {
+      title: 'Server Info',
+      author: {
+        name: client.user.username,
+        icon_url: client.user.avatarURL
+      },
+      thumbnail: {url: msg.channel.guild.iconURL}, 
+      fields: [
+        {
+          name: 'Server Owner',
+          value: `${ownerUsername}#${ownerDiscrim}`,
+          inline: true
+        }, 
+        {
+          name: 'Server Region',
+          value: `${checkRegion(msg, guild)}`,
+          inline: true
+        },
+        {
+          name: 'Created',
+          value: new Date(msg.channel.guild.createdAt).toLocaleString('en-US'),
+          inline: true 
+        }, 
+        {
+          name: 'Roles',
+          value: msg.channel.guild.roles.size,
+          inline: true
+        },
+        {
+          name: 'Emojis',
+          value: msg.channel.guild.emojis.length,
+          inline: true
+        },
+        {
+          name: 'Members',
+          value: msg.channel.guild.memberCount,
+          inline: true
+        },
+        {
+          name: 'Humans',
+          value: checkMembers(msg),
+          inline: true
+        },
+        {
+          name: 'Bots',
+          value: checkBots(msg),
+          inline: true
+        },
+        {
+          name: 'Verification Level',
+          value: mVL,
+          inline: true
+        }
+      ],
+      timestamp: new Date(msg.createdAt),
+      footer: {
+        text: client.user.username,
+        icon_url: client.user.avatarURL
+      }
+    };
+
+    msg.channel.createMessage({embed});
+
+  },
+  options: {
+    'description': 'Provides server information.',
+    'fullDescription': 'This command provides server information for the guild it was triggered in.',
+    'usage': 'serverinfo'
   }
-};
-
-exports.conf = {
-  enabled: true,
-  guildOnly: true,
-  aliases: [],
-  permLevel: 'Standard User'
-};
-  
-exports.help = {
-  name: 'serverinfo',
-  category: 'Misc',
-  description: 'Provides information for the server.',
-  usage: 'serverinfo'
-};
-
+};  
