@@ -27,16 +27,17 @@ module.exports = {
       data = thisWin.distro;
       osIcon = 'https://cdn.discordapp.com/attachments/491024501971222538/491024518761021460/Windows-Logo.png';
     }
-    if (os.platform === 'linux') {
+    if (os.platform == 'linux') {
       data = 'Linux';
       osIcon = 'https://cdn.discordapp.com/attachments/491024501971222538/491024720733536277/LINUX-LOGO.png';
     }
-    if (os.platform === 'darwin') {
+    if (os.platform == 'darwin') {
       data = osName(os.platform(), os.release());
       osIcon = 'https://cdn.discordapp.com/attachments/491024501971222538/491024928028491779/2000px-OS_X_El_Capitan_logo.png';
     }
     if (os.platform === null || undefined) {
       data = 'Unknown';
+      osIcon = 'https://cdn.discordapp.com/emojis/461561234584502291.png?v=1'
     }
 
 
