@@ -42,6 +42,7 @@
     "mocha": "^5.2.0",
     "moment": "^2.22.2",
     "moment-duration-format": "^2.2.2",
+    "node-base64-image": "^1.0.5",
     "node-opus": "^0.3.0",
     "os-name": "^2.0.1",
     "passport": "^0.4.0",
