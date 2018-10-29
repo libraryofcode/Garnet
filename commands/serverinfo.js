@@ -2,6 +2,7 @@ const client = require('../client.js');
 module.exports = {
   name: 'serverinfo',
   action: async (msg, message, channel) => { //eslint-disable-line
+    msg.channel.sendTyping();
 
 
     function checkBots(msg, channel) { //eslint-disable-line
@@ -129,10 +130,10 @@ module.exports = {
     const embed = {
       title: 'Server Info',
       author: {
-        name: client.user.username,
-        icon_url: client.user.avatarURL
+        name: msg.channel.guild.name,
+        icon_url: msg.channel.guild.iconURL
       },
-      thumbnail: {url: msg.channel.guild.iconURL}, 
+      //thumbnail: {url: msg.channel.guild.iconURL}, 
       fields: [
         {
           name: 'Server Owner',

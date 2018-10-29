@@ -4,7 +4,7 @@ module.exports = {
   name: 'ping',
   action: async (msg) => {
     const then = Date.now();
-    const newmsg = await msg.channel.createMessage('Pong..');
+    const newmsg = await msg.channel.createMessage('Pong!');
     const diff = Date.now() - then;
     await newmsg.edit(`Pong! \`${diff}ms\``);
   },

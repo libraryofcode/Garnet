@@ -19,7 +19,7 @@ module.exports = {
     } catch (err) {
       const errorEmbed = {
         title: 'JavaScript Eval',
-        color: '#FF0000',
+        color: 16711680,
         description: `\`\`\`xl\n${err}\`\`\``,
         timestamp: new Date(msg.createdAt),
         footer: {
@@ -27,7 +27,7 @@ module.exports = {
           icon_url: client.user.avatarURL
         }
       };
-      return msg.channel.createMessage({embed: {errorEmbed}});
+      return msg.channel.createMessage({embed: errorEmbed});
     }
     if (typeof evaled === 'string') {
       evaled = evaled.replace(client.token, '[TOKEN]');
@@ -40,7 +40,7 @@ module.exports = {
     }
     const successEmbed = {
       title: 'JavaScript Eval',
-      color: '#00FF00',
+      color: 65280,
       description: `\`\`\`js\n${evaled}\`\`\``,
       timestamp: new Date(msg.createdAt),
       footer: {
@@ -48,7 +48,7 @@ module.exports = {
         icon_url: client.user.avatarURL
       }
     };
-    return msg.channel.createMessage({embed: {successEmbed}});
+    return msg.channel.createMessage({embed: successEmbed});
   },
 
   options: {
