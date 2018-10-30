@@ -12,7 +12,7 @@ const eris = require('eris');
 
 const client = new eris.CommandClient(config.token, {
   autoreconnect: true,
-  getAllUsers: true,
+  getAllUsers: false,
   restMode: true,
   defaultImageFormat: 'png'
 }, {

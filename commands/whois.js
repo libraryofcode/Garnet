@@ -20,8 +20,7 @@ module.exports = {
 
     const millisJoined = new Date().getTime() - new Date (botuser.joinedAt).getTime();
     const dj = millisJoined / 1000 / 60 / 60 / 24;
-    
-    let thisPerms;
+
     function checkUserPermission(botuser, msg) {
       const arrayOfPerms = [];
       if (msg.channel.guild.ownerID === botuser.id) {
@@ -68,34 +67,23 @@ module.exports = {
       return arrayOfPerms;
     }
 
-    try { 
-      if (checkUserPermission(botuser, msg).length > 0) {
-        thisPerms = 'Unspecified';
-      } else {
-        thisPerms = checkUserPermission(botuser, msg);
-      }
-    } catch (err) {
-      'Unspecified';
-    }
-    
-    let staff;
     function staffFunction(botuser) {
       const staffArray = [];
 
       if (botuser.id === '278620217221971968') {
-        staffArray.push('Moonglow Founder & Creator');
+        staffArray.push('Founder & Creator');
       }
-      if (botuser.id === '278620217221971968' || '239261547959025665' || '282586181856657409' || '155698776512790528') {
-        staffArray.push('Moonglow Developer');
+      if (botuser.id == '278620217221971968' || '239261547959025665' || '282586181856657409' || '155698776512790528') {
+        staffArray.push('Developer');
       }
-      if (botuser.id === '213632190557192192' || '278620217221971968' || '239261547959025665' || '282586181856657409' || '155698776512790528') {
-        staffArray.push('Moonglow Community Administrator');
+      if (botuser.id == '213632190557192192' || '278620217221971968' || '239261547959025665' || '282586181856657409' || '155698776512790528') {
+        staffArray.push('Community Administrator');
       }
-      if (botuser.id === '213632190557192192' || '278620217221971968' || '454749660041707531' || '310092788630945793' || '282586181856657409' || '427479645395353600' || '155698776512790528') {
-        staffArray.push('Moonglow Support');
+      if (botuser.id == '213632190557192192' || '278620217221971968' || '454749660041707531' || '310092788630945793' || '282586181856657409' || '427479645395353600' || '155698776512790528') {
+        staffArray.push('System Support & Assistance');
       }
-      if (botuser.id === '213632190557192192' || '239261547959025665' || '154497072148643840' || '282586181856657409' || '156450671338586112' || '155698776512790528') {
-        staffArray.push('Moonglow Contributor');
+      if (botuser.id == '213632190557192192' || '239261547959025665' || '154497072148643840' || '282586181856657409' || '156450671338586112' || '155698776512790528') {
+        staffArray.push('Contributor');
       }
 
       return staffArray;
@@ -103,16 +91,16 @@ module.exports = {
 
     const joinPosition1 = msg.channel.guild.members.map(i => i).sort((a, b) => a.joinedAt - b.joinedAt).indexOf(botuser);
     
-    try {
-      if (staffFunction(botuser).length > 0) {
-        return;
-      } else {
-        staff = staffFunction(botuser);
-      }
-    } catch (err) {
-      return;
+    let aPerms;
+    if (botuser.permission.has('manageGuild')) {
+      aPerms = 'Server Manager';
+    } 
+    if (botuser.permission.has('administrator')) {
+      aPerms = 'Server Administrator';
     }
-
+    if (botuser.id === msg.channel.guild.ownerID) {
+      aPerms = 'Server Owner';
+    }
     /*let highestRole;
     try {
       highestRole = botuser.roles.map(i => msg.channel.guild.roles.get(i)).filter(i => i.color).sort(function(a,b) { return b.position - a.position;})[0].color;
@@ -135,7 +123,7 @@ module.exports = {
     * 
     * EMBED EMBED EMBED EMBED
     * */
-
+ 
     const embed = {
       author: {
         name: botuser.username,
@@ -162,20 +150,20 @@ module.exports = {
           name: 'Playing',
           value: gameName,
           inline: true
-        },
+        }, 
         {
           name: 'Key Permissions',
-          value: thisPerms,
+          value: `${checkUserPermission(botuser, msg).join(', ')}`,
           inline: true
         },
         {
           name: 'Acknowledgements',
-          value: 'NaN',
+          value: `${aPerms}`,
           inline: true
         },
         {
           name: 'Moonglow Team',
-          value: staff,
+          value: `${staffFunction(botuser).join(', ')}`,
           inline: true
         }
       ],
@@ -185,8 +173,9 @@ module.exports = {
         icon_url: client.user.avatarURL
       }
     };
-
-    msg.channel.createMesasge({embed: embed});
+    
+    //console.log(embed);
+    msg.channel.createMessage({embed: embed});
 
 
 
