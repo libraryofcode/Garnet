@@ -152,7 +152,7 @@ module.exports = {
         inline: true
       })
     }
-    if (!aPerms = 'none') {
+    if (!aPerms == 'none') {
       fields.push({
         name: 'Acknowledgements',
         value: `${aPerms}`,
