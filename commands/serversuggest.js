@@ -32,7 +32,7 @@ exports.run = async (client, message, args) => {
   setTimeout(() => {
   // Removes the user from the set after a minute
     cooldown.delete(message.author.id);
-  }, 600000);
+  }, 20000);
 };
 
 exports.conf = {
