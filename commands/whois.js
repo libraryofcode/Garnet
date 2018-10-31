@@ -73,16 +73,16 @@ module.exports = {
       if (botuser.id === '278620217221971968') {
         staffArray.push('Founder & Creator');
       }
-      if (['278620217221971968', '239261547959025665', '282586181856657409', '155698776512790528'].indexOf(botuser.id) > 0) {
+      if (['278620217221971968', '239261547959025665', '282586181856657409', '155698776512790528'].indexOf(botuser.id) >= 0) {
         staffArray.push('Developer');
       }
       if (['213632190557192192', '278620217221971968', '239261547959025665', '282586181856657409', '155698776512790528', '233667448887312385'].indexOf(botuser.id) > 0) {
         staffArray.push('Community Administrator');
       }
       if (['213632190557192192', '278620217221971968', '454749660041707531', '310092788630945793', '282586181856657409', '427479645395353600', '155698776512790528', '233667448887312385'].indexOf(botuser.id) > 0) {
-        staffArray.push('System Support & Assistance');
+        staffArray.push('Support & Assistance');
       }
-      if (['213632190557192192', '239261547959025665', '154497072148643840', '282586181856657409', '156450671338586112', '155698776512790528'].indexOf(botuser.id) > 0) {
+      if (['213632190557192192', '239261547959025665', '154497072148643840', '282586181856657409', '156450671338586112', '155698776512790528'].indexOf(botuser.id) >= 0) {
         staffArray.push('Contributor');
       }
 
@@ -101,13 +101,6 @@ module.exports = {
     if (botuser.id === msg.channel.guild.ownerID) {
       aPerms = 'Server Owner';
     }
-    /*let highestRole;
-    try {
-      highestRole = botuser.roles.map(i => msg.channel.guild.roles.get(i)).filter(i => i.color).sort(function(a,b) { return b.position - a.position;})[0].color;
-    } catch (err) {
-      highestRole = 0x000000;
-    }*/
-
     const joinPosition3 = joinPosition1 + 1;
 
     let gameName;
@@ -116,13 +109,6 @@ module.exports = {
     } catch (err) {
       gameName = 'Unspecified';
     }
-
-    /*
-     *
-     *
-     * 
-     * EMBED EMBED EMBED EMBED
-     * */
     const fields = [
       {
         name: 'Joined Server At',

@@ -22,6 +22,7 @@
   "dependencies": {
     "@sentry/node": "^4.1.1",
     "axios": "^0.18.0",
+    "baseconvert": "^1.0.0",
     "chalk": "^2.4.1",
     "dateformat": "^3.0.3",
     "discord.js": "^11.4.2",
@@ -34,6 +35,7 @@
     "express-session": "^1.15.6",
     "ffmpeg-binaries": "^4.0.0",
     "helmet": "^3.14.0",
+    "hex2dec": "^1.1.0",
     "jshint": "^2.9.6",
     "lavalink": "^2.2.0",
     "marked": "^0.5.1",
