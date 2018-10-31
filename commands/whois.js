@@ -76,10 +76,10 @@ module.exports = {
       if (['278620217221971968', '239261547959025665', '282586181856657409', '155698776512790528'].indexOf(botuser.id) > 0) {
         staffArray.push('Developer');
       }
-      if (['213632190557192192', '278620217221971968', '239261547959025665', '282586181856657409', '155698776512790528'].indexOf(botuser.id) > 0) {
+      if (['213632190557192192', '278620217221971968', '239261547959025665', '282586181856657409', '155698776512790528', '233667448887312385'].indexOf(botuser.id) > 0) {
         staffArray.push('Community Administrator');
       }
-      if (['213632190557192192', '278620217221971968', '454749660041707531', '310092788630945793', '282586181856657409', '427479645395353600', '155698776512790528'].indexOf(botuser.id) > 0) {
+      if (['213632190557192192', '278620217221971968', '454749660041707531', '310092788630945793', '282586181856657409', '427479645395353600', '155698776512790528', '233667448887312385'].indexOf(botuser.id) > 0) {
         staffArray.push('System Support & Assistance');
       }
       if (['213632190557192192', '239261547959025665', '154497072148643840', '282586181856657409', '156450671338586112', '155698776512790528'].indexOf(botuser.id) > 0) {
@@ -123,7 +123,8 @@ module.exports = {
      * 
      * EMBED EMBED EMBED EMBED
      * */
-    let fields = [{
+    const fields = [
+      {
         name: 'Joined Server At',
         value: `${new Date (botuser.joinedAt).toLocaleString('en-US')} | ${dj.toFixed(0)} Days Ago`,
         inline: true
@@ -144,28 +145,41 @@ module.exports = {
         inline: true
       }
     ];
+
+    if (msg.member.roles) {
+      const roleMap = botuser.roles.map(i => msg.channel.guild.roles.get(i)).map(i => i.mention).join(', ');
+    
+      fields.push({
+        name: `Roles [${msg.member.roles.length}]`,
+        value: roleMap,
+        inline: true
+      });
+    }
     
     if (checkUserPermission(botuser, msg).length) {
       fields.push({
         name: 'Key Permissions',
         value: `${checkUserPermission(botuser, msg).join(', ')}`,
         inline: true
-      })
+      });
     }
     if (aPerms !== 'none') {
       fields.push({
         name: 'Acknowledgements',
         value: `${aPerms}`,
         inline: true
-      })
+      });
     }
     if (staffFunction(botuser).length) {
       fields.push({
         name: 'Moonglow Team',
         value: `${staffFunction(botuser).join(', ')}`,
         inline: true
-      })
+      });
     }
+
+
+    const highestRole = botuser.roles.map(i => msg.channel.guild.roles.get(i)).filter(i => i.color).sort(function(a,b) { return b.position - a.position;})[0].color;
     
     const embed = {
       author: {
@@ -176,6 +190,7 @@ module.exports = {
         url: botuser.avatarURL
       },
       fields: fields,
+      color: highestRole,
       timestamp: new Date(msg.createdAt),
       footer: {
         text: `${client.user.username} | User ID: ${botuser.id}`,
