@@ -53,7 +53,7 @@ module.exports = {
         unloadSubcommands(args);
         registerSubcommands(c, cmd);
       };
-      return m.edt(`[SUCCESS] Reloaded command \`${args[0]}\``);
+      return m.edit(`[SUCCESS] Reloaded command \`${args[0]}\``);
     } catch (err) {
       return m.edit(`Error while loading command \`${args[0]}\`!\n\`\`\`xl\n${err}\`\`\``);
     };
