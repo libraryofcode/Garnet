@@ -129,24 +129,14 @@ module.exports = {
         name: 'Playing',
         value: gameName,
         inline: true
+      },
+      {
+        name: `Roles [${botuser.roles.length}]`,
+        value: botuser.roles.length > 0 ? botuser.roles.map(i => msg.channel.guild.roles.get(i)).map(i => i.mention).join(', ') : 'No Roles',
+        inline: true
       }
     ];
 
-    if (msg.member.roles) {
-      const roleMap = botuser.roles.length > 0 ? botuser.roles.map(i => msg.channel.guild.roles.get(i)).map(i => i.mention).join(', ') : 'No Roles';
-    
-      fields.push({
-        name: `Roles [${botuser.roles.length}]`,
-        value: roleMap,
-        inline: true
-      });
-    } else if (!msg.member.roles) {
-      fields.push({
-        name: 'Roles',
-        value: 'None',
-        inline: true
-      });
-    }
     
     if (checkUserPermission(botuser, msg).length) {
       fields.push({
