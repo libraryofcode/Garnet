@@ -36,7 +36,7 @@ module.exports = {
                   });
                 }
               } catch (e) {
-                return m.edit(`Error with unloading command \`${subcmd}\`\n\`\`\`xl\n${err}\`\`\``);
+                return m.edit(`Error with unloading command \`${args[0]}\`\n\`\`\`xl\n${err}\`\`\``);
               };
             };
           });
