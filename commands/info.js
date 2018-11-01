@@ -24,7 +24,7 @@ module.exports = {
         },
         {
           name: 'Library',
-          value: '[eris](https://github.com/abalabahaha/eris)',
+          value: '[Eris](https://github.com/abalabahaha/eris)',
           inline: true
         },
         {
