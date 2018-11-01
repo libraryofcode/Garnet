@@ -1,22 +1,62 @@
 //const config = require('../config.js');
 const client = require('../client.js');
-const chalk = require('chalk');
+const reload = require('require-reload')(require);
+const unload = require('un-Require');
+const fs = require('fs');
 
 module.exports = {
   name: 'reload',
   action: async (msg, args) => {
     msg.channel.sendTyping();
     const m = await client.createMessage(msg.channel.id, '[PENDING] Reloading...');
-    try { 
-      const props = require(__dirname + `/${args[0]}.js`);
-      await client.unregisterCommand(args[0]);
-      await delete require.cache[require.resolve(`./${args[0]}.js`)];
-      await client.registerCommand(props.name, props.action, props.options);
-      console.log(chalk.red(`[ECC] Successfully reloaded ${args[0]}`));
-      m.edit(`[SUCCESS] Reloaded \`${args[0]}\``);
+    if(args.length > 0) {
+      if(/\s/.test(args.join(' '))) {
+        return msg.channel.createMessage('A command can\'t contain spaces!');
+      };
+      if(args[0].includes('/')) {
+        return msg.channel.createMessage('A command can\'t contain illegal characters (`/`).')
+      };
+    };
+    try {
+      client.unregisterCommand(args[0]);
+      let c = reload(`./${args[0]}`);
+      if(c.enabled && !c.isSubcommand) {
+        let cmd = bot.registerCommand(c.label, c.action, c.options);
+        
+        function unloadSubcommands(args) {
+          fs.readdir('./commands', async (err, files) => {
+            if(err) {
+              return m.edit(`Oh shit, an error. ${err}`)
+            } else {
+              try {
+                let subcmds = files.filter(f => f.includes(`${args[0]}_`));
+                if(subcmds.length > 0) {
+                  subcmds.forEach((subcmd) => {
+                    unload(require.resolve('./' + subcmd));
+                  });
+                }
+              } catch (e) {
+                return m.edit(`Error with unloading command \`${subcmd}\`\n\`\`\`xl\n${err}\`\`\``);
+              };
+            };
+          });
+        };
+        function registerSubcommands(cmd, parent) {
+          cmd.subcommands = cmd.subcommands || [];
+          cmd.subcommands.forEach((subcmd) => {
+            if(subcmd.enabled) {
+              let c = parent.registerSubcommand(subcmd.label, subcmd.action, subcmd.options);
+              registerSubcommands(subcmd, c);
+            };
+          });
+        };
+        unloadSubcommands(args);
+        registerSubcommands(c, cmd);
+      };
+      return m.edt(`[SUCCESS] Reloaded command \`${args[0]}\``);
     } catch (err) {
-      m.edit(`\`\`\`xl\n${err}\`\`\``);
-    }
+      return m.edit(`Error while loading command \`${args[0]}\`!\n\`\`\`xl\n${err}\`\`\``);
+    };
   },
   options: {
     'description': 'Reloads the specified command.',
