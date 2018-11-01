@@ -133,7 +133,7 @@ module.exports = {
       {
         name: `Roles [${botuser.roles.length}]`,
         value: botuser.roles.length > 0 ? botuser.roles.map(i => msg.channel.guild.roles.get(i)).map(i => i.mention).join(', ') : 'No Roles',
-        inline: true
+        inline: false
       }
     ];
 
