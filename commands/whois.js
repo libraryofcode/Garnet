@@ -133,7 +133,7 @@ module.exports = {
     ];
 
     if (msg.member.roles) {
-      const roleMap = botuser.roles.map(i => msg.channel.guild.roles.get(i)).map(i => i.mention).join(', ');
+      const roleMap = botuser.roles.length > 0 ? botuser.roles.map(i => msg.channel.guild.roles.get(i)).map(i => i.mention).join(', ') : 'No Roles';
     
       fields.push({
         name: `Roles [${botuser.roles.length}]`,
@@ -171,10 +171,10 @@ module.exports = {
     }
 
     let highestRole;
-    if (botuser.roles <= 0) {
+    if (botuser.roles.length <= 0) {
       highestRole === 0xFF0000;
     } else {
-      highestRole = botuser.roles.map(i => msg.channel.guild.roles.get(i)).filter(i => i.color).sort(function(a,b) { return b.position - a.position;})[0].color;
+      highestRole = botuser.roles.map(i => msg.channel.guild.roles.get(i)).filter(i => i.color).sort(function(a,b) { return b.position - a.position})[0].color;
     }
     
     const embed = {
