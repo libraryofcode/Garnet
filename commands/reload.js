@@ -21,7 +21,7 @@ module.exports = {
       client.unregisterCommand(args[0]);
       let c = reload(`./${args[0]}`);
       if(c.enabled && !c.isSubcommand) {
-        let cmd = bot.registerCommand(c.label, c.action, c.options);
+        let cmd = client.registerCommand(c.label, c.action, c.options);
         
         function unloadSubcommands(args) {
           fs.readdir('./commands', async (err, files) => {
