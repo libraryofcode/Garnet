@@ -19,7 +19,8 @@ exports.run = async (client, message, args, level) => {
       } catch (e) {
         level = 0;
       }
-    const msg = await message.channel.send('Loading...');
+    //const msg = await message.channel.send('Loading...');
+    message.channel.startTyping();
     try {
       const friendly = client.config.permLevels.find(l => l.level === level).name;
       const botuser = resolvedUser ? message.guild.members.get(resolvedUser.id) : message.member;
@@ -125,10 +126,15 @@ exports.run = async (client, message, args, level) => {
       if (bot == 'Yes') {
         embed.addField('Bot', `${bot}`, true);
       }
-      msg.edit(embed);
+      message.channel.send(embed);
+      setTimeout(() => {
+        // Removes the user from the set after a minute
+        message.channel.stopTyping();
+      }, 1000);
     } catch (err) {
-      msg.edit('EXCPT*- ' +
+      message.channel.send('EXCPT*- ' +
       err);
+      message.channel.stopTyping();
     }
     talkedRecently.add(message.author.id);
     setTimeout(() => {
