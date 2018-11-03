@@ -45,6 +45,6 @@ exports.conf = {
 exports.help = {
   name: 'serversuggest',
   category: 'settings',
-  description: 'Send a suggestion for the FC Server.',
+  description: 'Send a suggestion for the LoC Server.',
   usage: 'suggest [..suggestion]'
 };
