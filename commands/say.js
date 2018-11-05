@@ -11,7 +11,7 @@ exports.conf = {
   enabled: true,
   guildOnly: true,
   aliases: [],
-  permLevel: 'Server Moderator'
+  permLevel: 'Systems Developer'
 };
       
 exports.help = {
