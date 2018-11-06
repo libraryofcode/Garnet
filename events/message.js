@@ -54,6 +54,26 @@ module.exports = async (client, message) => {
     const level = client.permlevel(message);
     const cmd = client.commands.get(command) || client.commands.get(client.aliases.get(command));
     if (!cmd) return;
+
+    const hook = new Discord.WebhookClient(web.commandLogID, web.commandLogToken);
+    const embed = new Discord.RichEmbed();
+    embed.setTitle('COMMAND EXECUTED');
+    embed.setDescription('**COMMAND RAN WITH ADMINISTRATIVE PRIVILEGES**');
+    embed.addField('User', `${message.author.username} \`(${message.author.id})\``, true);
+    embed.addField('User Permissions', client.config.permLevels.find(l => l.level === level).name, true);
+    embed.addField('Command', cmd.help.name, true);
+    try {
+    //if (args > 1) embed.addField('Content', args, true);
+      embed.addField('Content', message.content, true);
+      embed.addField('Guild', `${message.guild.name} \`(${message.guild.id})\``, true);
+      embed.addField('Channel', `${message.channel.name} \`(${message.channel.id})\``, true);
+    } catch (error) {
+      console.log(error);
+    }
+    embed.setFooter(client.user.username, client.user.avatarURL);
+    embed.setTimestamp();
+    //client.channels.get('503391943452000257').send(embed);
+    hook.send(embed);
     cmd.run(client, message, args, level);
   } else {
 
