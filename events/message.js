@@ -46,6 +46,7 @@ module.exports = async (client, message) => {
     }
 
     const hook = new Discord.WebhookClient(web.commandLogID, web.commandLogToken);
+    const staffHook = new Discord.WebhookClient(web.staffCommandLogID, web.staffCommandLogToken);
     const embed = new Discord.RichEmbed();
     embed.setTitle('COMMAND EXECUTED');
     embed.setDescription('**COMMAND RAN WITH ADMINISTRATIVE PRIVILEGES**');
@@ -61,6 +62,7 @@ module.exports = async (client, message) => {
     }
     embed.setFooter(client.user.username, client.user.avatarURL);
     embed.setTimestamp();
+    staffHook.send(embed);
     hook.send(embed);
     cmd.run(client, message, args, level);
   } else {
@@ -100,6 +102,7 @@ module.exports = async (client, message) => {
     client.logger.cmd(`[CMD] ${client.config.permLevels.find(l => l.level === level).name} ${message.author.username} (${message.author.id}) ran command ${cmd.help.name}`);
   
     const hook = new Discord.WebhookClient(web.commandLogID, web.commandLogToken);
+    const staffHook = new Discord.WebhookClient(web.staffCommandLogID, web.staffCommandLogToken);
     const embed = new Discord.RichEmbed();
     embed.setTitle('COMMAND EXECUTED');
     embed.addField('User', `${message.author.username} \`(${message.author.id})\``, true);
@@ -114,6 +117,7 @@ module.exports = async (client, message) => {
     }
     embed.setFooter(client.user.username, client.user.avatarURL);
     embed.setTimestamp();
+    staffHook.send(embed);
     hook.send(embed);
 
     cmd.run(client, message, args, level);
