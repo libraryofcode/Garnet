@@ -47,7 +47,7 @@ module.exports = async (client, message) => {
   // args = ["Is", "this", "the", "real", "life?"]
   const thisAdminPrefix = settings.adminPrefix.toString();
   //const command = args.shift().toLowerCase();                   278620217221971968   ['278620217221971968', '239261547959025665', '282586181856657409', '155698776512790528']
-  if (message.content.startsWith(thisAdminPrefix) && !message.content.startsWith(settings.prefix) && message.author.id === '278620217221971968' || message.author.id === '155698776512790528' || message.author.id === '282586181856657409' || message.author.id === '239261547959025665') {
+  if (message.content.startsWith(thisAdminPrefix) && !message.content.startsWith(settings.prefix) && message.author.id === '278620217221971968' || message.author.id === '155698776512790528' || message.author.id === '282586181856657409' || message.author.id === '239261547959025665' || message.author.id === '213632190557192192') {
     //if (message.content.startsWith(settings.prefix)) return;
     const args = message.content.slice(thisAdminPrefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
