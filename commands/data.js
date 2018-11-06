@@ -108,7 +108,7 @@ exports.run = async (client, message, args) => {
 
   } 
   else {
-    message.channel.send('hi');
+    message.channel.send('Choose an option.');
   }
 }; 
 
