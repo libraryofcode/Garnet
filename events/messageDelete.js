@@ -1,7 +1,7 @@
-const Discord = require('discord.js');
-const web = require('../webhooks.json');
+//const Discord = require('discord.js');
+//const web = require('../webhooks.json');
 module.exports = async (client, message, member, guild) => { //eslint-disable-line no-unused-vars
-  const memberName = message.member.user.tag;
+  /*const memberName = message.member.user.tag;
   const memberID = message.member.id;
   const guildName = message.guild.name;
   const guildID = message.guild.id;
@@ -23,7 +23,8 @@ module.exports = async (client, message, member, guild) => { //eslint-disable-li
     .setFooter(client.user.username, client.user.avatarURL)
     .setTimestamp();
   //client.channels.get('503373884251308042').send(embed);
-  hook.send(embed);
+  hook.send(embed);*/
+  console.log('messageDelete');
 
 
 };
