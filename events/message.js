@@ -32,15 +32,16 @@ module.exports = async (client, message) => {
 
 
   const thisAdminPrefix = settings.adminPrefix.toString();
+  //message.author.id === '278620217221971968' || message.author.id === '155698776512790528' || message.author.id === '282586181856657409' || message.author.id === '239261547959025665' || message.author.id === '213632190557192192')
   //const command = args.shift().toLowerCase();                   278620217221971968   ['278620217221971968', '239261547959025665', '282586181856657409', '155698776512790528']
-  if (message.content.startsWith(thisAdminPrefix) && !message.content.startsWith(settings.prefix) && message.author.id === '278620217221971968' || message.author.id === '155698776512790528' || message.author.id === '282586181856657409' || message.author.id === '239261547959025665' || message.author.id === '213632190557192192') {
+  if (message.content.startsWith(thisAdminPrefix) && !message.content.startsWith(settings.prefix) && ['278620217221971968', '155698776512790528', '282586181856657409', '239261547959025665', '213632190557192192'].includes(message.author.id)) {
     const args = message.content.slice(thisAdminPrefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
     const level = client.permlevel(message);
     const cmd = client.commands.get(command) || client.commands.get(client.aliases.get(command));
     if (!cmd) return;
 
-    if (cmd && !message.guild && cmd.conf.guildOnly) return message.channel.send('This command is unavailable via private message. Please run this command in a guild.');
+    if (cmd && !message.guild && cmd.conf.guildOnly) message.channel.send('This command is not meant to be used outside of a server, but you bypass restrictions with the admin prefix. The command may be unstable or not work.');
     while (args[0] && args[0][0] === '-') {
       message.flags.push(args.shift().slice(1));
     }
