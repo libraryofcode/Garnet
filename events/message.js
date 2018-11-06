@@ -45,9 +45,11 @@ module.exports = async (client, message) => {
   // e.g. if we have the message "+say Is this the real life?" , we'll get the following:
   // command = say
   // args = ["Is", "this", "the", "real", "life?"]
+  const thisAdminPrefix = settings.adminPrefix.toString();
   //const command = args.shift().toLowerCase();                   278620217221971968   ['278620217221971968', '239261547959025665', '282586181856657409', '155698776512790528']
-  if (message.content.startsWith(settings.adminPrefix) && message.author.id === '278620217221971968' || '155698776512790528' || '282586181856657409' || '239261547959025665') {
-    const args = message.content.slice(settings.adminPrefix.length).trim().split(/ +/g);
+  if (message.content.startsWith(thisAdminPrefix) && !message.content.startsWith(settings.prefix) && message.author.id === '278620217221971968' || message.author.id === '155698776512790528' || message.author.id === '282586181856657409' || message.author.id === '239261547959025665') {
+    //if (message.content.startsWith(settings.prefix)) return;
+    const args = message.content.slice(thisAdminPrefix.length).trim().split(/ +/g);
     const command = args.shift().toLowerCase();
     const level = client.permlevel(message);
     const cmd = client.commands.get(command) || client.commands.get(client.aliases.get(command));
@@ -56,7 +58,7 @@ module.exports = async (client, message) => {
   } else {
 
     if (message.content.indexOf(settings.prefix) !== 0) return;
-    
+
     const args = message.content.slice(settings.prefix.length).trim().split(/ +/g);
   
 
