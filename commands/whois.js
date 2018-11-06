@@ -154,7 +154,7 @@ exports.run = async (client, message, args, level) => {
         embed.addField('Key Permissions', `${checkUserPermission(message.guild, botuser).join(', ')}`, true);
       }
 
-      if (aPerms.length) {
+      if (aPerms) {
         embed.addField('Acknowledgements', aPerms, true);
       }
       if (staffFunction(botuser).length) {
