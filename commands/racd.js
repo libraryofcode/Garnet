@@ -13,12 +13,13 @@ exports.run = (client, message, args) => {
       const index = requiredData.allowedGuildIDs.indexOf(guildID);
       if (index !== -1) {
         requiredData.allowedGuildIDs.splice(index, 1);
-        /*const guilds = client.activatedServers.get(args[1]);
+        const guilds = client.activatedServers.get(args[1]);
         if (guilds > 1) {
           client.activatedServers.delete(args[1]);
         } else {
           client.activatedServers.remove(`${args[1]}`, `${guildID}`);
-        }*/
+        }
+        
         // And now we write the final data again
         const json = JSON.stringify(requiredData);
         fs.writeFile('./allowedGuildDB.json', json, 'utf8', (err) => {
@@ -61,5 +62,5 @@ exports.help = {
   name: 'racd',
   category: 'System',
   description: 'Removes a server from activation.',
-  usage: 'racd [...server ID]'
+  usage: 'racd [...server ID] [...user ID]'
 };

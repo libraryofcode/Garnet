@@ -1,6 +1,7 @@
 exports.run = async (client, message, args) => {
   const msg = await message.channel.send('Authenticating...');
   if (args[0] === 'title') {
+    //if (args.splice(1).join(' ') <= 0) return msg.edit('***Your title cannot be blank.***');
     client.userTitle.set(`${message.author.id}`, `${args.splice(1).join(' ')}`);
     //return msg.edit(`**You have successfully edited your title to ${args.splice(1).join(' ')}**`);
     //return msg.edit(args.splice(1).join(' '));
@@ -8,6 +9,7 @@ exports.run = async (client, message, args) => {
     return msg.edit(`**You have successfully edited your title to \`${thisTitle}\`!**`);
   }
   if (args[0] === 'bio') {
+    //if (args.splice(1).join(' ') <= 0) return msg.edit('***Your bio cannot be blank.***');
     client.userBio.set(`${message.author.id}`, `${args.splice(1).join(' ')}`);
     //return msg.edit(`**You have successfully edited your bio to ${args.splice(1).join(' ')}**`);
     //return msg.edit(args.splice(1).join(' '));

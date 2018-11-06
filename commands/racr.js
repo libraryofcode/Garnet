@@ -29,12 +29,12 @@ exports.run = async (client, message, args) => {
       else { // this case would mean that the file isn't empty
         const requiredData = JSON.parse(data);
         requiredData.allowedGuildIDs.push(guildID);
-        /*const find = client.activatedServers.get(args[1]);
+        const find = client.activatedServers.get(args[1]);
         if (find === undefined) {
           client.activatedServers.set(args[1], [`${guildID}`]);
         } else {
           client.activatedServers.push(args[1], `${guildID}`);
-        }*/
+        }
         // And now we write the final data again
         const json = JSON.stringify(requiredData);
         fs.writeFile('./allowedGuildDB.json', json, 'utf8', (err) => {
