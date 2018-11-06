@@ -22,7 +22,7 @@ exports.run = async (client, message, args, level) => {
     //const msg = await message.channel.send('Loading...');
     message.channel.startTyping();
     try {
-      const friendly = client.config.permLevels.find(l => l.level === level).name;
+      //const friendly = client.config.permLevels.find(l => l.level === level).name;
       const botuser = resolvedUser ? message.guild.members.get(resolvedUser.id) : message.member;
       const matt = resolvedUser ? message.guild.members.get(resolvedUser.id).roles.sort((a, b) => b.position - a.position).map(i => i.id).slice(0, -1) : message.member.roles.sort((a, b) => b.position - a.position).map(i => i.id).slice(0, -1);
       let bot = '';
@@ -42,12 +42,8 @@ exports.run = async (client, message, args, level) => {
       //const joinPos = message.guild.members.sort((a,b) =>(a.joinedAt < b.joinedAt) ? -1 : ((a.joinedAt > b.joinedAt) ? 1 : 0)).map(m => m).findIndex(m => m.id == botuser.id);
       function checkUserPermission(guild, botuser) {
         const arrayOfPerms = [];
-        if (message.guild.ownerID === botuser.id) {
-          arrayOfPerms.push('Owner');
-        }
         if (botuser.hasPermission('ADMINISTRATOR')) {
           arrayOfPerms.push('Administrator');
-
         }
         if (botuser.hasPermission('MANAGE_GUILD')) {
           arrayOfPerms.push('Manage Server');
@@ -86,7 +82,45 @@ exports.run = async (client, message, args, level) => {
 
         return arrayOfPerms;
       }
+
+      function staffFunction(botuser) {
+        const staffArray = [];
+  
+        if (botuser.id === '278620217221971968') {
+          staffArray.push('Founder & Creator');
+        }
+        if (['278620217221971968', '239261547959025665', '282586181856657409', '155698776512790528'].indexOf(botuser.id) >= 0) {
+          staffArray.push('Developer');
+        }
+        if (['213632190557192192', '278620217221971968', '239261547959025665', '282586181856657409', '155698776512790528', '233667448887312385'].indexOf(botuser.id) > 0) {
+          staffArray.push('Community Administrator');
+        }
+        if (['105412668122214400', '233667448887312385', '155698776512790528', '156450671338586112', '427479645395353600', '282586181856657409', '223391425302102016', '310092788630945793', '335871787453775873', '154497072148643840', '284713468790308885', '208688963936845824', '454749660041707531', '304594274182496258', '239261547959025665', '193118227348324363', '278620217221971968', '213632190557192192'].indexOf(botuser.id) > 0) {
+          staffArray.push('Community Staff');
+        }
+        if (['213632190557192192', '278620217221971968', '454749660041707531', '310092788630945793', '282586181856657409', '427479645395353600', '155698776512790528', '233667448887312385'].indexOf(botuser.id) > 0) {
+          staffArray.push('Support & Assistance');
+        }
+        if (['213632190557192192', '239261547959025665', '154497072148643840', '282586181856657409', '156450671338586112', '155698776512790528'].indexOf(botuser.id) >= 0) {
+          staffArray.push('Contributor');
+        }
+  
+        return staffArray;
+      }
       const joinPosition1 = message.channel.guild.members.map(i => i).sort((a, b) => a.joinedAt - b.joinedAt).indexOf(botuser);
+
+      let aPerms;
+
+      if (botuser.permissions.has('MANAGE_GUILD')) {
+        aPerms = 'Server Manager';
+      }
+      if (botuser.permissions.has('ADMINISTRATOR')) {
+        aPerms = 'Server Administrator';
+      }
+      if (botuser.id === message.guild.ownerID) {
+        aPerms = 'Server Owner';
+      }
+
       /*function checkBots(guild) {
         let botCount = 0; 
         guild.members.forEach(member => { 
@@ -119,7 +153,13 @@ exports.run = async (client, message, args, level) => {
       if (checkUserPermission(message.guild, botuser).length > 0) {
         embed.addField('Key Permissions', `${checkUserPermission(message.guild, botuser).join(', ')}`, true);
       }
-      embed.addField('Acknowledgements', `${friendly}`, true);
+
+      if (aPerms.length) {
+        embed.addField('Acknowledgements', aPerms, true);
+      }
+      if (staffFunction(botuser).length) {
+        embed.addField('Moonglow Team', `${staffFunction(botuser).join(', ')}`, true);
+      }
       embed.addField('System Level', `${level}`, true);
       embed.setTimestamp();
       embed.setFooter(`${client.user.username} | ID ${botuser.id} |  Beta - Master`);
