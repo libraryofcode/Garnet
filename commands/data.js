@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 
 exports.run = async (client, message, args) => {
   if (args[0] === 'activation' || 'activate') {
-    m1 = await message.channel.send('Authenticating...');
+    const m1 = await message.channel.send('Authenticating...');
     try {
       const info = await client.activatedServers.get(args[1]).join('\n');
       //const guild = await client.guilds.get(info).name;
@@ -24,10 +24,10 @@ exports.run = async (client, message, args) => {
     }
   }
   
-  if (args[0] === 'guild' || 'server') {
+  else if (args[0] === 'guild' || 'server') {
     try {
-    const m2 = await message.channel.send('Authenticating...');
-    const thisGuild = client.guilds.get(args[0]);
+    //const m2 = await message.channel.send('Authenticating...');
+    const thisGuild = client.guilds.get(args[1]);
     const owner = client.users.get(thisGuild.ownerID);
 
     function checkUserPermission(thisGuild) {
@@ -82,11 +82,13 @@ exports.run = async (client, message, args) => {
     embed2.addField('Roles'. thisGuild.roles.size, true)
     embed2.addField('My Permissions', `${checkUserPermission(thisGuild).join(', ')}`, true)
 
-    return m2.edit(embed2);
+    return message.channel.send(embed2)
+
+    //return m2.edit(embed2);
     
 
   } catch (err) {
-    return m2.edit(err)
+    return message.channel.send(err)
   }
 }
 }; 
