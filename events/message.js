@@ -55,6 +55,11 @@ module.exports = async (client, message) => {
     const cmd = client.commands.get(command) || client.commands.get(client.aliases.get(command));
     if (!cmd) return;
 
+    if (cmd && !message.guild && cmd.conf.guildOnly) return message.channel.send('This command is unavailable via private message. Please run this command in a guild.');
+    while (args[0] && args[0][0] === '-') {
+      message.flags.push(args.shift().slice(1));
+    }
+
     const hook = new Discord.WebhookClient(web.commandLogID, web.commandLogToken);
     const embed = new Discord.RichEmbed();
     embed.setTitle('COMMAND EXECUTED');
