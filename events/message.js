@@ -54,12 +54,15 @@ module.exports = async (client, message) => {
     if (!cmd) return;
     cmd.run(client, message, args, level);
   } else {
+
+    if (message.content.indexOf(settings.prefix) !== 0) return;
+    
     const args = message.content.slice(settings.prefix.length).trim().split(/ +/g);
   
 
     const command = args.shift().toLowerCase();
 
-    if (message.content.indexOf(settings.prefix) !== 0) return;
+
 
     // If the member on a guild is invisible or not cached, fetch them.
     if (message.guild && !message.member) await message.guild.fetchMember(message.author);
