@@ -90,6 +90,9 @@ exports.run = async (client, message, args) => {
   } catch (err) {
     return message.channel.send(err)
   }
+} 
+else {
+  message.channel.send('hi')
 }
 }; 
 
