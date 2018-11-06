@@ -167,7 +167,7 @@ module.exports = (client) => {
 
   process.on('unhandledRejection', err => {
     client.logger.error(`Unhandled Rejection Error: ${err}`);
-    client.channels.get('503374059044601872').send(err);
+    //client.channels.get('503374059044601872').send(err);
     Raven.captureException(err);
   });
 };
