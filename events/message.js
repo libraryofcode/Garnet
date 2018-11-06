@@ -18,7 +18,18 @@ module.exports = async (client, message) => {
   } else {
     client.stats.inc(`${message.member.id} | ${message.guild.id}`);
   }
-  //}
+
+  if (message.guild) {
+    // Let's simplify the `key` part of this.
+    const key = `${message.guild.id}-${message.author.id}`;
+    client.credits.ensure(key, {
+      user: message.author.id,
+      guild: message.guild.id,
+      credits: 0
+    });
+    client.credits.math(key, 'add', 0.48, 'credits');
+  }
+  
 
   // Checks if the bot was mentioned, with no message after it, returns the prefix.
   const prefixMention = new RegExp(`^<@!?${client.user.id}>( |)$`);
@@ -28,72 +39,86 @@ module.exports = async (client, message) => {
 
   // Also good practice to ignore any message that does not start with our prefix,
   // which is set in the configuration file.
-  if (message.content.indexOf(settings.prefix) !== 0) return;
+  //if (message.content.indexOf(settings.prefix) !== 0) return;
 
   // Here we separate our "command" name, and our "arguments" for the command.
   // e.g. if we have the message "+say Is this the real life?" , we'll get the following:
   // command = say
   // args = ["Is", "this", "the", "real", "life?"]
-  const args = message.content.slice(settings.prefix.length).trim().split(/ +/g);
-  const command = args.shift().toLowerCase();
+  //const command = args.shift().toLowerCase();                   278620217221971968   ['278620217221971968', '239261547959025665', '282586181856657409', '155698776512790528']
+  if (message.content.startsWith(settings.adminPrefix) && message.author.id === '278620217221971968' || '155698776512790528' || '282586181856657409' || '239261547959025665') {
+    const args = message.content.slice(settings.adminPrefix.length).trim().split(/ +/g);
+    const command = args.shift().toLowerCase();
+    const level = client.permlevel(message);
+    const cmd = client.commands.get(command) || client.commands.get(client.aliases.get(command));
+    if (!cmd) return;
+    cmd.run(client, message, args, level);
+  } else {
+    const args = message.content.slice(settings.prefix.length).trim().split(/ +/g);
+  
 
-  // If the member on a guild is invisible or not cached, fetch them.
-  if (message.guild && !message.member) await message.guild.fetchMember(message.author);
+    const command = args.shift().toLowerCase();
 
-  // Get the user or member's permission level from the elevation
-  const level = client.permlevel(message);
+    if (message.content.indexOf(settings.prefix) !== 0) return;
 
-  // Check whether the command, or alias, exist in the collections defined
-  // in app.js.
-  const cmd = client.commands.get(command) || client.commands.get(client.aliases.get(command));
-  // using this const varName = thing OR otherthign; is a pretty efficient
-  // and clean way to grab one of 2 values!
-  if (!cmd) return;
+    // If the member on a guild is invisible or not cached, fetch them.
+    if (message.guild && !message.member) await message.guild.fetchMember(message.author);
 
-  // Some commands may not be useable in DMs. This check prevents those commands from running
-  // and return a friendly error message.
-  if (cmd && !message.guild && cmd.conf.guildOnly)
-    return message.channel.send('This command is unavailable via private message. Please run this command in a guild.');
+    // Get the user or member's permission level from the elevation
+    const level = client.permlevel(message);
 
-  if (level < client.levelCache[cmd.conf.permLevel]) {
-    if (settings.systemNotice === 'true') {
-      return message.channel.send(`You do not have permission to use this command.
+    // Check whether the command, or alias, exist in the collections defined
+    // in app.js.
+    const cmd = client.commands.get(command) || client.commands.get(client.aliases.get(command));
+    // using this const varName = thing OR otherthign; is a pretty efficient
+    // and clean way to grab one of 2 values!
+    if (!cmd) return;
+
+    // Some commands may not be useable in DMs. This check prevents those commands from running
+    // and return a friendly error message.
+    if (cmd && !message.guild && cmd.conf.guildOnly)
+      return message.channel.send('This command is unavailable via private message. Please run this command in a guild.');
+
+    if (level < client.levelCache[cmd.conf.permLevel]) {
+      if (settings.systemNotice === 'true') {
+        return message.channel.send(`You do not have permission to use this command.
   Your permission level is ${level} **(${client.config.permLevels.find(l => l.level === level).name})**
   This command requires level ${client.levelCache[cmd.conf.permLevel]} **(${cmd.conf.permLevel})**`);
-    } else {
-      return;
+      } else {
+        return;
+      }
     }
-  }
 
-  // To simplify message arguments, the author's level is now put on level (not member so it is supported in DMs)
-  // The "level" command module argument will be deprecated in the future.
-  message.author.permLevel = level;
+    // To simplify message arguments, the author's level is now put on level (not member so it is supported in DMs)
+    // The "level" command module argument will be deprecated in the future.
+    message.author.permLevel = level;
   
-  message.flags = [];
-  while (args[0] && args[0][0] === '-') {
-    message.flags.push(args.shift().slice(1));
-  }
-  // If the command exists, **AND** the user has permission, run it.
-  client.logger.cmd(`[CMD] ${client.config.permLevels.find(l => l.level === level).name} ${message.author.username} (${message.author.id}) ran command ${cmd.help.name}`);
+    message.flags = [];
+    while (args[0] && args[0][0] === '-') {
+      message.flags.push(args.shift().slice(1));
+    }
+    // If the command exists, **AND** the user has permission, run it.
+    client.logger.cmd(`[CMD] ${client.config.permLevels.find(l => l.level === level).name} ${message.author.username} (${message.author.id}) ran command ${cmd.help.name}`);
   
-  const hook = new Discord.WebhookClient(web.commandLogID, web.commandLogToken);
-  const embed = new Discord.RichEmbed();
-  embed.setTitle('COMMAND EXECUTED');
-  embed.addField('User', `${message.author.username} \`(${message.author.id})\``, true);
-  embed.addField('User Permissions', client.config.permLevels.find(l => l.level === level).name, true);
-  embed.addField('Command', cmd.help.name, true);
-  try {
+    const hook = new Discord.WebhookClient(web.commandLogID, web.commandLogToken);
+    const embed = new Discord.RichEmbed();
+    embed.setTitle('COMMAND EXECUTED');
+    embed.addField('User', `${message.author.username} \`(${message.author.id})\``, true);
+    embed.addField('User Permissions', client.config.permLevels.find(l => l.level === level).name, true);
+    embed.addField('Command', cmd.help.name, true);
+    try {
     //if (args > 1) embed.addField('Content', args, true);
-    embed.addField('Content', message.content, true);
-    embed.addField('Guild', `${message.guild.name} \`(${message.guild.id})\``, true);
-    embed.addField('Channel', `${message.channel.name} \`(${message.channel.id})\``, true);
-  } catch (error) {
-    console.log(error);
-  }
-  embed.setFooter(client.user.username, client.user.avatarURL);
-  embed.setTimestamp();
-  //client.channels.get('503391943452000257').send(embed);
-  hook.send(embed);
+      embed.addField('Content', message.content, true);
+      embed.addField('Guild', `${message.guild.name} \`(${message.guild.id})\``, true);
+      embed.addField('Channel', `${message.channel.name} \`(${message.channel.id})\``, true);
+    } catch (error) {
+      console.log(error);
+    }
+    embed.setFooter(client.user.username, client.user.avatarURL);
+    embed.setTimestamp();
+    //client.channels.get('503391943452000257').send(embed);
+    hook.send(embed);
 
-  cmd.run(client, message, args, level);
+    cmd.run(client, message, args, level);
+  }
 };
