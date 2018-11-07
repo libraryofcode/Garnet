@@ -8,7 +8,7 @@ exports.run = async (client, message, args) => {
 
     const embed1 = new Discord.RichEmbed();
     embed1.setTitle('Activated Guilds List');
-    embed1.addField('User', args[1]);
+    embed1.addField('User', args[2]);
     embed1.setTimestamp();
     embed1.setFooter(client.user.username, client.user.avatarURL);
     //embed.addField('Guilds', `${guild} \`(${info})\``);
@@ -84,6 +84,12 @@ exports.run = async (client, message, args) => {
       }
 
       try {
+        embed2.addField('Users', thisGuild.users.size, true);
+      } catch (err) {
+        embed2.addField('Users', err, true);
+      }
+
+      try {
         embed2.addField('Roles', thisGuild.roles.size, true);
       } catch (err) {
         console.log(err);
@@ -116,7 +122,7 @@ exports.conf = {
   enabled: true,
   guildOnly: true,
   aliases: [],
-  permLevel: 'Systems Support'
+  permLevel: 'Systems Alpha/Dev Tester'
 };
     
 exports.help = {
