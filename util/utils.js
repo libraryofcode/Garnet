@@ -6,6 +6,7 @@ class utils {
       });
     }  
     
+    
     //Makes the string in the function proper case. For example, "hi how are you today" would become "Hi How Are You Today".
 
     this.toInvertedCase = (string)  => {
@@ -16,7 +17,7 @@ class utils {
     
     //Does the opposite of toProperCase, makes it inverted. Like "hI hOW aRE yOU tODAY".
 
-    this.random = function() {
+    this.random = (array) => {
       return this[Math.floor(Math.random() * this.length)];
     };
     
