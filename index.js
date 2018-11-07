@@ -31,6 +31,12 @@ client.settings = new Enmap({
   name: 'settings', 
   autoFetch: true});
 
+client.blackList = new Enmap({
+  name: 'blackList',
+  autofetch: true,
+  fetchAll:true
+});
+
 client.stats = new Enmap({
   name: 'stats', 
   autoFetch: true, 
