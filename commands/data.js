@@ -69,6 +69,7 @@ exports.run = async (client, message, args) => {
     
         return arrayOfPerms;
       }
+      thisGuild.fetchMembers();
       const embed2 = new Discord.RichEmbed();
       embed2.setTitle('Guild Information');
       embed2.setTimestamp();
@@ -84,7 +85,7 @@ exports.run = async (client, message, args) => {
       }
 
       try {
-        embed2.addField('Users', thisGuild.users.size, true);
+        embed2.addField('Users', thisGuild.memberCount, true);
       } catch (err) {
         embed2.addField('Users', err, true);
       }
