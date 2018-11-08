@@ -24,6 +24,8 @@ class utils {
     //Gets a random element from an array.
     
     
+    this.wait = require('util').promisify(setTimeout);
+    
     
   }
 }
