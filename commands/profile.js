@@ -23,13 +23,19 @@ exports.run = async (client, message, args, level) => {
   const repPoints = await client.repPoints.get(thisUser);
   const userTitle = await client.userTitle.get(thisUser);
   const userBio = await client.userBio.get(thisUser);
+  const credits = await client.credits.get(`${message.guild.id}-${thisUser}`, 'credits');
 
   const embed = new Discord.RichEmbed();
 
   //msg2.edit(':pencil: Profile Card');
   embed.setAuthor(botuser.user.tag, botuser.user.avatarURL);
   if (userTitle) embed.setTitle(userTitle);
-  if (userBio) embed.setDescription(userBio);
+  if (userBio) {
+    embed.setDescription(userBio);
+  } else {
+    embed.setDescription('I don\'t have a bio because I\'m too lazy to set one.');
+  }
+  
   embed.setColor(botuser.displayHexColor);
   embed.setThumbnail(botuser.user.avatarURL);
   if (myMessages === undefined) {
@@ -41,6 +47,11 @@ exports.run = async (client, message, args, level) => {
     embed.addField('Reputation Points', '0', true);
   } else {
     embed.addField('Reputation Points', repPoints, true);
+  }
+  if (credits === undefined) {
+    embed.addField('Credits', '0', true);
+  } else {
+    embed.addField('Credits', Math.round(credits), true);
   }
   embed.addField('Acknowledgements', `${friendly}`, true);
   try {
