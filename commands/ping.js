@@ -3,7 +3,7 @@ exports.run = async (client, message) => {
   //const thisMessage = '🏓 Pong!';
   const msg = await message.channel.send('🏓 Pong!');
     
-  msg.edit(`🏓 Pong! \`${msg.createdTimestamp - message.createdTimestamp}ms\``);
+  msg.edit(`🏓 Pong! \`${msg.createdTimestamp - message.createdTimestamp}ms\`, hi people!`);
 };
 
 exports.conf = {
