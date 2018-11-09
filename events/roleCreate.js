@@ -22,7 +22,6 @@ module.exports = async (client, role) => {
     .addField('Guild', `${guildName} \`(${guildID})\``)
     .setFooter(client.user.username, client.user.avatarURL)
     .setTimestamp();
-  //client.channels.get('503828179241271306').send(embed);
   hook.send(embed);
     
 };

@@ -1,4 +1,4 @@
-//const Discord = require('discord.js');
+const Discord = require('discord.js');
 
 exports.run = async (client, message, args) => {
   const msg = await message.channel.send('Authenticating...');
@@ -7,7 +7,12 @@ exports.run = async (client, message, args) => {
   const thisUser = botuser.id;
 
   if (thisUser === message.author.id) return msg.edit('***Error: You cannot blacklist yourself.***');
-  if (botuser.user.bot) return msg.edit('***Error: You cannot blacklist a bot.***'); 
+  if (botuser.user.bot) return msg.edit('***Error: You cannot blacklist an application or another bot.***'); 
+  
+  const successEmbed = new Discord.RichEmbed()
+  successEmbed.setTitle('GLOBAL BLACKLIST SYSTEM');
+  successEmbed.setDescription(`✅ ***Successfully added ${botuser.user.tag} to the global blacklist.***`);
+  successEmbed.setFooter(client.user.username, client.user.avatarURL);
 
   try {
     if (client.blackList.get(thisUser)) {
@@ -17,7 +22,8 @@ exports.run = async (client, message, args) => {
     } else {
       client.blackList.set(thisUser, true);
       message.delete();
-      return msg.edit(`✅ ***Successfully added ${botuser.user.tag} to the global blacklist.***`);
+      //return msg.edit(`✅ ***Successfully added ${botuser.user.tag} to the global blacklist.***`);
+      return msg.edit(successEmbed);
     }
   } catch (err) {
     message.channel.send(err);

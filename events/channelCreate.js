@@ -16,6 +16,5 @@ module.exports = async (client, channel, guild) => { //eslint-disable-line no-un
   embed.setFooter(client.user.username, client.user.avatarURL);
   embed.setTimestamp();
 
-  //client.channels.get('503431040451215360').send(embed);
   hook.send(embed);
 };

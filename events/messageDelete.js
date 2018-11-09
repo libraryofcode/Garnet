@@ -24,7 +24,8 @@ module.exports = async (client, message, member, guild) => { //eslint-disable-li
     .setTimestamp();
   //client.channels.get('503373884251308042').send(embed);
   hook.send(embed);*/
-  console.log('messageDelete');
+  let a;
+  console.log(a);
 
 
 };
