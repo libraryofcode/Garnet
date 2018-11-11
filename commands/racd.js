@@ -19,7 +19,6 @@ exports.run = (client, message, args) => {
         } else {
           client.activatedServers.remove(`${args[1]}`, `${guildID}`);
         }
-        
         // And now we write the final data again
         const json = JSON.stringify(requiredData);
         fs.writeFile('./allowedGuildDB.json', json, 'utf8', (err) => {
@@ -42,6 +41,7 @@ exports.run = (client, message, args) => {
           .setTimestamp();
         //client.channels.get('503491110149160961').send(embed);
         hook.send(embed);
+        client.channels.get('503491110149160961').send(embed);
       }
       else {
         message.channel.send('Specified guild was never activated.');
