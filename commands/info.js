@@ -12,7 +12,7 @@ exports.run = async (client, message) => {
   embed.addField('Version', '4.5.0', true);
   embed.addField('Created At', `${client.user.createdAt.toLocaleString('en-US')}`, true);
   embed.addField('Library', '[Discord.js](https://github.com/discordjs/discord.js)', true);
-  embed.addField('Language', 'JavaScript', true);
+  embed.addField('Language', 'JavaScript & TypeScript', true);
   embed.addField('Contributors', 'TheSkele27#1337, The Phoenix of Phoebus#9935, Tiger#8726', true);
   embed.addField('Developers', 'Matthew#0008, NightRaven#2172, CoalSephos#7566, Flatbird#0001');
   embed.addField('Creator', 'Matthew#0008', true);
