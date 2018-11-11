@@ -6,9 +6,75 @@ const client = require('../client.js');
   offline: 'Offline/Invisible'
 };*/
 
+function checkUserPermission(botuser, msg) {
+  const arrayOfPerms = [];
+  if (msg.channel.guild.ownerID === botuser.id) {
+    arrayOfPerms.push('Owner');
+  }
+  if (botuser.permission.has('administrator')) {
+    arrayOfPerms.push('Administrator');
+  }
+  if (botuser.permission.has('manageGuild')) {
+    arrayOfPerms.push('Manage Server');
+  }
+  if (botuser.permission.has('manageRoles')) {
+    arrayOfPerms.push('Manage Roles');
+  }
+  if (botuser.permission.has('manageChannels')) {
+    arrayOfPerms.push('Manage Channels');
+  }
+  if (botuser.permission.has('viewAuditLogs')) {
+    arrayOfPerms.push('View Audit Logs');
+  }
+  if (botuser.permission.has('kickMembers')) {
+    arrayOfPerms.push('Kick Members');
+  }
+  if (botuser.permission.has('banMembers')) {
+    arrayOfPerms.push('Ban Members');
+  }
+  if (botuser.permission.has('manageNicknames')) {
+    arrayOfPerms.push('Manage Nicknames');
+  }
+  if (botuser.permission.has('manageEmojis')) {
+    arrayOfPerms.push('Manage Emojis');
+  }
+  if (botuser.permission.has('manageWebhooks')) {
+    arrayOfPerms.push('Manage Webhooks');
+  }
+  if (botuser.permission.has('manageMessages')) {
+    arrayOfPerms.push('Manage Messages');
+  }
+  if (botuser.permission.has('mentionEveryone')) {
+    arrayOfPerms.push('Mention Everyone');
+  }
+  return arrayOfPerms;
+}
+
+function staffFunction(botuser) {
+  const staffArray = [];
+
+  if (botuser.id === '278620217221971968') {
+    staffArray.push('Founder & Creator');
+  }
+  if (['278620217221971968', '239261547959025665', '282586181856657409', '155698776512790528'].indexOf(botuser.id) >= 0) {
+    staffArray.push('Developer');
+  }
+  if (['213632190557192192', '278620217221971968', '239261547959025665', '282586181856657409', '155698776512790528', '233667448887312385'].indexOf(botuser.id) > 0) {
+    staffArray.push('Community Administrator');
+  }
+  if (['213632190557192192', '278620217221971968', '454749660041707531', '310092788630945793', '282586181856657409', '427479645395353600', '155698776512790528', '233667448887312385'].indexOf(botuser.id) > 0) {
+    staffArray.push('Support & Assistance');
+  }
+  if (['213632190557192192', '239261547959025665', '154497072148643840', '282586181856657409', '156450671338586112', '155698776512790528'].indexOf(botuser.id) >= 0) {
+    staffArray.push('Contributor');
+  }
+
+  return staffArray;
+}
+
 module.exports = {
   name: 'whois',
-  action: async (msg, args) => {
+  action: (msg, args) => {
     const resolvedUser = (args[0] !== undefined) ? msg.channel.guild.members.get(args[0].match(/[0-9]/g).join('')) : null;
     const botuser = resolvedUser ? msg.channel.guild.members.get(resolvedUser.id) : msg.member;
     /*let bot = '';
@@ -20,74 +86,6 @@ module.exports = {
 
     const millisJoined = new Date().getTime() - new Date(botuser.joinedAt).getTime();
     const dj = millisJoined / 1000 / 60 / 60 / 24;
-
-    function checkUserPermission(botuser, msg) {
-      const arrayOfPerms = [];
-      if (msg.channel.guild.ownerID === botuser.id) {
-        arrayOfPerms.push('Owner');
-      }
-      if (botuser.permission.has('administrator')) {
-        arrayOfPerms.push('Administrator');
-      }
-      if (botuser.permission.has('manageGuild')) {
-        arrayOfPerms.push('Manage Server');
-      }
-      if (botuser.permission.has('manageRoles')) {
-        arrayOfPerms.push('Manage Roles');
-      }
-      if (botuser.permission.has('manageChannels')) {
-        arrayOfPerms.push('Manage Channels');
-      }
-      if (botuser.permission.has('viewAuditLogs')) {
-        arrayOfPerms.push('View Audit Logs');
-      }
-      if (botuser.permission.has('kickMembers')) {
-        arrayOfPerms.push('Kick Members');
-      }
-      if (botuser.permission.has('banMembers')) {
-        arrayOfPerms.push('Ban Members');
-      }
-      if (botuser.permission.has('manageNicknames')) {
-        arrayOfPerms.push('Manage Nicknames');
-      }
-      if (botuser.permission.has('manageEmojis')) {
-        arrayOfPerms.push('Manage Emojis');
-      }
-      if (botuser.permission.has('manageWebhooks')) {
-        arrayOfPerms.push('Manage Webhooks');
-      }
-      if (botuser.permission.has('manageMessages')) {
-        arrayOfPerms.push('Manage Messages');
-      }
-      if (botuser.permission.has('mentionEveryone')) {
-        arrayOfPerms.push('Mention Everyone');
-      }
-
-
-      return arrayOfPerms;
-    }
-
-    function staffFunction(botuser) {
-      const staffArray = [];
-
-      if (botuser.id === '278620217221971968') {
-        staffArray.push('Founder & Creator');
-      }
-      if (['278620217221971968', '239261547959025665', '282586181856657409', '155698776512790528'].indexOf(botuser.id) >= 0) {
-        staffArray.push('Developer');
-      }
-      if (['213632190557192192', '278620217221971968', '239261547959025665', '282586181856657409', '155698776512790528', '233667448887312385'].indexOf(botuser.id) > 0) {
-        staffArray.push('Community Administrator');
-      }
-      if (['213632190557192192', '278620217221971968', '454749660041707531', '310092788630945793', '282586181856657409', '427479645395353600', '155698776512790528', '233667448887312385'].indexOf(botuser.id) > 0) {
-        staffArray.push('Support & Assistance');
-      }
-      if (['213632190557192192', '239261547959025665', '154497072148643840', '282586181856657409', '156450671338586112', '155698776512790528'].indexOf(botuser.id) >= 0) {
-        staffArray.push('Contributor');
-      }
-
-      return staffArray;
-    }
 
     const joinPosition1 = msg.channel.guild.members.map(i => i).sort((a, b) => a.joinedAt - b.joinedAt).indexOf(botuser);
 
@@ -103,12 +101,8 @@ module.exports = {
     }
     const joinPosition3 = joinPosition1 + 1;
 
-    let gameName;
-    try {
-      gameName = botuser.game.name;
-    } catch (err) {
-      gameName = 'Unspecified';
-    }
+    const gameName = botuser.game ? botuser.game.name : 'Unspecified';
+    
     const fields = [
       {
         name: 'Joined Server At',
@@ -136,7 +130,6 @@ module.exports = {
         inline: false
       }
     ];
-
     
     if (checkUserPermission(botuser, msg).length) {
       fields.push({
@@ -185,12 +178,7 @@ module.exports = {
     };
 
     //console.log(embed);
-    msg.channel.createMessage({
-      embed: embed
-    });
-
-
-
+    msg.channel.createMessage({ embed });
 
   },
   options: {

@@ -1,12 +1,9 @@
-if (Number(process.version.slice(1).split('.')[0]) < 8) throw new RangeError('Node 8.0.0 or higher is required. Update Node on your system.');
+if (Number(process.version.slice(1).split('.')[0]) < 8) 
+  throw new RangeError('Node 8.0.0 or higher is required. Update Node on your system.');
 
 const sentryconfig = require('./sentry.json');
 const Raven = require('raven');
 Raven.config(sentryconfig.link).install();
-const { promisify } = require('util');
-const readdir = promisify(require('fs').readdir); //eslint-disable-line
-const Enmap = require('enmap'); //eslint-disable-line
-const EnmapLevel = require('enmap-sqlite'); //eslint-disable-line no-unused-vars
 const config = require('./config.json');
 const eris = require('eris');
 

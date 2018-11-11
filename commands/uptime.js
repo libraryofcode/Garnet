@@ -4,7 +4,7 @@ const client = require('../client.js');
 
 module.exports = {
   name: 'uptime',
-  action: async (msg) => {
+  action: (msg) => {
     const duration = moment.duration(client.uptime).format(' D [days], H [hrs], m [mins], s [secs]');
 
     const embed = {
@@ -27,7 +27,7 @@ module.exports = {
       },
       timestamp: new Date()
     };
-    msg.channel.createMessage({embed: embed});
+    msg.channel.createMessage({ embed });
   },
   options: {
     description: 'Shows the bot\'s uptime.'

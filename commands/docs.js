@@ -2,51 +2,73 @@
 
 module.exports = {
   name: 'docs',
-  action: async (msg, args) => {
+  action: (msg, args) => {
     msg.channel.sendTyping();
+
+    let string = 'Invalid arguments';
     if (args[0] === 'eris') {
-      if (args[1] === 'class') {
-        return msg.channel.createMessage(`https://abal.moe/Eris/docs/${args[2]}`);
-      }
-      if (args[1] === 'function') {
-        return msg.channel.createMessage(`https://abal.moe/Eris/docs/${args[2]}#function-${args[3]}`);
-      }
-      if (args[1] === 'event') {
-        return msg.channel.createMessage(`https://abal.moe/Eris/docs/${args[2]}#event-${args[3]}`);
-      }
-      if (args[1] === 'docs') {
-        return msg.channel.createMessage('https://abal.moe/Eris/docs');
-      }
-      if (args[1] < 0) {
-        return msg.channel.createMessage('Searches: class, function, event. `alpha docs eris class [classname]`, `alpha docs eris function [class name, function name], `alpha docs eris event [class name, event name]`');
+      switch (args[1]) {
+        case 'class': {
+          string = `https://abal.moe/Eris/docs/${args[2]}`;
+          break;
+        }
+        case 'function': {
+          string = `https://abal.moe/Eris/docs/${args[2]}#function-${args[3]}`;
+          break;
+        }
+        case 'event': {
+          string = `https://abal.moe/Eris/docs/${args[2]}#event-${args[3]}`;
+          break;
+        }
+        case 'docs': {
+          string = 'https://abal.moe/Eris/docs';
+          break;
+        }
+        default: {
+          string = 'Searches: class, function, event. `alpha docs eris class [classname]`, `alpha docs eris function [class name, function name], `alpha docs eris event [class name, event name]`';
+          break;
+        }
       }
 
-    }
-
-    if (args[0] === 'djs' || 'discord.js') {
-      if (args[1] === 'class') {
-        return msg.channel.createMessage(`https://discord.js.org/#/docs/main/stable/class/${args[2]}`);
-      }
-      if (args[1] === 'typedef') {
-        return msg.channel.createMessage(`https://discord.js.org/#/docs/main/stable/typedef/${args[2]}`);
-      }
-      if (args[1] === 'examples') {
-        return msg.channel.createMessage(`https://discord.js.org/#/docs/main/stable/examples/${args[2]}`);
-      }
-      if (args[1] === 'method' || 'property') {
-        return msg.channel.createMessage(`https://discord.js.org/#/docs/main/stable/class/${args[2]}?scrollTo=${args[3]}`);
-      }
-      if (args[1] === 'event') {
-        return msg.channel.createMessage(`https://discord.js.org/#/docs/main/stable/class/${args[2]}?scrollTo=e-${args[3]}`);
-      }
-    }
-    
-    if (args[0] === 'dpy' || 'discord.py') {
+    } else if (args[0] === 'djs' || args[0] === 'discord.js') {
+      switch (args[1]) {
+        case 'class': {
+          string = `https://discord.js.org/#/docs/main/stable/class/${args[2]}`;
+          break;
+        }
+        case 'typedef': {
+          string = `https://discord.js.org/#/docs/main/stable/typedef/${args[2]}`;
+          break;
+        }
+        case 'examples': {
+          string = `https://discord.js.org/#/docs/main/stable/examples/${args[2]}`;
+          break;
+        }
+        case 'method':
+        case 'property': {
+          string = `https://discord.js.org/#/docs/main/stable/class/${args[2]}?scrollTo=${args[3]}`;
+          break;
+        }
+        case 'event': {
+          string = `https://discord.js.org/#/docs/main/stable/class/${args[2]}?scrollTo=e-${args[3]}`;
+          break;
+        }
+        default: {
+          string = 'https://discord.js.org/#/docs';
+          break;
+        }
+      } 
+    } else if (args[0] === 'dpy' || args[0] === 'discord.py') {
       if (args[1] === 'api') {
-        if (args[2]) return msg.channel.createMessage(`https://discordpy.readthedocs.io/en/rewrite/api.html#${args[2]}`);
-        if (!args[2]) return msg.channel.createMessage('https://discordpy.readthedocs.io/en/rewrite/api.html#');
+        if (args[2]) {
+          string = `https://discordpy.readthedocs.io/en/rewrite/api.html#${args[2]}`;
+        } else {
+          string = 'https://discordpy.readthedocs.io/en/rewrite/api.html#';
+        }
       }
     }
+    return msg.channel.createMessage(string);
+    
   }, options: {
     'description': 'Gets docs for eris, djs, or dpy.'
   }

@@ -1,133 +1,68 @@
 const client = require('../client.js');
+const regions = {
+  'us-east': 'US East',
+  'vip-us-east': 'US East `VIP`',
+  'us-south': 'US South',
+  'vip-us-south': 'US South `VIP`', 
+  'vip-us-west': 'US West `VIP`',
+  'us-west': 'US West',
+  'us-central': 'US Central',
+  'vip-us-central': 'US Central `VIP`',
+  'sydney': 'Sydney',
+  'vip-sydney': 'Sydney `VIP`',
+  'southafrica': 'South Africa',
+  'vip-southafrica': 'South Africa `VIP`',
+  'singapore': 'Singapore',
+  'vip-singapore': 'Singapore `VIP`',
+  'russia': 'Russia',
+  'vip-russia': 'Russia `VIP`',
+  'japan': 'Japan',
+  'vip-japan': 'Japan `VIP`',
+  'hongkong': 'Hong Kong',
+  'vip-hongkong': 'Hong Kong `VIP`',
+  'eu-west': 'EU West',
+  'vip-eu-west': 'EU West `VIP`',
+  'eu-central': 'EU Central',
+  'vip-eu-central': 'EU Central `VIP`',
+  'brazil': 'Brazil',
+  'vip-brazil': 'Brazil `VIP`',
+};
+
 module.exports = {
   name: 'serverinfo',
-  action: async (msg, message, channel) => { //eslint-disable-line
+  action: (msg) => { //eslint-disable-line
     msg.channel.sendTyping();
-
-
-    function checkBots(msg, channel) { //eslint-disable-line
-      let botCount = 0; 
-      msg.channel.guild.members.forEach(member => { 
-        if (member.user.bot) botCount++; 
-      });
-      return botCount; 
-    }
-    function checkMembers(msg, channel) { //eslint-disable-line
-      let memberCount = 0;
-      msg.channel.guild.members.forEach(member => {
-        if (!member.user.bot) memberCount++; 
-      });
-
-      return memberCount;
-    }
-
-    const guild = msg.channel.guild;
-    function checkRegion(msg, channel) { // eslint-disable-line no-unused-vars
-      const server = msg.channel.guild;
-      const regionArray = [];
-      if (server.region === 'us-east' ) {
-        regionArray.push('US East');
-      }
-      if (server.region === 'vip-us-east') {
-        regionArray.push('US East `VIP`');
-      }
-      if (server.region === 'us-south') {
-        regionArray.push('US South');
-      }
-      if (server.region === 'vip-us-south') {
-        regionArray.push('US South `VIP`');
-      }
-      if (server.region === 'us-west') {
-        regionArray.push('US West');
-      }
-      if (server.region === 'vip-us-west') {
-        regionArray.push('US West `VIP`');
-      }
-      if (server.region === 'us-central') {
-        regionArray.push('US Central');
-      }
-      if (server.region === 'vip-us-central') {
-        regionArray.push('US Central `VIP`');
-      }
-      if (server.region === 'sydney') {
-        regionArray.push('Sydney');
-      }
-      if (server.region === 'vip-sydney') {
-        regionArray.push('Sydney `VIP`');
-      }
-      if (server.region === 'southafrica') {
-        regionArray.push('South Africa');
-      }
-      if (server.region === 'vip-southafrica') {
-        regionArray.push('South Africa `VIP`');
-      }
-      if (server.region === 'singapore') {
-        regionArray.push('Singapore');
-      }
-      if (server.region === 'vip-singapore') {
-        regionArray.push('Singapore `VIP`');
-      }
-      if (server.region === 'russia') {
-        regionArray.push('Russia');
-      }
-      if (server.region === 'vip-russia') {
-        regionArray.push('Russia `VIP`');
-      }
-      if (server.region === 'japan') {
-        regionArray.push('Japan');
-      }
-      if (server.region === 'vip-japan') {
-        regionArray.push('Japan `VIP`');
-      }
-      if (server.region === 'hongkong') {
-        regionArray.push('Hong Kong');
-      }
-      if (server.region === 'vip-hongkong') {
-        regionArray.push('Hong Kong `VIP`');
-      }
-      if (server.region === 'eu-west') {
-        regionArray.push('EU West');
-      }
-      if (server.region === 'vip-eu-west') {
-        regionArray.push('EU West `VIP`');
-      }
-      if (server.region === 'eu-central') {
-        regionArray.push('EU Central');
-      }
-      if (server.region === 'vip-eu-central') {
-        regionArray.push('EU Central `VIP`');
-      }
-      if (server.region === 'brazil') {
-        regionArray.push('Brazil');
-      }
-      if (server.region === 'vip-brazil') {
-        regionArray.push('Brazil `VIP`');
-      }
-
-      return regionArray;
-    }
+    
     const ownerUsername = msg.channel.guild.members.get(msg.channel.guild.ownerID).user.username;
     const ownerDiscrim = msg.channel.guild.members.get(msg.channel.guild.ownerID).user.discriminator;
-
     const thisVL = msg.channel.guild.verificationLevel;
     let mVL;
-    if (thisVL === 0) {
-      mVL = 'None';
-    }
-    if (thisVL === 1) {
-      mVL = 'Low';
-    }
-    if (thisVL === 2) {
-      mVL = 'Medium';
-    }
-    if (thisVL === 3) {
-      mVL = 'Medium High';
-    }
-    if (thisVL === 4) {
-      mVL = 'High';
+
+    switch (thisVL) {
+      default:
+      case 0: {
+        mVL = 'None';
+        break;
+      }
+      case 1: {
+        mVL = 'Low';
+        break;
+      }
+      case 2: {
+        mVL = 'Medium';
+        break;
+      }
+      case 3: {
+        mVL = 'Medium High';
+        break;
+      }
+      case 4: {
+        mVL = 'High';
+        break;
+      }
     }
 
-    const embed = {
+    return msg.channel.createMessage({
       title: 'Server Info',
       author: {
         name: msg.channel.guild.name,
@@ -142,7 +77,7 @@ module.exports = {
         }, 
         {
           name: 'Server Region',
-          value: `${checkRegion(msg, guild)}`,
+          value: regions[msg.channel.guild.region],
           inline: true
         },
         {
@@ -167,12 +102,12 @@ module.exports = {
         },
         {
           name: 'Humans',
-          value: checkMembers(msg),
+          value: msg.channel.guild.members.filter(m => !m.bot).length,
           inline: true
         },
         {
           name: 'Bots',
-          value: checkBots(msg),
+          value: msg.channel.guild.members.filter(m => m.bot).length,
           inline: true
         },
         {
@@ -186,10 +121,7 @@ module.exports = {
         text: client.user.username,
         icon_url: client.user.avatarURL
       }
-    };
-
-    msg.channel.createMessage({embed});
-
+    });
   },
   options: {
     'description': 'Provides server information.',

@@ -6,7 +6,7 @@ module.exports = {
     const then = Date.now();
     const newmsg = await msg.channel.createMessage('Pong!');
     const diff = Date.now() - then;
-    await newmsg.edit(`Pong! \`${diff}ms\``);
+    newmsg.edit(`Pong! \`${diff}ms\``);
   },
   options: {
     'description': 'Get the bot\'s response time.',
