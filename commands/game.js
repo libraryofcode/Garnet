@@ -32,8 +32,8 @@ module.exports = {
       .sort((a,b) => b.position - a.position)[0].color; //eslint-disable-line
 
     const largeImage = botuser.game.assets.large_image 
-      ? largeImage = `https://i.scdn.co/image/${botuser.game.assets.large_image.split(':').splice(1)}`
-      : largeImage = 'https://cdn.discordapp.com/avatars/460639060851949569/4f545d7d0ee4fb31a411035793c4aef8.png?size=2048';
+      ? `https://i.scdn.co/image/${botuser.game.assets.large_image.split(':').splice(1)}`
+      : 'https://cdn.discordapp.com/avatars/460639060851949569/4f545d7d0ee4fb31a411035793c4aef8.png?size=2048';
     
     const startTimeStamp = botuser.game.timestamps.start 
       ? new Date(botuser.game.timestamps.start).toLocaleString('en-us') 
