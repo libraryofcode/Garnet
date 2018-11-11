@@ -24,11 +24,13 @@ exports.run = async (client, message, args) => {
   if (args[0] === 'off') {
     message.delete();
     slowmode(0, '***Slowmode has been disabled in this channel.***');
+    msg.delete(8000)
   } else if (isNaN(args[0]) || parseInt(args[0]) > 120 || parseInt(args[0]) < 1) {
     msg.edit('**Error:** Please use a number between 1 and 120');
   } else {
     message.delete();
     slowmode(args[0], `***Slowmode is enabled in this channel for ${args[0]} seconds.***`);
+    msg.delete(8000);
   }
 };
 

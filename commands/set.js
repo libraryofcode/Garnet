@@ -53,11 +53,11 @@ exports.run = async (client, message, [action, key, ...value], level) => { // es
       // We delete the `key` here.
       delete overrides[key];
       client.settings.set(message.guild.id, overrides);
-      message.reply(`${key} was successfully reset.`);
+      message.channel.send(`${key} was successfully reset.`);
     } else
     // If they respond with n or no, we inform them that the action has been cancelled.
     if (['n','no','cancel'].includes(response)) {
-      message.reply('Action cancelled.');
+      message.channel.send('Action cancelled.');
     }
   } else
   
@@ -65,7 +65,7 @@ exports.run = async (client, message, [action, key, ...value], level) => { // es
     if (!key) return message.reply('Please specify a key to view');
     if (!settings[key]) return message.reply('This key does not exist in the settings');
     const isDefault = !overrides[key] ? '\nThis is the default global default value.' : '';
-    message.reply(`The value of ${key} is currently ${settings[key]}${isDefault}`);
+    message.channel.send(`The value of ${key} is currently ${settings[key]}${isDefault}`);
   } else {
     message.channel.send(inspect(settings), {code: 'json'});
   }

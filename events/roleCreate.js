@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const web = require('../webhooks.json');
 
 module.exports = async (client, role) => {
   const roleName = role.name;
@@ -9,7 +10,9 @@ module.exports = async (client, role) => {
   const guildName = role.guild.name;
   const guildID = role.guild.id;
   const guildIcon = role.guild.iconURL;
-
+  
+  const hook = new Discord.WebhookClient(web.roleCreateID, web.roleCreateToken);
+=======
   const embed = new Discord.RichEmbed()
     .setTitle('Role Create Event')
     .setThumbnail(guildIcon)
@@ -20,6 +23,9 @@ module.exports = async (client, role) => {
     .addField('Guild', `${guildName} \`(${guildID})\``)
     .setFooter(client.user.username, client.user.avatarURL)
     .setTimestamp();
-  client.channels.get('503828179241271306').send(embed);
+
+   hook.send(embed);
+    
+};;
     
 };

@@ -10,6 +10,7 @@ data/
 test.js
 musicsettings.json
 sentry.json
+webhooks.json
 
 
 # Runtime data

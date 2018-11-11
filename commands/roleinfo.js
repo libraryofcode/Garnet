@@ -84,6 +84,7 @@ exports.run = async (client, message, args) => {
   } catch (err) {
     const norole = 'This role was not found.';
     msg.edit(norole);
+    message.channel.send(err);
   }
 
 

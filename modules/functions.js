@@ -1,5 +1,5 @@
 const sentryconfig = require('../sentry.json');
-let Raven = require('raven');
+const Raven = require('raven');
 Raven.config(sentryconfig.link).install();
 module.exports = (client) => {
 
@@ -63,7 +63,7 @@ module.exports = (client) => {
     const filter = m => m.author.id === msg.author.id;
     await msg.channel.send(question);
     try {
-      const collected = await msg.channel.awaitMessages(filter, { max: 1, time: limit, errors: ["time"] });
+      const collected = await msg.channel.awaitMessages(filter, { max: 1, time: limit, errors: ['time'] });
       return collected.first().content;
     } catch (e) {
       return false;
@@ -80,15 +80,15 @@ module.exports = (client) => {
   This is mostly only used by the Eval and Exec commands.
   */
   client.clean = async (client, text) => {
-    if (text && text.constructor.name == 'Promise');
-    text = await text;
-    if (typeof evaled !== 'string');
-    text = require('util').inspect(text, {depth: 1});
+    if (text && text.constructor.name == 'Promise')
+      text = await text;
+    if (typeof evaled !== 'string')
+      text = require('util').inspect(text, {depth: 1});
 
     text = text
-    text.replace(/`/g, "`" + String.fromCharCode(8203));
-    text.replace(/@/g, "@" + String.fromCharCode(8203));
-    text.replace(client.token, 'Token is classfied and hidden from this field.');
+      .replace(/`/g, '`' + String.fromCharCode(8203))
+      .replace(/@/g, '@' + String.fromCharCode(8203))
+      .replace(client.token, '[TOKEN]');
 
     return text;
   };
@@ -167,6 +167,7 @@ module.exports = (client) => {
 
   process.on('unhandledRejection', err => {
     client.logger.error(`Unhandled Rejection Error: ${err}`);
+    //client.channels.get('503374059044601872').send(err);
     Raven.captureException(err);
   });
 };

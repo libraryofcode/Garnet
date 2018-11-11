@@ -14,8 +14,8 @@ exports.run = (client, message, args, level) => { // eslint-disable-line no-unus
       .setAuthor(`${client.user.username}`, `${client.user.avatarURL}`)
       .setColor(message.member.displayColor)
       .addField('• Uptime', `${duration}`, false)
-      .addField('• Ping', `${Math.round(client.ping)}ms`, true)
-      .addField('• Ping Ratings', `${client.pings.join(', ')}`, true)
+      .addField('• API Latency', `${Math.round(client.ping)}ms`, true)
+      .addField('• API Ping Ratings', `${client.pings.join(', ')}`, true)
       .setFooter(`${client.user.username} | Beta - Master`);
     
 
@@ -31,7 +31,7 @@ exports.run = (client, message, args, level) => { // eslint-disable-line no-unus
 exports.conf = {
   enabled: true,
   guildOnly: false,
-  aliases: [],
+  aliases: ['up'],
   permLevel: 'Systems Alpha/Dev Tester'
 };
 
