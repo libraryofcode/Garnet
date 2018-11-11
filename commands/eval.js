@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const { inspect } = require('util');
+//const { inspect } = require('util');
 exports.run = async (client, message, args) => { 
   let evaled;
   
@@ -7,14 +7,14 @@ exports.run = async (client, message, args) => {
   try {
     evaled = await eval(args.join(' ').trim());
 
-    switch (typeof evaled) {
+    /*switch (typeof evaled) {
       case 'object':
         evaled = inspect(evaled, {
-          depth: 0
+          depth: 1
         });
         break;
       default:
-    }
+    }*/
       
   } catch (err) {
     const embed2 = new Discord.RichEmbed();
@@ -33,10 +33,13 @@ exports.run = async (client, message, args) => {
   if (evaled == undefined) {
     evaled = 'undefined';
   }
-  if (evaled.length > 2000) {
+  if (evaled.length > 1900) {
     evaled = 'Response too large';
   }
-  const clean = await client.clean(client, evaled);
+  let clean = await client.clean(client, evaled);
+  if (clean.length > 1900) {
+    clean = 'Response too large';
+  }
 
   const embed1 = new Discord.RichEmbed()
     .setAuthor(client.user.username, client.user.avatarURL)
