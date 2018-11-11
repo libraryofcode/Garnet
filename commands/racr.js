@@ -58,7 +58,7 @@ exports.run = async (client, message, args) => {
           .setFooter(client.user.username, client.user.avatarURL)
           .setTimestamp();
         //const messageEmbed = await client.channels.get('503491110149160961').send(embed);
-        const messageEmbed = await hook.send(embed)
+        const messageEmbed = await hook.send(embed);
         //console.log(messageEmbed)
         await messageEmbed.react('✅');
         //same tbh

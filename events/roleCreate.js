@@ -12,7 +12,6 @@ module.exports = async (client, role) => {
   const guildIcon = role.guild.iconURL;
   
   const hook = new Discord.WebhookClient(web.roleCreateID, web.roleCreateToken);
-=======
   const embed = new Discord.RichEmbed()
     .setTitle('Role Create Event')
     .setThumbnail(guildIcon)
@@ -24,8 +23,6 @@ module.exports = async (client, role) => {
     .setFooter(client.user.username, client.user.avatarURL)
     .setTimestamp();
 
-   hook.send(embed);
-    
-};;
+  hook.send(embed);
     
 };
