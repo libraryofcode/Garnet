@@ -26,7 +26,6 @@ exports.run = async (client, message, args) => {
     message.channel.send(embed2);
   }
 };
-  
 
 exports.conf = {
   enabled: true,
