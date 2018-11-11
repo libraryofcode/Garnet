@@ -1,7 +1,7 @@
 const sentryconfig = require('../sentry.json')
 const Raven = require('raven');
 Raven.config(sentryconfig.link).install();
-module.exports = (client: any) => {
+module.exports = (client) => {
 
   /*
   PERMISSION LEVEL FUNCTION
@@ -36,7 +36,7 @@ module.exports = (client: any) => {
   the default settings are used.
 
   */
-  client.getGuildSettings = (guild: any) => {
+  client.getGuildSettings = (guild) => {
     const def = client.config.defaultSettings;
     if (!guild) return def;
     const returns = {};
@@ -59,7 +59,7 @@ module.exports = (client: any) => {
   msg.reply(`Oh, I really love ${response} too!`);
 
   */
-  client.awaitReply = async (msg: any, question: string[], limit = 60000) => {
+  client.awaitReply = async (msg, question, limit = 60000) => {
     const filter = m => m.author.id === msg.author.id;
     await msg.channel.send(question);
     try {
@@ -92,11 +92,6 @@ module.exports = (client: any) => {
 
     return text;
   };
-  interface ClientCommands {
-    command: string,
-    shutdown: any,
-    commands?: string[]
-  }
   client.loadCommand = (commandName) => {
     try {
       client.logger.log(`Loading Command: ${commandName}`);
@@ -114,9 +109,9 @@ module.exports = (client: any) => {
     }
   };
 
-  client.unloadCommand = async (commandName: string) => {
+  client.unloadCommand = async (commandName) => {
 
-    let command : ClientCommands
+    let command;
     if (client.commands.has(commandName)) {
       command = client.commands.get(commandName);
     } else if (client.aliases.has(commandName)) {
