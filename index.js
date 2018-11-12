@@ -1,9 +1,7 @@
 const client = require('./client.js');
 const chalk = require('chalk');
 const fs = require('fs');
-///const eris = require('eris');
 
-console.log(chalk.magenta('[LOAD]: Loading Commands...'));
 function read() {
   fs.readdir(__dirname + '/commands/', (err, files) => {
     if (err) console.error(err);
@@ -15,9 +13,9 @@ function read() {
     });
   });
 }
-//read('Commands/Admin');
-//read('Commands/Info');
-read('./commands');
+
+console.log(chalk.magenta('[LOAD]: Loading Commands...'));
+read();
 
 fs.readdir(__dirname + '/events/', (err, files) => {
   console.log(chalk.magenta('[LOAD] Loading Events...'));

@@ -6,15 +6,13 @@ module.exports = {
   action: async (msg, args) => {
     const code = args.join(' ');
     let evaled;
+
     try {
       evaled = await eval(code);
-      switch (typeof evaled) {
-        case 'object':
-          evaled = util.inspect(evaled, {
-            depth: 0
-          });
-          break;
-        default:
+      if (typeof evaled === 'object') {
+        evaled = util.inspect(evaled, {
+          depth: 0
+        });
       }
     } catch (err) {
       const errorEmbed = {
@@ -29,15 +27,17 @@ module.exports = {
       };
       return msg.channel.createMessage({embed: errorEmbed});
     }
-    if (typeof evaled === 'string') {
-      evaled = evaled.replace(client.token, '[TOKEN]');
-    }
+    
+    evaled = evaled.replace(client.token, '[TOKEN]');
+    
     if (evaled == undefined) {
       evaled = 'undefined';
     }
+
     if (evaled.length > 1900) {
       evaled = 'Response too large to be sent.';
     }
+
     const successEmbed = {
       title: 'JavaScript Eval',
       color: 65280,

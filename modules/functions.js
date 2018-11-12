@@ -1,6 +1,7 @@
 const sentryconfig = require('../sentry.json');
 const Raven = require('raven');
 Raven.config(sentryconfig.link).install();
+
 module.exports = (client) => {
 
   /*
@@ -106,7 +107,7 @@ module.exports = (client) => {
       });
       return false;
     } catch (e) {
-      return `Unable to load command ${commandName}: ${e}`;
+      return `Unable to load command ${commandName}`;
     }
   };
 
@@ -116,8 +117,9 @@ module.exports = (client) => {
       command = client.commands.get(commandName);
     } else if (client.aliases.has(commandName)) {
       command = client.commands.get(client.aliases.get(commandName));
-    }
-    if (!command) return `The command \`${commandName}\` doesn't seem to exist, nor is it an alias. Try again!`;
+    } else {
+      return `The command \`${commandName}\` doesn't seem to exist, nor is it an alias. Try again!`;
+    } 
   
     if (command.shutdown) {
       await command.shutdown(client);

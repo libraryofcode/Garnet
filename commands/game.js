@@ -8,97 +8,44 @@ const status = {
 
 module.exports = {
   name: 'game',
-  action: async (msg, args) => {
-    msg.channel.sendTyping();
-
+  action: (msg, args) => {
     const resolvedUser = (args[0] !== undefined) ? msg.channel.guild.members.get(args[0].match(/[0-9]/g).join('')) : null;
     const botuser = resolvedUser ? msg.channel.guild.members.get(resolvedUser.id) : msg.member;
 
-    const highestRole = botuser.roles.map(i => msg.channel.guild.roles.get(i)).filter(i => i.color).sort(function (a,b) { return b.position - a.position})[0].color //eslint-disable-line
-    const errorEmbed = {
-      author: {
-        name: `${botuser.user.username}#${botuser.user.discriminator}`,
-        icon_url: botuser.user.avatarURL
-      },
-      color: highestRole,
-      description: 'This user isn\'t playing anything.',
-      timestamp: new Date(msg.createdAt),
-      footer: {
-        text: `${client.user.username} | User ID: ${botuser.id}`
-      }
-    };
-    if (!botuser.game) return msg.channel.createMessage({embed: errorEmbed});
-     
-    let largeImage;
-    try {
-      if (botuser.game.assets.large_image === undefined || null) {
-        largeImage = 'https://cdn.discordapp.com/avatars/460639060851949569/4f545d7d0ee4fb31a411035793c4aef8.png?size=2048';
-      } else {
-        largeImage = `https://i.scdn.co/image/${botuser.game.assets.large_image.split(':').splice(1)}`;
-      }
-    } catch (err) {
-      largeImage = 'https://cdn.discordapp.com/avatars/460639060851949569/4f545d7d0ee4fb31a411035793c4aef8.png?size=2048';
+    if (!botuser.game) {
+      return msg.channel.createMessage('This user isn\'t playing anything.');
+    } else {
+      msg.channel.sendTyping();
     }
+
     const thisStatus = status[botuser.status]; 
 
-    let gameName;
-    try {
-      if (botuser.game.name === undefined || null) {
-        gameName = 'Unspecified';
-      } else {
-        gameName = botuser.game.name;
-      }
-    } catch (err) {
-      gameName = 'Unspecified';
-    }
+    const gameName = botuser.game.name || 'Unspecified';
 
-    let gameDetails;
-    try {
-      if (botuser.game.details === undefined || null) {
-        gameDetails = 'Unspecified';
-      } else {
-        gameDetails = botuser.game.details;
-      }
-    } catch (err) {
-      gameDetails = 'Unspecified';
-    }
+    const gameDetails = botuser.game.details || 'Unspecified';
     
-    let gameState;
-    try {
-      if (botuser.game.state === undefined || null) {
-        gameState = 'Unspecified';
-      } else {
-        gameState = botuser.game.state;
-      }
-    } catch (err) {
-      gameState = 'Unspecified';
-    }
+    const gameState = botuser.game.state || 'Unspecified';
 
+    const highestRole = botuser.roles
+      .map(i => msg.channel.guild.roles.get(i))
+      .filter(i => i.color)
+      .sort((a,b) => b.position - a.position)[0].color; //eslint-disable-line
+
+    const largeImage = botuser.game.assets.large_image 
+      ? `https://i.scdn.co/image/${botuser.game.assets.large_image.split(':').splice(1)}`
+      : 'https://cdn.discordapp.com/avatars/460639060851949569/4f545d7d0ee4fb31a411035793c4aef8.png?size=2048';
     
-    let startTimeStamp;
-    try { 
-      if (botuser.game.timestamps.start === undefined || null) {
-        startTimeStamp = 'Unspecified';
-      } else {
-        startTimeStamp = new Date(botuser.game.timestamps.start).toLocaleString('en-us');
-      }
-    } catch (err) {
-      startTimeStamp = 'Unspecified';
-    }
+    const startTimeStamp = botuser.game.timestamps.start 
+      ? new Date(botuser.game.timestamps.start).toLocaleString('en-us') 
+      : 'Unspecified';
+    
+    const endTimeStamp = botuser.game.timestamps.end 
+      ? new Date(botuser.game.timestamps.end).toLocaleString('en-us')
+      : 'Unspecified';
 
-    let endTimeStamp;
-    try {
-      if (botuser.game.timestamps.end === undefined || null) {
-        endTimeStamp = 'Unspecified';
-      } else {
-        endTimeStamp = new Date(botuser.game.timestamps.end).toLocaleString('en-us');
-      }
-    } catch (err) {
-      endTimeStamp = 'Unspecified';
-    }
-
+    const embed = {};
     if (botuser.game.name !== 'Spotify') {
-      const embed1 = {
+      embed.embed = {
         author: {
           name: `${botuser.user.username}#${botuser.user.discriminator}`,
           icon_url: botuser.user.avatarURL
@@ -137,9 +84,8 @@ module.exports = {
           text: `${client.user.username} | User ID: ${botuser.id}`
         }
       };
-      return msg.channel.createMessage({embed: embed1});
     } else if (botuser.game.name === 'Spotify') {
-      const embed2 = {
+      embed.embed = {
         title: 'Spotify',
         author: {
           name: client.user.username,
@@ -180,8 +126,8 @@ module.exports = {
           icon_url: 'https://cdn.discordapp.com/attachments/358674161566220288/496894273304920064/2000px-Spotify_logo_without_text.png'
         }
       };
-      msg.channel.createMessage({embed: embed2});
     }
+    return msg.channel.createMessage(embed);
   }, options: {
     'description': 'Shows a specified user\'s game details.'
   }

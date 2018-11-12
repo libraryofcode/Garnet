@@ -4,6 +4,34 @@ const reload = require('require-reload')(require);
 const unload = require('un-Require');
 const fs = require('fs');
 
+function unloadSubcommands(m, args) {
+  fs.readdir('./commands', async (err, files) => {
+    if (err) {
+      return m.edit(`Oh shit, an error. ${err}`);
+    } else {
+      try {
+        const subcmds = files.filter(f => f.includes(`${args[0]}_`));
+        if (subcmds.length > 0) {
+          subcmds.forEach((subcmd) => {
+            unload(require.resolve('./' + subcmd));
+          });
+        }
+      } catch (e) {
+        return m.edit(`Error with unloading command \`${args[0]}\`\n\`\`\`xl\n${err}\`\`\``);
+      }
+    }
+  });
+}
+function registerSubcommands(cmd, parent) {
+  cmd.subcommands = cmd.subcommands || [];
+  cmd.subcommands.forEach((subcmd) => {
+    if (subcmd.enabled) {
+      const c = parent.registerSubcommand(subcmd.label, subcmd.action, subcmd.options);
+      registerSubcommands(subcmd, c);
+    }
+  });
+}
+
 module.exports = {
   name: 'reload',
   action: async (msg, args) => {
@@ -23,34 +51,7 @@ module.exports = {
       if (c.enabled && !c.isSubcommand) {
         const cmd = client.registerCommand(c.label, c.action, c.options);
         
-        function unloadSubcommands(args) {
-          fs.readdir('./commands', async (err, files) => {
-            if (err) {
-              return m.edit(`Oh shit, an error. ${err}`);
-            } else {
-              try {
-                const subcmds = files.filter(f => f.includes(`${args[0]}_`));
-                if (subcmds.length > 0) {
-                  subcmds.forEach((subcmd) => {
-                    unload(require.resolve('./' + subcmd));
-                  });
-                }
-              } catch (e) {
-                return m.edit(`Error with unloading command \`${args[0]}\`\n\`\`\`xl\n${err}\`\`\``);
-              }
-            }
-          });
-        }
-        function registerSubcommands(cmd, parent) {
-          cmd.subcommands = cmd.subcommands || [];
-          cmd.subcommands.forEach((subcmd) => {
-            if (subcmd.enabled) {
-              const c = parent.registerSubcommand(subcmd.label, subcmd.action, subcmd.options);
-              registerSubcommands(subcmd, c);
-            }
-          });
-        }
-        unloadSubcommands(args);
+        unloadSubcommands(m, args);
         registerSubcommands(c, cmd);
       }
       return m.edit(`[SUCCESS] Reloaded command \`${args[0]}\``);

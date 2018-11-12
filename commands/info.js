@@ -2,7 +2,7 @@ const client = require('../client.js');
 
 module.exports = {
   name: 'info',
-  action: async (msg) => {
+  action: (msg) => {
     msg.channel.sendTyping();
 
     const embed = {
@@ -34,7 +34,7 @@ module.exports = {
         },
         {
           name: 'Contributors',
-          value: 'The Phoenix of Phoebus#9935',
+          value: 'The Phoenix of Phoebus#9935, KhaaZ#0001',
           inline: false
         },
         {
@@ -49,6 +49,6 @@ module.exports = {
         icon_url: client.user.avatarURL
       }
     };
-    msg.channel.createMessage({embed: embed});
+    msg.channel.createMessage({ embed });
   }
 };
