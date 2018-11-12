@@ -1,19 +1,7 @@
 // This event executes when a new guild (server) is left.
-const Discord = require('discord.js');
 const fs = require('fs');
-const web = require('../webhooks.json');
 module.exports = (client, guild) => {
   client.logger.cmd(`[GUILD LEAVE] ${guild.name} (${guild.id}) removed the bot.`);
-  const hook = new Discord.WebhookClient(web.guildDeleteID, web.guildDeleteToken);
-  const successEmbed = new Discord.RichEmbed()
-    .setTitle('Guild Delete Event')
-    .setThumbnail(guild.iconURl)
-    .addField('Guild', `${guild.name} \`\`(${guild.id})\`\``, true)
-    .addField('Owner', `${guild.owner.user.tag} \`\`(${guild.owner.user.id})\`\``)
-    .setFooter(client.user.username, client.user.avatarURL)
-    .setTimestamp();
-  //client.channels.get('503374615154786324').send(successEmbed);
-  hook.send(successEmbed);
 
   fs.readFile('./allowedGuildDB.json', 'utf8', async (err, data) => { // readFile method basically allows us to read the data in that file
     if (err !== null) { // Just an error checker

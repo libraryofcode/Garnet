@@ -1,6 +1,4 @@
 const fs = require('fs');
-const Discord = require('discord.js');
-const web = require('../webhooks.json');
 exports.run = (client, message, args) => {
   fs.readFile('./allowedGuildDB.json', 'utf8', async (err, data) => { // readFile method basically allows us to read the data in that file
     if (err !== null) { // Just an error checker
@@ -30,17 +28,6 @@ exports.run = (client, message, args) => {
         const guild = client.guilds.get(guildID);
         (guild !== undefined) ? guild.leave() : null;
         message.channel.send(`✅ ***Deactivated Moonglow on ${args[0]}***`);
-        //const acUser = client.users.get(args[1]).tag;
-        const hook = new Discord.WebhookClient(web.activationLogID, web.activationLogToken);
-        const embed = new Discord.RichEmbed()
-          .setTitle('SERVER DEACTIVATION')
-          .addField('Staff', `${message.author.tag} \`(${message.author.id})\``, true)
-          .addField('Guild', guildID, true)
-          //.addField('User', `${acUser} \`(${args[1]})\``)
-          .setFooter(client.user.username, client.user.avatarURL)
-          .setTimestamp();
-        //client.channels.get('503491110149160961').send(embed);
-        hook.send(embed);
       }
       else {
         message.channel.send('Specified guild was never activated.');

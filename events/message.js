@@ -1,5 +1,3 @@
-const Discord = require('discord.js');
-const web = require('../webhooks.json');
 module.exports = async (client, message) => {
   if (message.author.bot) return;
 
@@ -45,26 +43,6 @@ module.exports = async (client, message) => {
     while (args[0] && args[0][0] === '-') {
       message.flags.push(args.shift().slice(1));
     }
-
-    const hook = new Discord.WebhookClient(web.commandLogID, web.commandLogToken);
-    const staffHook = new Discord.WebhookClient(web.staffCommandLogID, web.staffCommandLogToken);
-    const embed = new Discord.RichEmbed();
-    embed.setTitle('COMMAND EXECUTED');
-    embed.setDescription('**COMMAND RAN WITH ADMINISTRATIVE PRIVILEGES**');
-    embed.addField('User', `${message.author.username} \`(${message.author.id})\``, true);
-    embed.addField('User Permissions', client.config.permLevels.find(l => l.level === level).name, true);
-    embed.addField('Command', cmd.help.name, true);
-    try {
-      embed.addField('Content', message.content, true);
-      embed.addField('Guild', `${message.guild.name} \`(${message.guild.id})\``, true);
-      embed.addField('Channel', `${message.channel.name} \`(${message.channel.id})\``, true);
-    } catch (error) {
-      console.log(error);
-    }
-    embed.setFooter(client.user.username, client.user.avatarURL);
-    embed.setTimestamp();
-    staffHook.send(embed);
-    hook.send(embed);
     cmd.run(client, message, args, level);
   } else {
 
@@ -106,24 +84,6 @@ module.exports = async (client, message) => {
     }
     client.logger.cmd(`[CMD] ${client.config.permLevels.find(l => l.level === level).name} ${message.author.username} (${message.author.id}) ran command ${cmd.help.name}`);
   
-    const hook = new Discord.WebhookClient(web.commandLogID, web.commandLogToken);
-    const staffHook = new Discord.WebhookClient(web.staffCommandLogID, web.staffCommandLogToken);
-    const embed = new Discord.RichEmbed();
-    embed.setTitle('COMMAND EXECUTED');
-    embed.addField('User', `${message.author.username} \`(${message.author.id})\``, true);
-    embed.addField('User Permissions', client.config.permLevels.find(l => l.level === level).name, true);
-    embed.addField('Command', cmd.help.name, true);
-    try {
-      embed.addField('Content', message.content, true);
-      embed.addField('Guild', `${message.guild.name} \`(${message.guild.id})\``, true);
-      embed.addField('Channel', `${message.channel.name} \`(${message.channel.id})\``, true);
-    } catch (error) {
-      console.log(error);
-    }
-    embed.setFooter(client.user.username, client.user.avatarURL);
-    embed.setTimestamp();
-    staffHook.send(embed);
-    hook.send(embed);
 
     cmd.run(client, message, args, level);
   }

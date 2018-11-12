@@ -1,9 +1,6 @@
 if (Number(process.version.slice(1).split('.')[0]) < 8) throw new RangeError('Node 8.0.0 or higher is required. Update Node on your system.');
 
 const Discord = require('discord.js'); 
-//const sentryconfig = require('./sentry.json');
-//const Raven = require('raven');
-//Raven.config(sentryconfig.link).install();
 const { promisify } = require('util');
 const readdir = promisify(require('fs').readdir);
 const Enmap = require('enmap');
@@ -12,15 +9,12 @@ const EnmapLevel = require('enmap-sqlite'); //eslint-disable-line no-unused-vars
 const client = new Discord.Client({
   fetchAllMembers: true,
   disableEveryone: true,
-  //shardId: process.argv[1],
-  //shardCount: process.argv0[2],
 }); 
 
 
 client.config = require('./config.js');
 // client.config.token contains the bot's token
 // client.config.prefix contains the message prefix
-//k
 
 client.logger = require('./modules/Logger.ts');
 
@@ -102,14 +96,12 @@ const init =  async () => {
     client.on(eventName, event.bind(null, client));
   });
 
-  // Generate a cache of client permissions for pretty perm names in commands.
   client.levelCache = {};
   for (let i = 0; i < client.config.permLevels.length; i++) {
     const thisLevel = client.config.permLevels[i];
     client.levelCache[thisLevel.name] = thisLevel.level;
   }
 
-  // Here we login the client.
   client.login(client.config.token);
 
 };
