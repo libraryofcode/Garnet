@@ -1,4 +1,4 @@
-const sentryconfig = require('../sentry.json');
+const sentryconfig = require('../sentry.json')
 const Raven = require('raven');
 Raven.config(sentryconfig.link).install();
 module.exports = (client) => {
@@ -86,13 +86,12 @@ module.exports = (client) => {
       text = require('util').inspect(text, {depth: 1});
 
     text = text
-      .replace(/`/g, '`' + String.fromCharCode(8203))
-      .replace(/@/g, '@' + String.fromCharCode(8203))
+      //.replace(/`/g, '`' + String.fromCharCode(8203))
+      //.replace(/@/g, '@' + String.fromCharCode(8203))
       .replace(client.token, '[TOKEN]');
 
     return text;
   };
-
   client.loadCommand = (commandName) => {
     try {
       client.logger.log(`Loading Command: ${commandName}`);
@@ -111,6 +110,7 @@ module.exports = (client) => {
   };
 
   client.unloadCommand = async (commandName) => {
+
     let command;
     if (client.commands.has(commandName)) {
       command = client.commands.get(commandName);
@@ -142,15 +142,15 @@ module.exports = (client) => {
   
   // <String>.toPropercase() returns a proper-cased string such as: 
   // "Mary had a little lamb".toProperCase() returns "Mary Had A Little Lamb"
-  String.prototype.toProperCase = function() {
-    return this.replace(/([^\W_]+[^\s-]*) */g, function(txt) {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
-  };    
+  /*String.prototype.toProperCase = function() {
+    return this.replace(/([^\W_]+[^\s-]*) *///g, function(txt) {return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+  //};    
   
   // <Array>.random() returns a single random element from an array
   // [1, 2, 3, 4, 5].random() can return 1, 2, 3, 4 or 5.
-  Array.prototype.random = function() {
+  /*Array.prototype.random= function() {
     return this[Math.floor(Math.random() * this.length)];
-  };
+  };*/
 
   // `await client.wait(1000);` to "pause" for 1 second.
   client.wait = require('util').promisify(setTimeout);

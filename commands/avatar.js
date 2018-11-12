@@ -11,7 +11,7 @@ exports.run = async (client, message, args) => {
   embed.setTitle('Avatar');
   embed.setColor(botuser.displayHexColor);
   //embed.addField('User', `${botuser.user.tag}`);
-  embed.setThumbnail(botuser.user.avatarURL);
+  embed.setImage(botuser.user.avatarURL);
   embed.setTimestamp();
   embed.setFooter(`${client.user.username} | User ID: ${botuser.id}`, client.user.avatarURL);
 
