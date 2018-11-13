@@ -24,8 +24,8 @@ module.exports = async (client, message) => {
   }
   const thisCredits = client.credits.get(`${message.member.id} | ${message.guild.id}`, 'credits');
   try {
-    if (message.member.roles.has('511771731891847168')) return;
     if (thisCredits >= 500) {
+      if (message.member.roles.has('511771731891847168')) return;
       message.member.addRole('511771731891847168', 'User reached 500 credits.');
     }
   } catch (err) {
