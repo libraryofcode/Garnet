@@ -74,6 +74,10 @@ module.exports = async (client, message) => {
     hook.send(embed);
     cmd.run(client, message, args, level);
   } else {
+
+    if (client.blackList.get(message.author.id)) {
+      return;
+    }
     
     if (client.stats.get(`${message.member.id} | ${message.guild.id}`) === undefined) {
       client.stats.set(`${message.member.id} | ${message.guild.id}`, 1);
@@ -112,9 +116,9 @@ module.exports = async (client, message) => {
     const cmd = client.commands.get(command) || client.commands.get(client.aliases.get(command));
     if (!cmd) return;
 
-    if (client.blackList.get(message.author.id)) {
+    /*if (client.blackList.get(message.author.id)) {
       return;
-    }
+    }*/
 
     if (cmd && !message.guild && cmd.conf.guildOnly)
       return message.channel.send('This command is unavailable via private message. Please run this command in a guild.');
