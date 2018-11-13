@@ -22,7 +22,15 @@ module.exports = async (client, message) => {
     });
     client.credits.math(key, 'add', 0.48, 'credits');
   }
-  
+  const thisCredits = client.credits.get(`${message.member.id} | ${message.guild.id}`, 'credits');
+  try {
+    if (message.member.roles.has('511771731891847168')) return;
+    if (thisCredits >= 500) {
+      message.member.addRole('511771731891847168', 'User reached 500 credits.');
+    }
+  } catch (err) {
+    console.log(err);
+  }
 
  
   const prefixMention = new RegExp(`^<@!?${client.user.id}>( |)$`);
