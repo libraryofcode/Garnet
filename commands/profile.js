@@ -29,9 +29,19 @@ exports.run = async (client, message, args, level) => {
 
   //msg2.edit(':pencil: Profile Card');
   embed.setAuthor(botuser.user.tag, botuser.user.avatarURL);
-  if (userTitle) embed.setTitle(userTitle);
+  if (userTitle) {
+    try {
+      embed.setTitle(userTitle);
+    } catch (err) {
+      embed.setTitle(err);
+    }
+  }
   if (userBio) {
-    embed.setDescription(userBio);
+    try {
+      embed.setDescription(userBio);
+    } catch (err) {
+      embed.setDescription(err);
+    }
   } else {
     embed.setDescription('I don\'t have a bio because I\'m too lazy to set one.');
   }
