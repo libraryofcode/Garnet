@@ -39,6 +39,9 @@ exports.run = async (client, message, args, level) => {
       const millisJoined = new Date().getTime() - botuser.joinedAt.getTime();
       const dj = millisJoined / 1000 / 60 / 60 / 24;
 
+      const millisJoined1 = new Date().getTime() - botuser.user.createdAt.getTime();
+      const dj1 = millisJoined1 / 1000 / 60 / 60 / 24;
+
       //const joinPos = message.guild.members.sort((a,b) =>(a.joinedAt < b.joinedAt) ? -1 : ((a.joinedAt > b.joinedAt) ? 1 : 0)).map(m => m).findIndex(m => m.id == botuser.id);
       function checkUserPermission(guild, botuser) {
         const arrayOfPerms = [];
@@ -147,7 +150,7 @@ exports.run = async (client, message, args, level) => {
       }*/
       const joinPosition3 = joinPosition1 + 1;
       embed.addField('Join Position', joinPosition3, false);
-      embed.addField('Created Account At', `${botuser.user.createdAt.toLocaleString('en-US')}`, true);
+      embed.addField('Created Account At', `${botuser.user.createdAt.toLocaleString('en-US', options)} | ${dj1.toFixed(0)} Days Ago`, true);
       embed.addField('Status', `${status[botuser.user.presence.status]}`, true);
       embed.addField('Playing', `${botuser.user.presence.game ? `${botuser.user.presence.game.name}` : 'Nothing'}`, true);
       if (botuser.roles.size - 1) {
