@@ -22,7 +22,7 @@ module.exports = async (client, message) => {
     });
     client.credits.math(key, 'add', 0.48, 'credits');
   }
-  const thisCredits = client.credits.get(`${message.member.id} | ${message.guild.id}`, 'credits');
+  const thisCredits = client.credits.get(`${message.guild.id}-${message.author.id}`, 'credits');
   try {
     if (thisCredits >= 500) {
       if (message.member.roles.has('511771731891847168')) return;
