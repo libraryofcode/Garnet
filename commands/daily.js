@@ -6,10 +6,10 @@ exports.run = async (client, message) => {
   } else {
     const key = `${message.guild.id}-${message.author.id}`;
     //const thisUser = await client.credits.get(`${message.guild.id}-${message.member.id}`, 'credits');
-    client.credits.math(key, 'add', 200, 'credits');
+    client.credits.math(key, 'add', 80, 'credits');
     const thisCredits = await client.credits.get(`${message.guild.id}-${message.member.id}`, 'credits');
 
-    message.channel.send(`💰 You have claimed your dailies of 200 credits and you now have ${Math.round(thisCredits)} credits! 💰`);
+    message.channel.send(`💰 You have claimed your dailies of 80 credits and you now have ${Math.round(thisCredits)} credits! 💰`);
   }
 
   cooldown.add(message.author.id);
