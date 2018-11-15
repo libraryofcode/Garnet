@@ -14,7 +14,7 @@ exports.run = async (client, message, args) => {
     const tax = transferCredits * 0.18;
     const afterTax = transferCredits - tax;
     const taxPre = transferCredits + tax;
-    if (thisUser = message.member.id) return msg.edit('You cannot transfer credits to yourself.');
+    if (thisUser === message.member.id) return msg.edit('You cannot transfer credits to yourself.');
   
 
     if (client.credits.get(`${message.guild.id}-${message.member.id}`, 'credits') < afterTax) return msg.edit('You do not have enough credits to complete this transfer.');
