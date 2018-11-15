@@ -7,6 +7,7 @@ exports.run = async (client, message, args) => {
     const msg = await message.channel.send('Transferring...');
     const resolvedUser = (args[0] !== undefined) ? message.guild.members.get(args[0].match(/[0-9]/g).join('')) : null;
     const botuser = resolvedUser ? message.guild.members.get(resolvedUser.id) : null;
+        if(!botuser) return msg.edit('Please enter a valid user.');
     const thisUser = botuser.id;
     if (!args[1]) return msg.edit('Please specify an amount to transfer.');
     const beforeCredits = args[1];
