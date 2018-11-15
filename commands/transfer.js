@@ -21,6 +21,7 @@ exports.run = async (client, message, args) => {
     if (!client.credits.get(`${message.guild.id}-${thisUser}`, 'credits')) return msg.edit('This doesn\'t appear to be a valid account to transfer to.');
 
     try {
+        throw new TypeError(`Cannot read property 'id' of null`)
       client.credits.math(`${message.guild.id}-${message.member.id}`, 'sub', taxPre, 'credits');
       let clientUser = client.user.id;
       if (message.guild.id === '203039963636301824') clientUser = '77205340050956288';
