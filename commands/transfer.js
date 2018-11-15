@@ -20,18 +20,18 @@ exports.run = async (client, message, args) => {
     if (!client.credits.get(`${message.guild.id}-${thisUser}`, 'credits')) return msg.edit('This doesn\'t appear to be a valid account to transfer to.');
 
     try {
-    //const nowCredits = client.credits.get(`${message.guild.id}-${message.member.id}`, 'credits');
-    //const removedCredits = nowCredits - afterTax;
       client.credits.math(`${message.guild.id}-${message.member.id}`, 'sub', taxPre, 'credits');
+      let clientUser = client.user.id;
+      if (message.guild.id === '203039963636301824') clientUser = '77205340050956288';
 
-      const key = `${message.guild.id}-${client.user.id}`;
+      const key = `${message.guild.id}-${clientUser}`;
       client.credits.ensure(key, {
         user: message.author.id,
         guild: message.guild.id,
         credits: 0
       });
 
-      client.credits.math(`${message.guild.id}-${client.user.id}`, 'add', tax, 'credits');
+      client.credits.math(`${message.guild.id}-${clientUser}`, 'add', tax, 'credits');
       client.credits.math(`${message.guild.id}-${thisUser}`, 'add', afterTax, 'credits');
       const transaction = client.credits.get(`${message.guild.id}-${message.member.id}`, 'credits');
       msg.edit(`***Successfully transferred ${afterTax} credits to ${botuser.user.tag}. You now have ${Math.round(transaction)} credits.***`);
