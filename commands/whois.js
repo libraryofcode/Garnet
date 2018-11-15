@@ -178,8 +178,7 @@ exports.run = async (client, message, args, level) => {
         message.channel.stopTyping();
       }, 1000);
     } catch (err) {
-      message.channel.send('EXCPT*- ' +
-      err);
+      message.channel.send(`An error has happened during processing. | ${err}`);
       message.channel.stopTyping();
     }
     talkedRecently.add(message.author.id);
