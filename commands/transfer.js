@@ -23,6 +23,14 @@ exports.run = async (client, message, args) => {
     //const nowCredits = client.credits.get(`${message.guild.id}-${message.member.id}`, 'credits');
     //const removedCredits = nowCredits - afterTax;
       client.credits.math(`${message.guild.id}-${message.member.id}`, 'sub', taxPre, 'credits');
+
+      const key = `${message.guild.id}-${client.user.id}`;
+      client.credits.ensure(key, {
+        user: message.author.id,
+        guild: message.guild.id,
+        credits: 0
+      });
+
       client.credits.math(`${message.guild.id}-${client.user.id}`, 'add', tax, 'credits');
       client.credits.math(`${message.guild.id}-${thisUser}`, 'add', afterTax, 'credits');
       const transaction = client.credits.get(`${message.guild.id}-${message.member.id}`, 'credits');
