@@ -11,10 +11,10 @@ exports.run = async (client, message, args) => {
     if (!args[1]) return msg.edit('Please specify an amount to transfer.');
     const beforeCredits = args[1];
     const transferCredits = parseInt(beforeCredits);
-        if(transferCredits < 0) return msg.edit('You can\'t transfer a negative amount.');
+        if(transferCredits <= 0) return msg.edit('You can\'t transfer a negative or 0 amount.');
         if(isNaN(transferCredits)) return msg.edit('Please enter an actual integer amount.');
     const tax = transferCredits * 0.18;
-    const afterTax = transferCredits - tax;
+    const afterTax = Math.floor((transferCredits - tax) * 100) / 100;
     const taxPre = transferCredits + tax;
     if (thisUser === message.member.id) return msg.edit('You cannot transfer credits to yourself.');
   
