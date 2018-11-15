@@ -8,6 +8,7 @@ exports.run = async (client, message, args) => {
     const resolvedUser = (args[0] !== undefined) ? message.guild.members.get(args[0].match(/[0-9]/g).join('')) : null;
     const botuser = resolvedUser ? message.guild.members.get(resolvedUser.id) : null;
         if(!botuser) return msg.edit('Please enter a valid user.');
+        if(botuser.user.bot == true) return msg.edit('Bots do not require money, so you can\'t transfer to them.');
     const thisUser = botuser.id;
     if (!args[1]) return msg.edit('Please specify an amount to transfer.');
     const beforeCredits = args[1];
