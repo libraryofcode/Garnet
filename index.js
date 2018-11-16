@@ -80,6 +80,18 @@ client.userBio = new Enmap({
   fetchAll: true
 });
 
+client.tags = new Enmap({
+  name: 'tags',
+  autofetch: true,
+  fetchAll: true
+});
+
+client.slowmode = new Enmap({
+  name: 'slowmode',
+  autofetch: true,
+  fetchAll: true
+});
+
 const init =  async () => {
 
   const { join } = require('path');
