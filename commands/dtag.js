@@ -1,6 +1,6 @@
 exports.run = (client, message, args) => {
   const thisTag = client.tags.get(`${message.guild.id}-${args[0]}`);
-  if (!thisTag) return message.channel.send(`Tag name \`${args[0]}\`not found.`);
+  if (!thisTag) return message.channel.send(`Tag name \`${args[0]}\` not found.`);
     
   message.delete();
   message.channel.send(thisTag);
