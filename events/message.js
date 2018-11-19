@@ -7,29 +7,6 @@ module.exports = async (client, message) => {
   const settings = message.settings = client.getGuildSettings(message.guild);
 
 
-  /*if (client.stats.get(`${message.member.id} | ${message.guild.id}`) === undefined) {
-    client.stats.set(`${message.member.id} | ${message.guild.id}`, 1);
-  } else {
-    client.stats.inc(`${message.member.id} | ${message.guild.id}`);
-  }
-
-  if (message.guild) {
-    const key = `${message.guild.id}-${message.author.id}`;
-    client.credits.ensure(key, {
-      user: message.author.id,
-      guild: message.guild.id,
-      credits: 0
-    });
-    client.credits.math(key, 'add', 0.48, 'credits');
-  }
-  const thisCredits = client.credits.get(`${message.guild.id}-${message.author.id}`, 'credits');
-  try {
-    if (thisCredits >= 500) {
-      message.member.addRole('511771731891847168', 'User reached 500 credits.');
-    }
-  } catch (err) {
-    console.log(err);
-  }*/
 
  
   const prefixMention = new RegExp(`^<@!?${client.user.id}>( |)$`);
