@@ -14,7 +14,7 @@ exports.run = async (client, message, args) => {
   //Above constant adds the ability to get a game for a user by an ID instead of having to mention them.
   //const botuser = message.mentions.users.first() ? message.guild.members.get(message.mentions.users.first().id) : message.member;
   const errorembed = new Discord.RichEmbed();
-  errorembed.setAuthor(`${botuser.displayName}#${botuser.user.discriminator}`);
+  errorembed.setAuthor(`${botuser.user.username}#${botuser.user.discriminator}`);
   errorembed.setColor(botuser.displayColor);
   errorembed.setDescription('This user isn\'t playing anything.');
   errorembed.setTimestamp();
@@ -24,7 +24,7 @@ exports.run = async (client, message, args) => {
   const embed = new Discord.RichEmbed()
     .setColor(botuser.displayColor)
     .setTimestamp()
-    .setFooter(`${client.user.username} | ID ${botuser.id} | Beta - Master`);
+    .setFooter(`${client.user.username} | ID ${botuser.id}`);
 
   
   if (botuser.user.presence.game.name !== 'Spotify') {
