@@ -31,9 +31,9 @@ exports.run = async (client, message, args) => {
     const game = botuser.user.presence.game;
 
     try {
-      embed.setAuthor(`${botuser.displayName}#${botuser.user.discriminator}`, game.assets.smallImageURL);
+      embed.setAuthor(`${botuser.user.tag}`, game.assets.smallImageURL);
     } catch (err) {
-      embed.setAuthor(botuser.displayName, 'https://cdn.discordapp.com/avatars/460639060851949569/4f545d7d0ee4fb31a411035793c4aef8.png?size=2048');
+      embed.setAuthor(botuser.user.tag, 'https://cdn.discordapp.com/avatars/460639060851949569/4f545d7d0ee4fb31a411035793c4aef8.png?size=2048');
     }
     try {
       embed.setThumbnail(game.assets.largeImageURL);
