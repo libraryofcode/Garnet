@@ -7,14 +7,6 @@ module.exports = async (client, message) => {
   const settings = message.settings = client.getGuildSettings(message.guild);
 
 
-  const thisCredits = client.credits.get(`${message.guild.id}-${message.author.id}`, 'credits');
-  try {
-    if (thisCredits >= 500) {
-      message.member.addRole('511771731891847168', 'User reached 500 credits.');
-    }
-  } catch (err) {
-    console.log(err);
-  }
 
  
   const prefixMention = new RegExp(`^<@!?${client.user.id}>( |)$`);
@@ -81,7 +73,7 @@ module.exports = async (client, message) => {
     }
     const thisCredits = client.credits.get(`${message.guild.id}-${message.author.id}`, 'credits');
     try {
-      if (thisCredits >= 800) {
+      if (thisCredits >= 800 && message.guild.id === '446067825673633794') {
         message.member.addRole('511771731891847168', 'User reached 800 credits.');
       }
     } catch (err) {

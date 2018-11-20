@@ -10,7 +10,7 @@ exports.run = async (client, message, args) => {
     if (!dataSuggestion) return message.channel.send('**Please include text for the suggestion!**');
 
     const msg = await message.channel.send('Sending your suggestion');
-    if (!message.guild.id == '446067825673633794') return msg.edit('This command can only be used in the Fortnite Community server.');
+    if (!message.guild.id == '446067825673633794') return msg.edit('This command can only be used in the Library of Code server.');
   
     const embed = new Discord.RichEmbed()
       .setTitle('Moonglow Suggestion')
