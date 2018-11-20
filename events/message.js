@@ -7,21 +7,6 @@ module.exports = async (client, message) => {
   const settings = message.settings = client.getGuildSettings(message.guild);
 
 
-  /*if (client.stats.get(`${message.member.id} | ${message.guild.id}`) === undefined) {
-    client.stats.set(`${message.member.id} | ${message.guild.id}`, 1);
-  } else {
-    client.stats.inc(`${message.member.id} | ${message.guild.id}`);
-  }
-
-  if (message.guild) {
-    const key = `${message.guild.id}-${message.author.id}`;
-    client.credits.ensure(key, {
-      user: message.author.id,
-      guild: message.guild.id,
-      credits: 0
-    });
-    client.credits.math(key, 'add', 0.48, 'credits');
-  }
   const thisCredits = client.credits.get(`${message.guild.id}-${message.author.id}`, 'credits');
   try {
     if (thisCredits >= 500) {
@@ -29,7 +14,7 @@ module.exports = async (client, message) => {
     }
   } catch (err) {
     console.log(err);
-  }*/
+  }
 
  
   const prefixMention = new RegExp(`^<@!?${client.user.id}>( |)$`);
@@ -115,6 +100,7 @@ module.exports = async (client, message) => {
 
     const cmd = client.commands.get(command) || client.commands.get(client.aliases.get(command));
     if (!cmd) return;
+    if (cmd && !cmd.conf.enabled) return;
 
     /*if (client.blackList.get(message.author.id)) {
       return;
@@ -161,5 +147,21 @@ module.exports = async (client, message) => {
     hook.send(embed);
 
     cmd.run(client, message, args, level);
+  }
+
+  if (client.slowmode.get(message.channel.id, 'set') === true) {
+    if (message.member.permissions.has('ADMINISTRATOR')) return;
+    if (message.member.permissions.has('MANAGE_GUILD')) return;
+    if (message.member.permissions.has('MANAGE_CHANNEL')) return;
+    if (message.member.permissions.has('MANAGE_MESSAGES')) return;
+    const time = client.slowmode.get(message.channel.id, 'time');
+    message.channel.overwritePermissions(message.member, {
+      SEND_MESSAGES: false
+    });
+    setTimeout(() => {
+      message.channel.overwritePermissions(message.member, {
+        SEND_MESSAGES: true
+      });
+    }, time);
   }
 };
