@@ -6,6 +6,8 @@ exports.run = async (client, message, args) => {
   const botuser = resolvedUser ? message.guild.members.get(resolvedUser.id) : null;
   const thisUser = botuser.id;
 
+  // Baby can't you see, I'm calling? A guy like you, should wear a warning. It's dangerous, I'm falling.
+
   if (thisUser === message.author.id) return msg.edit('***Error: You cannot blacklist yourself.***');
   if (botuser.user.bot) return msg.edit('***Error: You cannot blacklist an application or another bot.***'); 
   
