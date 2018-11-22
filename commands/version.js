@@ -9,6 +9,7 @@ exports.run = async (client, message) => {
   embed.setTitle('Version Information');
   embed.addField('Main Kernel', new utils().kernelVersion, true);
   embed.addField('Runtime Process', process.version.slice(1), true);
+  embed.addField('Operating System', require('os').release(), true);
   embed.addField('Database', new utils().databaseVersion, true);
   embed.addField('Discord.js', `${version}`, true);
   embed.addField('Sentry Error Logging', thisPackage.dependencies.raven.slice(1), true);
