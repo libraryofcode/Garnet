@@ -156,7 +156,7 @@ setTimeout(() => {
   });
 
   
-  const server = app.listen(9000, () => {
+  const server = app.listen(80, () => {
     console.log(`Express running → PORT ${server.address().port}`);
     app.set('title', 'Moonglow Help Manual');
     app.use(favicon(__dirname + '/util/server/moonglow.ico'));
