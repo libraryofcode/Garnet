@@ -1,13 +1,9 @@
 if (Number(process.version.slice(1).split('.')[0]) < 8) throw new RangeError('Node 8.0.0 or higher is required. Update Node on your system.');
 
 const Discord = require('discord.js'); 
-//const sentryconfig = require('./sentry.json');
-//const Raven = require('raven');
-//Raven.config(sentryconfig.link).install();
 const { promisify } = require('util');
 const readdir = promisify(require('fs').readdir);
 const Enmap = require('enmap');
-const EnmapLevel = require('enmap-sqlite'); //eslint-disable-line no-unused-vars
 
 const client = new Discord.Client({
   fetchAllMembers: true,
@@ -127,3 +123,37 @@ const init =  async () => {
 };
 
 init();
+
+setTimeout(() => {
+  const express = require('express');
+  const app = express();
+  //function help() {
+  const myCommands = client.commands;
+  const commandNames = myCommands.keyArray();
+  const prefix = 'moon ';
+  const longest = commandNames.reduce((long, str) => Math.max(long, str.length), 0);
+    
+  const sorted = myCommands.array().sort((p, c) => p.help.category > c.help.category ? 1 :  p.help.name > c.help.name && p.help.category === c.help.category ? 1 : -1 );
+  app.get('/', async (req, res) => {
+    let currentCategory = '';
+    let output = `__**Command List**__\n\n[Use ${prefix}help <commandname> for details]\n`;
+    sorted.forEach( c => {
+
+      const cat = c.help.category;
+      if (currentCategory !== cat) {
+        output += `\n\n **${cat}** \n\n`;
+        currentCategory = cat;
+      }
+      output += `${prefix}${c.help.name}${' '.repeat(longest - c.help.name.length)} :: *${c.help.description}*\n`;
+    });
+    res.write(output);
+    res.send();
+  });
+
+  
+  const server = app.listen(80, () => {
+    console.log(`Express running → PORT ${server.address().port}`);
+  });
+  //}
+}, 5000);
+
