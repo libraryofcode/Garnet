@@ -127,7 +127,8 @@ init();
 setTimeout(() => {
   const express = require('express');
   const app = express();
-  //function help() {
+  const favicon = require('serve-favicon');
+  const path = require('path'); //eslint-disable-line no-unused-vars
   const myCommands = client.commands;
   const commandNames = myCommands.keyArray();
   const prefix = 'moon ';
@@ -135,24 +136,30 @@ setTimeout(() => {
     
   const sorted = myCommands.array().sort((p, c) => p.help.category > c.help.category ? 1 :  p.help.name > c.help.name && p.help.category === c.help.category ? 1 : -1 );
   app.get('/', async (req, res) => {
+    app.set('title', 'Moonglow Help Manual');
+    app.use(favicon(__dirname + '/util/server/moonglow.ico'));
+    res.set('Content-Type', 'text/html');
     let currentCategory = '';
-    let output = `__**Command List**__\n\n[Use ${prefix}help <commandname> for details]\n`;
+    let output = `<h1>Command List<br><i>Use ${prefix}help <commandname> for details</i></br></h1>`;
     sorted.forEach( c => {
 
       const cat = c.help.category;
       if (currentCategory !== cat) {
-        output += `\n\n **${cat}** \n\n`;
+        output += `\n\n <h2>${cat}</h2> \n\n`;
         currentCategory = cat;
       }
-      output += `${prefix}${c.help.name}${' '.repeat(longest - c.help.name.length)} :: *${c.help.description}*\n`;
+      output += `<br><b>${prefix}${c.help.name}</b>${' '.repeat(longest - c.help.name.length)} || ${c.help.description}</br>`;
     });
+    
     res.write(output);
     res.send();
   });
 
   
-  const server = app.listen(80, () => {
+  const server = app.listen(9000, () => {
     console.log(`Express running → PORT ${server.address().port}`);
+    app.set('title', 'Moonglow Help Manual');
+    app.use(favicon(__dirname + '/util/server/moonglow.ico'));
   });
   //}
 }, 5000);
