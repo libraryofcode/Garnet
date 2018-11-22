@@ -117,7 +117,12 @@ exports.run = async (client, message, args, level) => {
       //const joinPosition1 = message.channel.guild.members.map(i => i).sort((a, b) => a.joinedAt - b.joinedAt).indexOf(botuser);
 
       let aPerms;
+      const settings = message.settings = client.getGuildSettings(message.guild);
+      const thisRole = botuser.roles.find(r => r.name === settings.modRole).id;
 
+      if (botuser.roles.has(thisRole) || botuser.permissions.has('MANAGE_MESSAGES')) {
+        aPerms = 'Server Moderator';
+      } 
       if (botuser.permissions.has('MANAGE_GUILD')) {
         aPerms = 'Server Manager';
       }
