@@ -4,11 +4,11 @@ exports.run = (client, message, args, level) => {
     const Discord = require('discord.js');
 
     const embed1 = new Discord.RichEmbed();
-    embed1.setAuthor(`${client.user.username}`, `${client.user.avatarURL}`);
+    //embed1.setAuthor(`${client.user.username}`, `${client.user.avatarURL}`);
     embed1.setColor('RANDOM');
     embed1.setDescription('You can visit [Moonglow Help Manual](http://moonglow.fortnitecommunity.me) to get a full list of commands!');
     embed1.setTitle(`${client.user.username} Help Manual`);
-    embed1.setFooter(`${client.user.username} | Beta - Master`);
+    embed1.setFooter(client.user.username, client.user.avatarURL);
     embed1.setTimestamp();
     message.channel.send(embed1);
   //  message.channel.send(output, {code: "asciidoc", split: { char: "\u200b" }});
@@ -20,13 +20,13 @@ exports.run = (client, message, args, level) => {
       if (level < client.levelCache[command.conf.permLevel]) return;
       const Discord = require('discord.js');
       const embed2 = new Discord.RichEmbed();
-      embed2.setAuthor(`${client.user.username}`, `${client.user.avatarURL}`);
+      //embed2.setAuthor(`${client.user.username}`, `${client.user.avatarURL}`);
       embed2.setTitle(`${client.user.username} Help Manual`);
       embed2.setColor('RANDOM');
       embed2.addField('Command', `${command.help.name}`);
       embed2.addField('Description', `${command.help.description}`);
       embed2.addField('Usage', `${command.help.usage}`);
-      embed2.setFooter(`${client.user.username} | Beta - Master`);
+      embed2.setFooter(client.user.username, client.user.avatarURL);
       embed2.setTimestamp();
       message.channel.send(embed2);
 
