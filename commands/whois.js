@@ -21,7 +21,7 @@ exports.run = async (client, message, args, level) => {
       }
     message.channel.startTyping();
     try {
-      if (message.guild.members.size >= 250) message.guild.fetchMembers();
+      //if (message.guild.members.size >= 250) message.guild.fetchMembers();
       //const friendly = client.config.permLevels.find(l => l.level === level).name;
       const botuser = resolvedUser ? message.guild.members.get(resolvedUser.id) : message.member;
       const matt = resolvedUser ? message.guild.members.get(resolvedUser.id).roles.sort((a, b) => b.position - a.position).map(i => i.id).slice(0, -1) : message.member.roles.sort((a, b) => b.position - a.position).map(i => i.id).slice(0, -1);
@@ -114,7 +114,7 @@ exports.run = async (client, message, args, level) => {
   
         return staffArray;
       }
-      const joinPosition1 = message.channel.guild.members.map(i => i).sort((a, b) => a.joinedAt - b.joinedAt).indexOf(botuser);
+      //const joinPosition1 = message.channel.guild.members.map(i => i).sort((a, b) => a.joinedAt - b.joinedAt).indexOf(botuser);
 
       let aPerms;
 
