@@ -140,7 +140,7 @@ setTimeout(() => {
     app.use(favicon(__dirname + '/util/server/moonglow.ico'));
     res.set('Content-Type', 'text/html');
     let currentCategory = '';
-    let output = `<h1>Command List<br><i>Use ${prefix}help <commandname> for details</i></br></h1>`;
+    let output = `<h1>${client.user.username} Help Manual</h1><br><i>Use ${prefix}help <commandname> for details</i></br>`;
     sorted.forEach( c => {
 
       const cat = c.help.category;
