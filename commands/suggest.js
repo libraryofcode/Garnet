@@ -31,7 +31,7 @@ exports.conf = {
   
 exports.help = {
   name: 'suggest',
-  category: 'system',
+  category: 'System',
   description: 'Send a suggestion for Moonglow to the developers.',
   usage: 'suggest [..suggestion]'
 };

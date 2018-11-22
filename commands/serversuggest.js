@@ -44,7 +44,7 @@ exports.conf = {
   
 exports.help = {
   name: 'serversuggest',
-  category: 'settings',
+  category: 'Settings',
   description: 'Send a suggestion for the LoC Server.',
   usage: 'suggest [..suggestion]'
 };
