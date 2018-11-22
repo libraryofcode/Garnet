@@ -1,46 +1,16 @@
 exports.run = (client, message, args, level) => {
   // If no specific command is called, show all filtered commands.
   if (!args[0]) {
-    // Filter all commands by which are available for the user's level, using the <Collection>.filter() method.
-    const myCommands = message.guild ? client.commands.filter(cmd => client.levelCache[cmd.conf.permLevel] <= level) : client.commands.filter(cmd => client.levelCache[cmd.conf.permLevel] <= level &&  cmd.conf.guildOnly !== true);
-
-    // Here we have to get the command names only, and we use that array to get the longest name.
-    // This make the help commands "aligned" in the output.
-    const commandNames = myCommands.keyArray();
-    const longest = commandNames.reduce((long, str) => Math.max(long, str.length), 0);
-
-    let currentCategory = '';
-    let output = `__**Command List**__\n\n[Use ${message.settings.prefix}help <commandname> for details]\n`;
-    const sorted = myCommands.array().sort((p, c) => p.help.category > c.help.category ? 1 :  p.help.name > c.help.name && p.help.category === c.help.category ? 1 : -1 );
-    sorted.forEach( c => {
-      const cat = c.help.category.toProperCase();
-      if (currentCategory !== cat) {
-        output += `\u200b\n **${cat}** \n`;
-        currentCategory = cat;
-      }
-      output += `${message.settings.prefix}${c.help.name}${' '.repeat(longest - c.help.name.length)} :: *${c.help.description}*\n`;
-    });
     const Discord = require('discord.js');
-    if (output.length > 2048) {
-      const loe = new Discord.RichEmbed()
-        .setAuthor(`${client.user.username}`, `${client.user.avatarURL}`)
-        .setDescription('Sorry, but the embed is too long to be sent. We are working on a website for a list of commands, please be patient.')
-        .addField('Workaround', 'In the meantime, however. You\'re more than welcome to use help to lookup information on individual commands.')
-        .setTitle(`${client.user.username} Help Manual`)
-        .setFooter(`${client.user.username} | Beta - Master`)
-        .setTimestamp();
-      message.channel.send(loe);
 
-    } else {
-      const embed1 = new Discord.RichEmbed();
-      embed1.setAuthor(`${client.user.username}`, `${client.user.avatarURL}`);
-      embed1.setColor('RANDOM');
-      embed1.setDescription(output, {code: 'asciidoc', split: { char: '\u200b' }});
-      embed1.setTitle(`${client.user.username} Help Manual`);
-      embed1.setFooter(`${client.user.username} | Beta - Master`);
-      embed1.setTimestamp();
-      message.channel.send(embed1);
-    }
+    const embed1 = new Discord.RichEmbed();
+    embed1.setAuthor(`${client.user.username}`, `${client.user.avatarURL}`);
+    embed1.setColor('RANDOM');
+    embed1.setDescription('You can visit [Moonglow Help Manual](http://moonglow.fortnitecommunity.me) to get a full list of commands!');
+    embed1.setTitle(`${client.user.username} Help Manual`);
+    embed1.setFooter(`${client.user.username} | Beta - Master`);
+    embed1.setTimestamp();
+    message.channel.send(embed1);
   //  message.channel.send(output, {code: "asciidoc", split: { char: "\u200b" }});
   } else {
     // Show individual command's help.
