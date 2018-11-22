@@ -19,7 +19,6 @@ exports.run = async (client, message, args, level) => {
       } catch (e) {
         level = 0;
       }
-    //const msg = await message.channel.send('Loading...');
     message.channel.startTyping();
     try {
       if (message.guild.members.size >= 250) message.guild.fetchMembers();
@@ -36,6 +35,8 @@ exports.run = async (client, message, args, level) => {
         bot = 'Yes';
       } else {
         bot = 'No';
+        // It's like 1, 2, 3, just as easy as can be.
+
       }
       const millisJoined = new Date().getTime() - botuser.joinedAt.getTime();
       const dj = millisJoined / 1000 / 60 / 60 / 24;
@@ -43,7 +44,6 @@ exports.run = async (client, message, args, level) => {
       const millisJoined1 = new Date().getTime() - botuser.user.createdAt.getTime();
       const dj1 = millisJoined1 / 1000 / 60 / 60 / 24;
 
-      //const joinPos = message.guild.members.sort((a,b) =>(a.joinedAt < b.joinedAt) ? -1 : ((a.joinedAt > b.joinedAt) ? 1 : 0)).map(m => m).findIndex(m => m.id == botuser.id);
       function checkUserPermission(guild, botuser) {
         const arrayOfPerms = [];
         if (botuser.hasPermission('ADMINISTRATOR')) {
@@ -127,15 +127,6 @@ exports.run = async (client, message, args, level) => {
       if (botuser.id === message.guild.ownerID) {
         aPerms = 'Server Owner';
       }
-
-      /*function checkBots(guild) {
-        let botCount = 0; 
-        guild.members.forEach(member => { 
-          if (member.user.bot) botCount++; 
-        });
-        return botCount; 
-      }*/
-      //const joinPosition2 = joinPosition1 - checkBots(message.guild);
       const options = {timeZone: 'America/New_York', hour12: true};
       const embed = new Discord.RichEmbed();
       embed.setAuthor(botuser.displayName, botuser.user.avatarURL);
@@ -144,12 +135,7 @@ exports.run = async (client, message, args, level) => {
         embed.setColor(botuser.displayColor);
       }
       embed.addField('Joined Server At', `${botuser.joinedAt.toLocaleString('en-US', options)} | ${dj.toFixed(0)} Days Ago`, true);
-      /*if (joinPosition2 <= 10) {
-        embed.addField('Join Position', joinPosition2, true);
-      } else {
-        embed.addField('Join Position', joinPosition1, true);
-      }*/
-      const joinPosition3 = joinPosition1 + 1;
+      const joinPosition3 = null; //joinPosition1 + 1;
       embed.addField('Join Position', joinPosition3, false);
       embed.addField('Created Account At', `${botuser.user.createdAt.toLocaleString('en-US', options)} | ${dj1.toFixed(0)} Days Ago`, true);
       embed.addField('Status', `${status[botuser.user.presence.status]}`, true);
@@ -169,7 +155,7 @@ exports.run = async (client, message, args, level) => {
       }
       embed.addField('System Level', `${level}`, true);
       embed.setTimestamp();
-      embed.setFooter(`${client.user.username} | ID ${botuser.id} |  Beta - Master`);
+      embed.setFooter(`${client.user.username} | ID ${botuser.id}`);
       if (bot == 'Yes') {
         embed.addField('Bot', `${bot}`, true);
       }
