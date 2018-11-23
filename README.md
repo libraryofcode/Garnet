@@ -1,4 +1,4 @@
-# Moonglow
+# Garnet
 
 
 [![Garnet Stable Version](https://img.shields.io/github/release/FCCouncil/Moonglow.svg?style=for-the-badge)](https://github.com/FCCouncil/Moonglow/releases)
