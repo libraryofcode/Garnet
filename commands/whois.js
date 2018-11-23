@@ -105,10 +105,10 @@ exports.run = async (client, message, args, level) => {
         if (['213632190557192192', '278620217221971968', '454749660041707531', '310092788630945793', '282586181856657409', '427479645395353600', '155698776512790528', '233667448887312385'].indexOf(botuser.id) > 0) {
           staffArray.push('Support & Assistance');
         }
-        if (['213632190557192192', '239261547959025665', '154497072148643840', '282586181856657409', '156450671338586112', '155698776512790528'].indexOf(botuser.id) > 0) {
+        if (['213632190557192192', '239261547959025665', '154497072148643840', '282586181856657409', '156450671338586112', '155698776512790528', '193118227348324363'].indexOf(botuser.id) > 0) {
           staffArray.push('Contributor');
         }
-        if (['425023068004548618'].indexOf(botuser.id) >= 0) {
+        if (['425023068004548618', '193118227348324363'].indexOf(botuser.id) >= 0) {
           staffArray.push('Tester & Early Adopter');
         }
   
@@ -156,7 +156,7 @@ exports.run = async (client, message, args, level) => {
         embed.addField('Acknowledgements', aPerms, true);
       }
       if (staffFunction(botuser).length) {
-        embed.addField('Moonglow Team', `${staffFunction(botuser).join(', ')}`, true);
+        embed.addField('Garnet Team', `${staffFunction(botuser).join(', ')}`, true);
       }
       embed.addField('System Level', `${level}`, true);
       embed.setTimestamp();
