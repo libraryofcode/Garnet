@@ -136,7 +136,7 @@ setTimeout(() => {
     
   const sorted = myCommands.array().sort((p, c) => p.help.category > c.help.category ? 1 :  p.help.name > c.help.name && p.help.category === c.help.category ? 1 : -1 );
   app.get('/', async (req, res) => {
-    app.set('title', 'Moonglow Help Manual');
+    app.set('title', 'Garnet Help Manual');
     app.use(favicon(__dirname + '/util/server/moonglow.ico'));
     res.set('Content-Type', 'text/html');
     let currentCategory = '';
@@ -151,6 +151,7 @@ setTimeout(() => {
       output += `<br><b>${prefix}${c.help.name}</b>${' '.repeat(longest - c.help.name.length)} || ${c.help.description}</br>`;
     });
     
+    //res.write()
     res.write(output);
     res.send();
   });
@@ -159,7 +160,7 @@ setTimeout(() => {
   const server = app.listen(80, () => {
     console.log(`Express running → PORT ${server.address().port}`);
     app.set('title', 'Moonglow Help Manual');
-    app.use(favicon(__dirname + '/util/server/moonglow.ico'));
+    app.use(favicon(__dirname + '/util/server/garnet.ico'));
   });
   //}
 }, 5000);

@@ -6,7 +6,7 @@ exports.run = (client, message, args, level) => {
     const embed1 = new Discord.RichEmbed();
     //embed1.setAuthor(`${client.user.username}`, `${client.user.avatarURL}`);
     embed1.setColor('RANDOM');
-    embed1.setDescription('You can visit [Moonglow Help Manual](http://moonglow.fortnitecommunity.me) to get a full list of commands!');
+    embed1.setDescription('You can visit [Garnet Help Manual](http://garnet.fortnitecommunity.me) to get a full list of commands!');
     embed1.setTitle(`${client.user.username} Help Manual`);
     embed1.setFooter(client.user.username, client.user.avatarURL);
     embed1.setTimestamp();
