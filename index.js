@@ -82,11 +82,6 @@ client.tags = new Enmap({
   fetchAll: true
 });
 
-client.slowmode = new Enmap({
-  name: 'slowmode',
-  autofetch: true,
-  fetchAll: true
-});
 
 const init =  async () => {
 
@@ -127,7 +122,7 @@ init();
 setTimeout(() => {
   const express = require('express');
   const app = express();
-  const favicon = require('serve-favicon');
+  //const favicon = require('serve-favicon');
   const path = require('path'); //eslint-disable-line no-unused-vars
   const myCommands = client.commands;
   const commandNames = myCommands.keyArray();

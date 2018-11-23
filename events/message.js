@@ -140,20 +140,4 @@ module.exports = async (client, message) => {
 
     cmd.run(client, message, args, level);
   }
-
-  if (client.slowmode.get(message.channel.id, 'set') === true) {
-    if (message.member.permissions.has('ADMINISTRATOR')) return;
-    if (message.member.permissions.has('MANAGE_GUILD')) return;
-    if (message.member.permissions.has('MANAGE_CHANNEL')) return;
-    if (message.member.permissions.has('MANAGE_MESSAGES')) return;
-    const time = client.slowmode.get(message.channel.id, 'time');
-    message.channel.overwritePermissions(message.member, {
-      SEND_MESSAGES: false
-    });
-    setTimeout(() => {
-      message.channel.overwritePermissions(message.member, {
-        SEND_MESSAGES: true
-      });
-    }, time);
-  }
 };
