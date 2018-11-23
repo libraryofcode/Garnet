@@ -8,7 +8,6 @@ exports.run = async (client, message, args) => {
       const arrayOfPerms = [];
       if (roleM.hasPermission('ADMINISTRATOR')) {
         arrayOfPerms.push('Administrator');
-
       }
       if (roleM.hasPermission('MANAGE_GUILD')) {
         arrayOfPerms.push('Manage Server');
@@ -83,8 +82,7 @@ exports.run = async (client, message, args) => {
     msg.edit(embed);
   } catch (err) {
     const norole = 'This role was not found.';
-    msg.edit(norole);
-    message.channel.send(err);
+    msg.edit(`An error has occurred, ${norole} | ${err}`);
   }
 
 
