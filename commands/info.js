@@ -9,7 +9,7 @@ exports.run = async (client, message) => {
   } else {
     embed.setColor('RANDOM');
   }
-  embed.setDescription('This is a clone of the [Moonglow](https://github.com/FCCouncil/Moonglow) GitHub repo. Join us today, and help contribute!');
+  embed.setDescription('This is a clone of the [Garnet](https://github.com/LOCCouncil/Garnet) GitHub repo. Join us today, and help contribute!');
   embed.addField('Version', new utils().kernelVersion, true);
   embed.addField('Created At', `${client.user.createdAt.toLocaleString('en-US')}`, true);
   embed.addField('Library', '[Discord.js](https://github.com/discordjs/discord.js)', true);
