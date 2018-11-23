@@ -24,14 +24,14 @@ exports.run = async (client, message, args) => {
   const embed = new Discord.RichEmbed()
     .setColor(botuser.displayColor)
     .setTimestamp()
-    .setFooter(`${client.user.username} | ID ${botuser.id}`);
+    .setFooter(`${client.user.username} | ID ${botuser.id}`, client.user.avatarURL);
 
   
   if (botuser.user.presence.game.name !== 'Spotify') {
     const game = botuser.user.presence.game;
 
     try {
-      embed.setAuthor(`${botuser.user.tag}`, game.assets.smallImageURL);
+      embed.setAuthor(`${botuser.user.tag}`, botuser.user.avatarURL);
     } catch (err) {
       embed.setAuthor(botuser.user.tag, 'https://cdn.discordapp.com/avatars/460639060851949569/4f545d7d0ee4fb31a411035793c4aef8.png?size=2048');
     }
@@ -74,7 +74,7 @@ exports.run = async (client, message, args) => {
     }
   } else if (botuser.user.presence.game.name === 'Spotify') {
     embed.setTitle('Spotify', 'https://cdn.discordapp.com/attachments/358674161566220288/496894273304920064/2000px-Spotify_logo_without_text.png');
-    embed.setAuthor(`${client.user.username}`, `${client.user.avatarURL}`);
+    embed.setAuthor(`${botuser.user.tag}`, `${botuser.user.tag}`);
     embed.setThumbnail(botuser.user.presence.game.assets.largeImageURL);
     embed.setColor('#1DB954');
     embed.addField('Song', `${botuser.user.presence.game.details}`, true);
