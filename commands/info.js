@@ -3,7 +3,7 @@ const utils = require('../util/utils.js');
 exports.run = async (client, message) => {
   const msg = await message.channel.send('Loading info...');
   const embed = new Discord.RichEmbed();
-  embed.setAuthor(`${client.user.username}`, `${client.user.avatarURL}`);
+  embed.setAuthor('Information');
   if (message.guild) {
     embed.setColor(message.guild.me.displayHexColor);
   } else {
@@ -18,7 +18,7 @@ exports.run = async (client, message) => {
   embed.addField('Developers', 'Matthew#0008, NightRaven#2172, CoalSephos#7566, Flatbird#0001');
   embed.addField('Creator', 'Matthew#0008', true);
   embed.setTimestamp();
-  embed.setFooter(`${client.user.username}`, 'https://cdn.discordapp.com/attachments/358674161566220288/493662532746084352/js.png');
+  embed.setFooter(client.user.username, client.user.avatarURL);
 
 
 
