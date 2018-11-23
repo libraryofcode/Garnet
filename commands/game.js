@@ -74,7 +74,7 @@ exports.run = async (client, message, args) => {
     }
   } else if (botuser.user.presence.game.name === 'Spotify') {
     embed.setTitle('Spotify', 'https://cdn.discordapp.com/attachments/358674161566220288/496894273304920064/2000px-Spotify_logo_without_text.png');
-    embed.setAuthor(`${botuser.user.tag}`, `${botuser.user.tag}`);
+    embed.setAuthor(`${botuser.user.tag}`, `${botuser.user.avatarURL}`);
     embed.setThumbnail(botuser.user.presence.game.assets.largeImageURL);
     embed.setColor('#1DB954');
     embed.addField('Song', `${botuser.user.presence.game.details}`, true);
