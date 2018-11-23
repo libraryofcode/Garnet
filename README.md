@@ -1,9 +1,9 @@
-# Moonglow
+# Garnet
 
 
-[![Moonglow Stable Version](https://img.shields.io/github/release/FCCouncil/Moonglow.svg?style=for-the-badge)](https://github.com/FCCouncil/Moonglow/releases)
+[![Garnet Stable Version](https://img.shields.io/github/release/FCCouncil/Moonglow.svg?style=for-the-badge)](https://github.com/FCCouncil/Moonglow/releases)
 
-[![Commits (Since Latest Release)](https://img.shields.io/github/commits-since/FCCouncil/Moonglow/latest.svg)](https://github.com/FCCouncil/Moonglow/commits/master)
+[![Garnet (Since Latest Release)](https://img.shields.io/github/commits-since/FCCouncil/Moonglow/latest.svg)](https://github.com/FCCouncil/Moonglow/commits/master)
 
 
 [![Discord](https://img.shields.io/discord/446067825673633794.svg)](https://discord.gg/F4ztpQh)
@@ -14,10 +14,10 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/fccouncil/moonglow/badge/master)](https://www.codefactor.io/repository/github/fccouncil/shadowshard/overview/master)
 [![codebeat badge](https://codebeat.co/badges/0e86c51d-7653-49a1-8184-4e81bed07e19)](https://codebeat.co/projects/github-com-fccouncil-shadowshard-master)
 
-__What is Moonglow?__
-Moonglow is a bot that is currently in development, and will soon be a multifunction Discord bot for anyone to use.
+__What is Garnet?__
+Garnet is a bot that is currently in development, and will soon be a multifunction Discord bot for anyone to use.
 
-__Who made Moonglow?__
+__Who made Garnet?__
 Moonglow is currently made by the FCC & Contributors.
 Moonglow is currently apart of the https://github.com/FCCouncil organization.
 
@@ -30,4 +30,4 @@ You can become an Alpha/Dev Tester by joining the Discord server and DMing the R
 
 
 __How can I install the bot myself?__
-Visit https://github.com/FCCouncil/Moonglow/wiki/How-to-Install-the-Bot
+Visit https://github.com/LOCCouncil/Garnet/wiki/How-to-Install-the-Bot
