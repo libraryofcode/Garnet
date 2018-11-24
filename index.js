@@ -126,7 +126,7 @@ setTimeout(() => {
   const path = require('path'); //eslint-disable-line no-unused-vars
   const myCommands = client.commands;
   const commandNames = myCommands.keyArray();
-  const prefix = 'moon ';
+  const prefix = 'garnet ';
   const longest = commandNames.reduce((long, str) => Math.max(long, str.length), 0);
     
   const sorted = myCommands.array().sort((p, c) => p.help.category > c.help.category ? 1 :  p.help.name > c.help.name && p.help.category === c.help.category ? 1 : -1 );
