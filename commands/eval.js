@@ -6,15 +6,6 @@ exports.run = async (client, message, args) => {
 
   try {
     evaled = await eval(args.join(' ').trim());
-
-    /*switch (typeof evaled) {
-      case 'object':
-        evaled = inspect(evaled, {
-          depth: 1
-        });
-        break;
-      default:
-    }*/
       
   } catch (err) {
     const embed2 = new Discord.RichEmbed();
