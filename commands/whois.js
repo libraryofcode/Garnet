@@ -135,6 +135,9 @@ exports.run = async (client, message, args, level) => {
       const options = {timeZone: 'America/New_York', hour12: true};
       const embed = new Discord.RichEmbed();
       embed.setAuthor(botuser.displayName, botuser.user.avatarURL);
+      if (bot === 'Yes') {
+        embed.setTitle('<:bot:515695746595684374>');
+      }
       embed.setThumbnail(botuser.user.avatarURL);
       if (botuser.displayColor) {
         embed.setColor(botuser.displayColor);
@@ -161,9 +164,6 @@ exports.run = async (client, message, args, level) => {
       embed.addField('System Level', `${level}`, true);
       embed.setTimestamp();
       embed.setFooter(`${client.user.username} | ID ${botuser.id}`);
-      if (bot == 'Yes') {
-        embed.addField('Bot', `${bot}`, true);
-      }
       message.channel.send(embed);
       setTimeout(() => {
         // Removes the user from the set after a minute
