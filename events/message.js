@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const web = require('../webhooks.json');
+const cooldown = new Set();
 module.exports = async (client, message) => {
   if (message.author.bot) return;
 
@@ -81,6 +82,11 @@ module.exports = async (client, message) => {
     }
 
     if (message.content.indexOf(settings.prefix) !== 0) return;
+    //const cooldown = new Set();
+    /*if (cooldown.has(message.author.id)) {
+      return message.channel.send(`<@!${message.author.id}>, you're being ratelimited.`);
+      //setTimeout(() => {}, 5000);
+    } else {*/
 
     const args = message.content.slice(settings.prefix.length).trim().split(/ +/g);
   
@@ -94,9 +100,10 @@ module.exports = async (client, message) => {
     if (!cmd) return;
     if (cmd && !cmd.conf.enabled) return;
 
-    /*if (client.blackList.get(message.author.id)) {
-      return;
-    }*/
+  
+
+
+
 
     if (cmd && !message.guild && cmd.conf.guildOnly)
       return message.channel.send('This command is unavailable via private message. Please run this command in a guild.');
@@ -138,6 +145,19 @@ module.exports = async (client, message) => {
     staffHook.send(embed);
     hook.send(embed);
 
-    cmd.run(client, message, args, level);
+    if (cooldown.has(message.author.id)) {
+      setTimeout(async () => {
+        const thisMessage = await message.channel.send(`<@!${message.author.id}>, you are being ratelimited.`);
+        setTimeout(() => {
+          thisMessage.delete(5000);
+        });
+      }, 1500);
+    } else {
+      cooldown.add(message.author.id); 
+      cmd.run(client, message, args, level);
+      setTimeout(() => {
+        cooldown.delete(message.author.id);
+      }, 3200);
+    }
   }
 };
