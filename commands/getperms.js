@@ -97,14 +97,14 @@ exports.run = (client, message, args) => {
   }  
 
   const embed = new Discord.RichEmbed();
-  embed.setAuthor(client.user.username, client.user.avatarURL);
+  //embed.setAuthor(client.user.username, client.user.avatarURL);
   embed.setTitle('Permissions');
   embed.setColor(botuser.displayHexColor);
   embed.addField('User', `${botuser.user.tag}`);
   embed.addField('Server Permissions', `${checkUserPermission(message.guild, botuser).join(', ')}`, true);
   embed.addField('Channel Permissions', `${message.channel.rolePermissions(botuser.roles.first()).toArray().join(', ')}`, true);
   embed.setTimestamp();
-  embed.setFooter(client.user.username);
+  embed.setFooter(client.user.username, client.user.avatarURL);
   message.channel.send(embed);
 };
 
