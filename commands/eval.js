@@ -33,12 +33,12 @@ exports.run = async (client, message, args) => {
   }
 
   const embed1 = new Discord.RichEmbed()
-    .setAuthor(client.user.username, client.user.avatarURL)
+    //.setAuthor(client.user.username, client.user.avatarURL)
     .setColor('#00FF00')
     .setTitle('__JAVASCRIPT EVALUATION__')
     .setDescription(`\`\`\`js\n${clean}\n\`\`\``)
     .setTimestamp()
-    .setFooter(`${client.user.username} | Requested by ${message.author.username}#${message.author.discriminator}`);
+    .setFooter(`${client.user.username} | Requested by ${message.author.username}#${message.author.discriminator}`, client.user.avatarURL);
   message.channel.send(embed1);
 };
 
