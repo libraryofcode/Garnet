@@ -29,7 +29,7 @@ exports.run = (client, message, args) => {
         message.delete();
         const guild = client.guilds.get(guildID);
         (guild !== undefined) ? guild.leave() : null;
-        message.channel.send(`✅ ***Deactivated Moonglow on ${args[0]}***`);
+        message.channel.send(`✅ ***Deactivated ${client.user.name} on ${args[0]}***`);
         //const acUser = client.users.get(args[1]).tag;
         const hook = new Discord.WebhookClient(web.activationLogID, web.activationLogToken);
         const embed = new Discord.RichEmbed()
