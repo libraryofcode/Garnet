@@ -24,6 +24,7 @@ exports.run = async (client, message, args, level) => {
   const userTitle = await client.userTitle.get(thisUser);
   const userBio = await client.userBio.get(thisUser);
   const credits = await client.credits.get(`${message.guild.id}-${thisUser}`, 'credits');
+  const garnets = await client.garnets.get(thisUser);
 
   const embed = new Discord.RichEmbed();
 
@@ -62,6 +63,11 @@ exports.run = async (client, message, args, level) => {
     embed.addField('Credits', '0', true);
   } else {
     embed.addField('Credits', Math.round(credits), true);
+  }
+  if (garnets === undefined) {
+    embed.addField('Garnets', 0, true);
+  } else {
+    embed.addField('Garnets', garnets, true);
   }
   embed.addField('Acknowledgements', `${friendly}`, true);
   try {
