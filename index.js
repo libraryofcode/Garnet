@@ -82,6 +82,12 @@ client.tags = new Enmap({
   fetchAll: true
 });
 
+client.garnets = new Enmap({
+  name: 'garnets',
+  autoFetch: true,
+  fetchAll: true
+});
+
 
 const init =  async () => {
 
