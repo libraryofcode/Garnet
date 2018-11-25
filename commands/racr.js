@@ -45,7 +45,7 @@ exports.run = async (client, message, args) => {
         });
         //503491110149160961
         message.delete();
-        message.channel.send(`✅ ***Moonglow has been activated on ${guildID} for <@!${args[1]}>***`);
+        message.channel.send(`✅ ***${client.user.name} has been activated on ${guildID} for <@!${args[1]}>***`);
         const acUser = client.users.get(args[1]).tag;
         //const filter = (reaction) => reaction.emoji.name === '✅';
 
