@@ -90,7 +90,7 @@ exports.run = async (client, message, args) => {
           } else {
             client.garnets.math(message.member.id, 'add', 5);
           }
-          msg.edit(`Success! You've exchanged 2200 credits and got four of my precious garnets in return. Isn't that lucky? | You now have ${Math.round(credits)} credits left.`);
+          msg.edit(`Success! You've exchanged 2200 credits and got five of my precious garnets in return. Isn't that lucky? | You now have ${Math.round(credits)} credits left.`);
         } 
         else {
           shopMessage.delete();
