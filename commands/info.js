@@ -15,8 +15,8 @@ exports.run = async (client, message) => {
   embed.addField('Library', '[Discord.js](https://github.com/discordjs/discord.js)', true);
   embed.addField('Language', 'JavaScript & TypeScript', true);
   embed.addField('Contributors', 'TheSkele27#1337, The Phoenix of Phoebus#9935', true);
-  embed.addField('Developers', 'Matthew#0008, NightRaven#2172, CoalSephos#7566, Flatbird#0001');
-  embed.addField('Creator', 'Matthew#0008', true);
+  embed.addField('Developers', 'Dutch van der Linde#0001, NightRaven#2172, CoalSephos#7566, Flatbird#0001');
+  embed.addField('Creator', 'Dutch van der Linde#0001', true);
   embed.setTimestamp();
   embed.setFooter(client.user.username, client.user.avatarURL);
 

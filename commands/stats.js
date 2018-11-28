@@ -26,7 +26,7 @@ exports.run = (client, message) => {
     embed.addField('• Channels', `${client.channels.size.toLocaleString()}`, true);
     embed.addField('• Discord.js Version', `v${version}`, true);
     embed.addField('• Node Version', `${process.version}`, true);
-    embed.addField('Creator', 'Matthew#0008', true);
+    embed.addField('Creator', 'Dutch van der Linde#0001', true);
     embed.setTimestamp();
     embed.setFooter(`${client.user.username} | Process ID ${process.ppid} - ${process.pid}`, client.user.avatarURL);
     message.channel.send(embed);
