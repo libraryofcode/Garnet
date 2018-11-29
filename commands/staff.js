@@ -8,7 +8,7 @@ exports.run = (client, message) => {
   embed.addField('Council', 'Dutch van der Linde, NightRaven, Flatbird, Bean, Zahro', true);
   embed.addField('Public & Foreign Relations', 'Joe', true);
   embed.addField('Management', 'Coal, James, Realitus, Tanner', true);
-  embed.addField('Moderators', 'aikaterna & Hosea Matthews,', true);
+  embed.addField('Moderators', 'aikaterna & Hosea Matthews', true);
   embed.addField('Deputies', 'KhaaZ, Max, Yolo');
   embed.setFooter(client.user.username, client.user.avatarURL);
   embed.setTimestamp();
