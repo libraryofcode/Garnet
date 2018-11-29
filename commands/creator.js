@@ -30,7 +30,7 @@ exports.run = async (client, message) => {
   }
   embed.addField('Founder, Creator, & Developer', `${mainCreator} is the person who founded, created, and developed ${client.user.username} along with other developers.`, true);
   embed.addField('Head Developer, Advisor, & Community Manager', `${developerOne}`, true);
-  embed.addField('Developer, Bug Hunter & Community Manager', `${developerTwo}`, true);
+  embed.addField('Developer, Bug Hunter, & Community Manager', `${developerTwo}`, true);
   embed.addField('Developer, Functionality Assistant, & Community Administrator', `${developerThree}`, true);
   embed.setImage(devCollage);
   embed.setFooter(client.user.username, client.user.avatarURL);
