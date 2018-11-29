@@ -51,6 +51,6 @@ exports.conf = {
 exports.help = {
   name: 'creator',
   category: 'Bot Information',
-  description: 'Gives information about the creatoe and developers.',
+  description: 'Gives information about the creator and developers.',
   usage: 'creator'
 };
