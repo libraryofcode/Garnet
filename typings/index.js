@@ -3,5 +3,6 @@ const typings = { //eslint-disable-line
   config: '../config.js',
   modules: '../modules/',
   events: '../events/',
-  commands: '../commands'
+  commands: '../commands',
+  typings: '.././typings/'
 };
