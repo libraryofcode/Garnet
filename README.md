@@ -18,8 +18,8 @@ __What is Garnet?__
 Garnet is a bot that is currently in development, and will soon be a multifunction Discord bot for anyone to use.
 
 __Who made Garnet?__
-Moonglow is currently made by the FCC & Contributors.
-Moonglow is currently apart of the https://github.com/FCCouncil organization.
+Garnet is currently made by the FCC & Contributors.
+Garnet is currently apart of the https://github.com/FCCouncil organization.
 
 __Where is the Discord server at?__
 Join our Discord server here: https://discord.gg/F4ztpQh
