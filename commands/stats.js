@@ -13,7 +13,7 @@ exports.run = (client, message) => {
     const embed = new Discord.RichEmbed();
     //embed.setAuthor(`${client.user.username}`, `${client.user.avatarURL}`);
     embed.setTitle('STATISTICS');
-    if (message.guild) {
+    if (message.guild && message.guild.me.displayHexColor !== '#000000') {
       embed.setColor(message.guild.me.displayHexColor);
     } else {
       embed.setColor('RANDOM');

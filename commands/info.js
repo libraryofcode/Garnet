@@ -4,7 +4,7 @@ exports.run = async (client, message) => {
   const msg = await message.channel.send('Loading info...');
   const embed = new Discord.RichEmbed();
   embed.setAuthor('Information');
-  if (message.guild) {
+  if (message.guild && message.guild.me.displayHexColor !== '#000000') {
     embed.setColor(message.guild.me.displayHexColor);
   } else {
     embed.setColor('RANDOM');
