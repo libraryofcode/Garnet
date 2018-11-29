@@ -1,10 +1,10 @@
 {
-  "name": "moonglow",
+  "name": "garnet",
   "version": "4.5.0",
-  "description": "Moonglow is a developed bot by the FCC.",
+  "description": "Garnet is a developed bot by the FCC.",
   "main": "index.js",
   "repository": {
-    "url": "https://github.com/FCCouncil/Moonglow"
+    "url": "https://github.com/LOCCouncil/Garnet"
   },
   "scripts": {
     "test": "node index.js && exit 1",
