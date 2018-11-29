@@ -50,7 +50,7 @@ exports.run = async (client, message, args) => {
   
     const embed = new Discord.RichEmbed();
 
-    embed.setAuthor(client.user.username, client.user.avatarURL);
+    //embed.setAuthor(client.user.username, client.user.avatarURL);
     embed.setTitle(`Role | **${roleM.name}**`);
     embed.setColor(`${roleM.hexColor}`);
     embed.addField('Members', `${roleM.members.size}`, true);
@@ -76,7 +76,7 @@ exports.run = async (client, message, args) => {
       embed.addField('Key Permissions', `${checkRolePermission(message.guild, roleM).join(', ')}`, true);
     }
     embed.addField('Created At', `${roleM.createdAt.toLocaleString('en-US')}`, true);
-    embed.setFooter(`${client.user.username} | Role ID: ${roleM.id}`);
+    embed.setFooter(`${client.user.username} | Role ID: ${roleM.id}`, client.user.avatarURL);
     embed.setTimestamp();
 
     msg.edit(embed);
