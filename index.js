@@ -89,7 +89,7 @@ client.garnets = new Enmap({
 });
 
 
-const init =  async () => {
+client.init =  async () => {
 
   const { join } = require('path');
   const commands = await readdir(join(__dirname, './commands/'));
@@ -123,7 +123,7 @@ const init =  async () => {
 
 };
 
-init();
+client.init();
 
 setTimeout(() => {
   const express = require('express');
