@@ -6,7 +6,7 @@ exports.run = (client, message) => {
   embed.setImage('https://cdn.discordapp.com/attachments/446080476604661790/517587963929165844/iF7mLRAmAAAAAElFTkSuQmCC.png');
   embed.setThumbnail('https://cdn.discordapp.com/icons/446067825673633794/ee1c00dbd90b5ef6d14589ce10074b30.png?size=128');
   embed.setColor('#BF5FFF');
-  embed.addField('Council', 'Dutch van der Linde, NightRaven, Flatbird, Bean, Zahro', true);
+  embed.addField('Council', 'Dutch van der Linde, NightRaven, Flatbird, Bean, Skele, Zahro', true);
   embed.addField('Public & Foreign Relations', 'Joe', true);
   embed.addField('Management', 'Coal, James, Realitus, Tanner', true);
   embed.addField('Moderators', 'aikaterna & Hosea Matthews', true);
