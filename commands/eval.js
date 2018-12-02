@@ -21,22 +21,27 @@ exports.run = async (client, message, args) => {
   if (typeof evaled === 'string') {
     evaled = evaled.replace(client.token, '[TOKEN]');
   }
+  if (typeof evaled === 'object') {
+    evaled = require('util').inspect(evaled, {depth: 0});
+  }
   if (evaled == undefined) {
     evaled = 'undefined';
   }
   if (evaled.length > 1900) {
     evaled = 'Response too large';
   }
-  let clean = await client.clean(client, evaled);
-  if (clean.length > 1900) {
-    clean = 'Response too large';
+
+  //let clean = await client.clean(client, evaled);
+  if (evaled.length > 1900) {
+    evaled = 'Response too large, was logged to the console instead.';
+    console.log(evaled);
   }
 
   const embed1 = new Discord.RichEmbed()
     //.setAuthor(client.user.username, client.user.avatarURL)
     .setColor('#00FF00')
     .setTitle('__JAVASCRIPT EVALUATION__')
-    .setDescription(`\`\`\`js\n${clean}\n\`\`\``)
+    .setDescription(`\`\`\`js\n${evaled}\n\`\`\``)
     .setTimestamp()
     .setFooter(`${client.user.username} | Requested by ${message.author.username}#${message.author.discriminator}`, client.user.avatarURL);
   message.channel.send(embed1);
