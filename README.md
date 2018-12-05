@@ -19,7 +19,7 @@ Garnet is a bot that is currently in development, and will soon be a multifuncti
 
 __Who made Garnet?__
 Garnet is currently made by the FCC & Contributors.
-Garnet is currently apart of the https://github.com/FCCouncil organization.
+Garnet is currently apart of the https://github.com/LOCCouncil organization.
 
 __Where is the Discord server at?__
 Join our Discord server here: https://discord.gg/F4ztpQh
