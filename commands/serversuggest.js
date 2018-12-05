@@ -13,7 +13,7 @@ exports.run = async (client, message, args) => {
     if (!message.guild.id == '446067825673633794') return msg.edit('This command can only be used in the Library of Code server.');
   
     const embed = new Discord.RichEmbed()
-      .setTitle('Moonglow Suggestion')
+      .setTitle('Library of Code Suggestion')
       .addField('Author', `${message.author.username} (${message.author.id})`)
       .addField('Suggestion', `${dataSuggestion}`)
       .setTimestamp()

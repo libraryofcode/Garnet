@@ -24,7 +24,7 @@ class utils {
     
     //Does the opposite of toProperCase, makes it inverted. Like "hI hOW aRE yOU tODAY".
 
-    this.random = (array) => {
+    this.random = (array) => { 
       return this[Math.floor(Math.random() * this.length)];
     };
     

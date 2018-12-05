@@ -79,11 +79,11 @@ module.exports = (client) => {
   and stringifies objects!
   This is mostly only used by the Eval and Exec commands.
   */
-  client.clean = async (client, text) => {
+  /*client.clean = async (client, text) => {
     if (text && text.constructor.name == 'Promise')
       text = await text;
-    if (typeof evaled !== 'string')
-      text = require('util').inspect(text, {depth: 1});
+    //if (typeof evaled !== 'string')
+      //text = require('util').inspect(text, {depth: 1});
 
     text = text
       //.replace(/`/g, '`' + String.fromCharCode(8203))
@@ -91,7 +91,7 @@ module.exports = (client) => {
       .replace(client.token, '[TOKEN]');
 
     return text;
-  };
+  };*/
   client.loadCommand = (commandName) => {
     try {
       client.logger.log(`Loading Command: ${commandName}`);
@@ -99,6 +99,8 @@ module.exports = (client) => {
       if (props.init) {
         props.init(client);
       }
+      //if (!props.conf.enabled) return;
+      // ^^^^^^ this shit broke as fuck do not uncomment this.
       client.commands.set(props.help.name, props);
       props.conf.aliases.forEach(alias => {
         client.aliases.set(alias, props.help.name);

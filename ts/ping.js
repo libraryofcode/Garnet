@@ -56,6 +56,6 @@ exports.conf = {
 exports.help = {
   name: 'ping',
   category: 'Bot Information',
-  description: 'Pings the bot, and returns the response time.',
+  description: 'Pings the bot, without the embed.',
   usage: 'ping'
 };

@@ -16,6 +16,7 @@ module.exports = async client => {
     .setTimestamp();
     
   hook.send(embed);
+};
+
     
 
-};

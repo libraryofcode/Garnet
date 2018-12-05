@@ -5,6 +5,7 @@ exports.run = async (client, msg) => {
   //args.join(' ');
   const outMessage = await msg.channel.send('`Deploying...`');
   //await msg.channel.send(`Running \`${command}\`...`);
+  if (args[0] === 'stash') let stash = await doExec(command).catch(data=> outputErr(outMessage, data));
   let stdOut = await doExec(command).catch(data=> outputErr(outMessage, data));
   stdOut = stdOut.substring(0, 1750);
   outMessage.edit(`\`DEPLOYMENT STATUS\`

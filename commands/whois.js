@@ -7,7 +7,14 @@ const status = {
   offline: 'Offline/Invisible'
 };
 exports.run = async (client, message, args, level) => {
-  const resolvedUser = (args[0] !== undefined) ? message.guild.members.get(args[0].match(/[0-9]/g).join('')) : null;
+  const resolvedUser = (args[0] !== undefined) ? message.guild.members.get(args[0].match(/[0-9]/g).join('')) : message.guild.members.find(r => r.user.username.toLowerCase() === args);
+  /*if (resolvedUser == null) {
+    try {
+      resolvedUser = message.guild.members.find(r => r.user.username.toLowerCase() === args);
+    } catch (err) {
+      resolvedUser = err;
+    }
+  }*/
   if (talkedRecently.has(message.author.id) && !message.member.roles.has('490364533550874644')) {
 
     const botmessage = await message.channel.send('You are being rate limited!' + message.author);

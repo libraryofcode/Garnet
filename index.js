@@ -14,6 +14,7 @@ const client = new Discord.Client({
 
 
 client.config = require('./config.js');
+
 // client.config.token contains the bot's token
 // client.config.prefix contains the message prefix
 //k
@@ -122,6 +123,7 @@ client.init =  async () => {
   client.login(client.config.token);
 
 };
+
 
 client.init();
 

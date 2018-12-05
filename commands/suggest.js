@@ -16,7 +16,7 @@ exports.run = async (client, message, args) => {
     .setFooter(client.user.username, client.user.avatarURL);
   client.channels.get('481464215962648577').send({embed});
   client.channels.get('503473196704727050').send({embed});
-  msg.edit('Suggestion has been successfully sent to the Moonglow Development Team!');
+  msg.edit('Suggestion has been successfully sent to the Garnet Development Team!');
   msg.delete(10000);
   message.delete(10000);
   //pls
