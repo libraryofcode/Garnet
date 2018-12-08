@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-//const { inspect } = require('util');
+const axios = require('axios');
 exports.run = async (client, message, args) => { 
   let evaled;
   
@@ -28,14 +28,33 @@ exports.run = async (client, message, args) => {
     evaled = 'undefined';
   }
   if (evaled.length > 1900) {
-    evaled = 'Response too large';
+    axios({
+      method: 'post',
+      url: 'https://api.github.com/gists',
+      headers: {
+        authorization: client.config.gistToken,
+      },
+      data: {
+        description: 'Garnet Eval Overflow',
+        public: false,
+        files: {
+          'evalOverload.js': {
+            content: evaled
+          }
+        }
+      }
+    }).then(m => {
+      const overloadEmbed = new Discord.RichEmbed();
+      overloadEmbed.setTitle('__JAVASCRIPT EVALUATION__');
+      overloadEmbed.setColor('ORANGE');
+      overloadEmbed.setDescription(`Result was too large to be sent, was posted on GitHub Gists | ${m.data.html_url}`);
+      overloadEmbed.setTimestamp();
+      overloadEmbed.setFooter(`${client.user.username} | Requested by ${message.author.username}#${message.author.discriminator}`, client.user.avatarURL);
+      return message.channel.send(overloadEmbed);
+    });
   }
 
   //let clean = await client.clean(client, evaled);
-  if (evaled.length > 1900) {
-    evaled = 'Response too large, was logged to the console instead.';
-    console.log(evaled);
-  }
 
   const embed1 = new Discord.RichEmbed()
     //.setAuthor(client.user.username, client.user.avatarURL)
