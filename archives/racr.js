@@ -69,17 +69,3 @@ exports.run = async (client, message, args) => {
   }); 
      
 };
-
-exports.conf = {
-  enabled: true,
-  guildOnly: true,
-  aliases: ['confirm'],
-  permLevel: 'Systems Support'
-};
-  
-exports.help = {
-  name: 'racr',
-  category: 'System',
-  description: 'Activates the specified server for the specified user.',
-  usage: 'racr [...server ID] [...user ID]'
-};

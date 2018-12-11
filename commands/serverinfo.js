@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const talkedRecently = new Set();
+const checkPrem = require('../db/functions/checkPrem.js');
 exports.run = async (client, message) => {
   if (talkedRecently.has(message.author.id) && !message.member.roles.has('490364533550874644')) {
 
@@ -136,9 +137,15 @@ exports.run = async (client, message) => {
     if (message.guild.verificationLevel === 4) {
       embed.addField('Verification Level', 'High', true);
     }
-    embed.setTimestamp();
-    //.addField('Verification Level', message.guild.verificationLevel, true)
-    embed.setFooter(`${client.user.username} | Server ID: ${message.guild.id}`, client.user.avatarURL);
+    //embed.setTimestamp();
+    const thisCheck = await checkPrem(message.guild.id);
+    console.log(thisCheck)
+    if (thisCheck === true) {
+      embed.setColor('#FFD700');
+      embed.setFooter(`${client.user.username} | Server ID: ${message.guild.id} | Premium Server`, client.user.avatarURL);
+    } else {
+      embed.setFooter(`${client.user.username} | Server ID: ${message.guild.id}`, client.user.avatarURL);
+    }
     msg.edit(embed);
     talkedRecently.add(message.author.id);
     setTimeout(() => {

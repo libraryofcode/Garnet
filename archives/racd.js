@@ -48,18 +48,3 @@ exports.run = (client, message, args) => {
     }
   });
 };
-    
-    
-exports.conf = {
-  enabled: true,
-  guildOnly: true,
-  aliases: ['remove'],
-  permLevel: 'Systems Support'
-};
-      
-exports.help = {
-  name: 'racd',
-  category: 'System',
-  description: 'Removes a server from activation.',
-  usage: 'racd [...server ID] [...user ID]'
-};
