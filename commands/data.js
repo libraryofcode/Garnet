@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const checkPrem = require('../db/functions/checkPrem.js');
 
 exports.run = async (client, message, args) => {
   if (args[0] === 'activation' || args[0] === 'activate') {
@@ -70,10 +71,16 @@ exports.run = async (client, message, args) => {
         return arrayOfPerms;
       }
       thisGuild.fetchMembers();
+      const premField = await checkPrem(thisGuild);
       const embed2 = new Discord.RichEmbed();
       embed2.setTitle('Guild Information');
       embed2.setTimestamp();
-      embed2.setFooter(client.user.username, client.user.avatarURL);
+      if (premField === true) {
+        embed2.setFooter(`${client.user.username} | Premium Server`, client.user.avatarURL);
+        embed2.setColor('#FFD700');
+      } else {
+        embed2.setFooter(client.user.username, client.user.avatarURL);
+      }
       embed2.setThumbnail(thisGuild.iconURL);
       embed2.addField('Name', thisGuild.name, true);
       embed2.addField('Owner', owner.tag, true);
