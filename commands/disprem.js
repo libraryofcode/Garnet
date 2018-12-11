@@ -2,13 +2,13 @@ const Discord = require('discord.js');
 const web = require('../webhooks.json');
 var connectToMongo = require('../db/init.js');
 exports.run = async (client, message, args) => {
-  const msg = await message.channel.send('*Deactivating...');
+  const msg = await message.channel.send('*Deactivating...*');
   connectToMongo('mongodb://127.0.0.1:27017/', async function(err, db) {
     var dbo = db.db('Garnet');
     const check = await dbo.collection('premium').findOne({guild: args[0]});
     const thisUser = check.user;
-    const thisGuild = check.guild;
     if (!check) return msg.edit('***Guild never had Premium.***');
+    const thisGuild = check.guild;
 
     const q = { guild: args[0] };
     try {
@@ -29,7 +29,11 @@ exports.run = async (client, message, args) => {
     embed.setTitle('PREMIUM SERVER DEACTIVATION');
     embed.setColor('RED');
     embed.addField('Guild', `${client.guilds.get(args[0]).name} | ${args[0]}`, true);
-    embed.addField('User', `${client.users.get(thisUser).tag} | ${client.users.get(thisUser).id}`, true);
+    try {
+      embed.addField('User', `${client.users.get(thisUser).tag} | ${client.users.get(thisUser).id}`, true);
+    } catch (err) {
+      embed.addField('User', `${client.users.get(thisUser).tag}`, true);
+    }
     embed.addField('Staff', `${message.author.tag} | ${message.author.id}`, true);
     embed.setTimestamp();
     embed.setFooter(client.user.username, client.user.avatarURL);
