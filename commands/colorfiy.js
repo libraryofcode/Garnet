@@ -1,10 +1,12 @@
 const Discord = require('discord.js');
+const checkPrem = require('../db/functions/checkPrem.js');
 exports.run = async (client, message, args) => {
-  ///const content = args.join(' ');
+  const prem = await checkPrem(message.guild.id);
+  if (prem === false) return;
 
 
   const embed = new Discord.RichEmbed();
-  embed.setDescription(args.join(' '))
+  embed.setDescription(args.join(' '));
   embed.setColor('RANDOM');
   embed.setFooter(client.user.username, client.user.avatarURL);
   embed.setTimestamp();
