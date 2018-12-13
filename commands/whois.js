@@ -170,14 +170,14 @@ exports.run = function(client, message, args, level) { return __awaiter(_this, v
           options = { timeZone: 'America/New_York', hour12: true };
           embed = new Discord.RichEmbed();
           embed.setAuthor(botuser.user.username, botuser.user.avatarURL);
-          embed.setTitle(`<@!${botuser.id}>`);
           if (bot === 'Yes') {
-            embed.setTitle(`<@!${botuser.id}> | <:bot:515695746595684374>`);
+            embed.setTitle('<:bot:515695746595684374>');
           }
           embed.setThumbnail(botuser.user.avatarURL);
           if (botuser.displayColor) {
             embed.setColor(botuser.displayColor);
           }
+          embed.setDescription(`<@!${botuser.id}>`);
           embed.addField('Joined Server At', botuser.joinedAt.toLocaleString('en-US', options) + ' | ' + dj.toFixed(0) + ' Days Ago', true);
           joinPosition3 = null;
           embed.addField('Join Position', joinPosition3, false);
