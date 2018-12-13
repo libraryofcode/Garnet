@@ -139,7 +139,6 @@ exports.run = async (client, message) => {
     }
     //embed.setTimestamp();
     const thisCheck = await checkPrem(message.guild.id);
-    console.log(thisCheck)
     if (thisCheck === true) {
       embed.setColor('#FFD700');
       embed.setFooter(`${client.user.username} | Server ID: ${message.guild.id} | Premium Server`, client.user.avatarURL);
