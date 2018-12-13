@@ -5,7 +5,7 @@ exports.run = (client, message) => {
   embed.setTitle('Invitation Link');
   embed.addField('Invite Link', 'https://discordapp.com/oauth2/authorize?client_id=460639060851949569&scope=bot&permissions=2146954495', true);
   embed.setTimestamp();
-  embed.setFooter(`${client.user.username} | Beta - Master`);
+  embed.setFooter(client.user.username, client.user.avatarURL);
   message.member.user.createDM().then(channel => channel.send(embed));
   
   const em1 = new Discord.RichEmbed()
